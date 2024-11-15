@@ -1,8 +1,8 @@
 module image_memory (
     input wire [15:0] address,
-    output reg [31:0] data_out
+    output reg signed [31:0] data_out
 );
-    reg [31:0] memory [0:3920];  // 32-bit values
+    reg signed [31:0] memory [0:3920];  // 32-bit values
 
     initial begin
         $readmemh("image.mif", memory);
