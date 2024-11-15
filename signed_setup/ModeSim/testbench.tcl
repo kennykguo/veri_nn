@@ -6,8 +6,8 @@ if {[file exists work] == 0} {
 }
 
 # Compile the Verilog source files
-vlog -sv signed_arithmetic_fpga.v
-vlog -sv signed_arithmetic_tb.v
+vlog ../signed_arithmetic_fpga.v
+vlog ../signed_arithmetic_tb.v
 
 # Load the testbench module and run the simulation
 vsim signed_arithmetic_tb
