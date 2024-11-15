@@ -6,16 +6,16 @@ module tb_matrix_multiply();
     wire [15:0] input_addr;
     wire [15:0] weight_addr;
     wire [15:0] output_addr;
-    wire [31:0] input_data;
-    wire [31:0] weight_data;
-    wire [31:0] output_data;
+    wire signed [31:0] input_data;  // Declare input_data as signed
+    wire signed [31:0] weight_data; // Declare weight_data as signed
+    wire signed [31:0] output_data; // Declare output_data as signed
     wire write_enable;
     
     localparam M = 10'd5;    // First matrix rows
     localparam N = 10'd5;    // Second matrix columns
     localparam K = 10'd784;  // First matrix columns/Second matrix rows
     
-    reg [31:0] output_memory [0:24];    // 5x5
+    reg signed [31:0] output_memory [0:24];    // 5x5, Declare output memory as signed
     
     // Instantiate memory modules
     image_memory input_mem (
@@ -31,7 +31,7 @@ module tb_matrix_multiply();
     // Output memory write logic
     always @(posedge clk) begin
         if (write_enable) begin
-            output_memory[output_addr] <= output_data;
+            output_memory[output_addr] <= output_data;  // Store signed result
             $display("Writing to output_addr %5d: %h", output_addr, output_data);
         end
     end
@@ -66,7 +66,7 @@ module tb_matrix_multiply();
         
         // Initialize output memory
         for (i = 0; i < 25; i = i + 1) begin
-            output_memory[i] = 32'h0;
+            output_memory[i] = 32'sh0;  // Initialize with signed 0
         end
         
         // Start multiplication
@@ -79,9 +79,11 @@ module tb_matrix_multiply();
         // Display results
         $display("\nMatrix multiplication complete!");
         $display("Result matrix (5x5):");
+        
+        // Display each element in decimal
         for (i = 0; i < 5; i = i + 1) begin
-            $display("%h %h %h %h %h", 
-                output_memory[i*5],
+            $display("%d %d %d %d %d", 
+                output_memory[i*5],  // Display the signed decimal value
                 output_memory[i*5+1],
                 output_memory[i*5+2],
                 output_memory[i*5+3],
@@ -92,5 +94,4 @@ module tb_matrix_multiply();
         #100;
         $finish;
     end
-
 endmodule
