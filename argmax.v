@@ -1,15 +1,14 @@
-// Argmax module for signed 32-bit values
 module argmax (
     input wire clk,
     input wire start,
     input wire [15:0] size,          // Size of input array (10 for final layer)
-    input wire [15:0] addr,         // Address to read from input memory
-    input wire [31:0] data,  // Signed 32-bit input data
-    output reg [3:0] max_index,     // Output class (0-9)
+    input wire [15:0] addr,          // Address to read from input memory
+    input wire signed [31:0] data,   // Explicitly declare as signed input
+    output reg [3:0] max_index,      // Output class (0-9)
     output reg done
 );
     reg [15:0] current_addr;
-    reg [31:0] max_value;
+    reg signed [31:0] max_value;     // Explicitly declare as signed
     reg [3:0] current_max_index;
     reg running;
 
@@ -17,15 +16,15 @@ module argmax (
     always @(posedge clk) begin
         if (start) begin
             current_addr <= 0;
-            max_value <= -32'h80000000;  // Minimum signed 32-bit value
+            max_value <= 32'h80000000;  // Minimum signed 32-bit value (-2^31)
             current_max_index <= 0;
             running <= 1;
             done <= 0;
         end
         else if (running) begin
             if (current_addr < size) begin
-                // Compare signed values
-                if ($signed(data) > $signed(max_value)) begin
+                // Compare signed values - no need for $signed() when inputs are declared as signed
+                if (data > max_value) begin
                     max_value <= data;
                     current_max_index <= current_addr[3:0];
                 end
