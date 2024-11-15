@@ -1,15 +1,19 @@
+# End time: 16:17:54 on Nov 15,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 16:17:56 on Nov 15,2024, Elapsed time: 0:03:46
+# Errors: 0, Warnings: 0
 # vsim signed_arithmetic_tb 
-# Start time: 16:06:34 on Nov 15,2024
+# Start time: 16:17:56 on Nov 15,2024
 # Loading work.signed_arithmetic_tb
 # Loading work.signed_arithmetic_fpga
 # Test 1: a = -5, b = 10
 # Expected add1, add2: 5 (9'd5), mul1, mul2: -50 (16'd65586)
-# add1 =   5, add2 =   5, mul1 = 65486, mul2 = 65486
+# add1 =    5, add2 =    5, mul1 =    -50, mul2 =    -50
 # Test 2: a = -128, b = -1
 # Expected add1, add2: -129 (9'b110000111), mul1, mul2: 128 (16'd128)
-# add1 = 383, add2 = 383, mul1 =   128, mul2 =   128
+# add1 = -129, add2 = -129, mul1 =    128, mul2 =    128
 # Test 3: a = 20, b = 15
 # Expected add1, add2: 35 (9'd35), mul1, mul2: 300 (16'd300)
-# add1 =  35, add2 =  35, mul1 =   300, mul2 =   300
-# ** Note: $finish    : ../signed_modelsim.v(46)
+# add1 =   35, add2 =   35, mul1 =    300, mul2 =    300
+# ** Note: $finish    : ../signed_modelsim.v(47)
 #    Time: 30 ns  Iteration: 0  Instance: /signed_arithmetic_tb
