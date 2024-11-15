@@ -21,18 +21,15 @@ module matrix_multiply(
     reg [1:0] current_state;
     reg [1:0] next_state;
     reg [9:0] i, j, p;
-    reg signed [63:0] temp_sum;
-    reg signed [63:0] mult_result;
+    reg signed [31:0] temp_sum;
     reg final_store_done;
     reg wait_cycle;
     reg first_mult;
     reg last_calc_done;
-    
-    // Pipeline registers
-    reg signed [31:0] input_data_reg;
-    reg signed [31:0] weight_data_reg;
-    reg mult_valid;
-    reg add_valid;
+
+    // Debug counters
+    reg [31:0] computation_count;
+    reg [31:0] multiplication_count;
 
     always @(posedge clk) begin
         current_state <= next_state;
@@ -47,19 +44,6 @@ module matrix_multiply(
         endcase
     end
 
-    // Pipeline stage 1: Register inputs
-    always @(posedge clk) begin
-        input_data_reg <= input_data;
-        weight_data_reg <= weight_data;
-    end
-
-    // Pipeline stage 2: Multiplication
-    always @(posedge clk) begin
-        mult_result <= $signed(input_data_reg) * $signed(weight_data_reg);
-        mult_valid <= !wait_cycle && !final_store_done;
-    end
-
-    // Pipeline stage 3: Accumulation and control
     always @(posedge clk) begin
         case (current_state)
             IDLE: begin
@@ -67,7 +51,7 @@ module matrix_multiply(
                     i <= 0;
                     j <= 0;
                     p <= 0;
-                    temp_sum <= 64'h0;
+                    temp_sum <= 32'h0;
                     done <= 0;
                     final_store_done <= 0;
                     last_calc_done <= 0;
@@ -76,9 +60,12 @@ module matrix_multiply(
                     first_mult <= 1;
                     input_addr <= 0;
                     weight_addr <= 0;
-                    mult_valid <= 0;
-                    add_valid <= 0;
-                    $display("\nStarting matrix multiplication...");
+                    computation_count <= 0;
+                    multiplication_count <= 0;
+                    
+                    $display("\n=== Starting Matrix Multiplication ===");
+                    $display("Matrix Dimensions: (%0d x %0d) @ (%0d x %0d)", m, k, k, n);
+                    $display("Expected number of multiplications: %0d", m * n * k);
                 end
             end
 
@@ -87,48 +74,66 @@ module matrix_multiply(
                 
                 if (wait_cycle) begin
                     wait_cycle <= 0;
+                    $display("\n[Wait Cycle] Indices (i=%0d, j=%0d, p=%0d)", i, j, p);
+                    $display("Current Addresses: input_addr=%0d, weight_addr=%0d", input_addr, weight_addr);
                 end else if (!final_store_done) begin
-                    if (mult_valid) begin
-                        if (first_mult) begin
-                            temp_sum <= mult_result;
-                            first_mult <= 0;
+                    computation_count <= computation_count + 1;
+                    
+                    $display("\n--- Computation Step %0d ---", computation_count);
+                    $display("Current Indices: i=%0d, j=%0d, p=%0d", i, j, p);
+                    $display("Memory Addresses: input_addr=%0d, weight_addr=%0d", input_addr, weight_addr);
+                    $display("Input Values: input_data=%0d, weight_data=%0d", input_data, weight_data);
+                    
+                    if (first_mult) begin
+                        temp_sum <= input_data * weight_data;
+                        first_mult <= 0;
+                        multiplication_count <= multiplication_count + 1;
+                        $display("First multiplication: %0d * %0d = %0d", 
+                                input_data, weight_data, input_data * weight_data);
+                    end else begin
+                        temp_sum <= temp_sum + (input_data * weight_data);
+                        multiplication_count <= multiplication_count + 1;
+                        $display("Accumulating: previous_sum=%0d + (%0d * %0d) = %0d",
+                                temp_sum, input_data, weight_data, 
+                                temp_sum + (input_data * weight_data));
+                    end
+
+                    if (p == k-1) begin
+                        output_addr <= i * n + j;
+                        output_data <= temp_sum + (input_data * weight_data);
+                        write_enable <= 1;
+                        
+                        $display("\n=== Dot Product Complete ===");
+                        $display("Storing at output_addr=%0d: final_sum=%0d", 
+                                i * n + j, temp_sum + (input_data * weight_data));
+
+                        if (i == m-1 && j == n-1) begin
+                            final_store_done <= 1;
+                            last_calc_done <= 1;
+                            $display("\n*** Matrix Multiplication Complete ***");
+                            $display("Total computations: %0d", computation_count + 1);
+                            $display("Total multiplications: %0d", multiplication_count + 1);
                         end else begin
-                            temp_sum <= temp_sum + mult_result;
-                        end
-
-                        $display("Current Input: input_data = %d, weight_data = %d", input_data_reg, weight_data_reg);
-                        $display("Accumulated Sum at (i=%d, j=%d, p=%d): temp_sum = %d", i, j, p, temp_sum);
-
-                        if (p == k-1) begin
-                            output_addr <= i * n + j;
-                            output_data <= temp_sum[31:0];
-                            write_enable <= 1;
-
-                            $display("Storing result at output_addr = %d: output_data = %d", output_addr, temp_sum[31:0]);
-
-                            if (i == m-1 && j == n-1) begin
-                                final_store_done <= 1;
-                                last_calc_done <= 1;
+                            if (j == n-1) begin
+                                i <= i + 1;
+                                j <= 0;
+                                $display("\n>>> Moving to next row <<<");
                             end else begin
-                                if (j == n-1) begin
-                                    i <= i + 1;
-                                    j <= 0;
-                                end else begin
-                                    j <= j + 1;
-                                end
-                                p <= 0;
-                                temp_sum <= 0;
-                                wait_cycle <= 1;
-                                first_mult <= 1;
-
-                                input_addr <= (j == n-1) ? (i + 1) * k : i * k;
-                                weight_addr <= (j == n-1) ? 0 : (j + 1);
+                                j <= j + 1;
+                                $display("\n>>> Moving to next column <<<");
                             end
-                        end else begin
-                            p <= p + 1;
-                            input_addr <= i * k + p + 1;
-                            weight_addr <= (p + 1) * n + j;
+                            p <= 0;
+                            temp_sum <= 0;
+                            wait_cycle <= 1;
+                            first_mult <= 1;
+
+                            input_addr <= (j == n-1) ? (i + 1) * k : i * k;
+                            weight_addr <= (j == n-1) ? 0 : (j + 1);
                         end
+                    end else begin
+                        p <= p + 1;
+                        input_addr <= i * k + p + 1;
+                        weight_addr <= (p + 1) * n + j;
                     end
                 end
             end
@@ -136,6 +141,7 @@ module matrix_multiply(
             FINISH: begin
                 done <= 1;
                 write_enable <= 0;
+                $display("\n=== Matrix Multiplication Finished ===");
             end
         endcase
     end
