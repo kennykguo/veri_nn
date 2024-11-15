@@ -7,15 +7,15 @@ module signed_arithmetic_fpga(
     output [15:0] mul2   // 16-bit output for signed multiplication (using signed keyword)
 );
 
-    // Using $signed for manual casting
+    // Use $signed casting for signed operations
     assign add1 = $signed(a) + $signed(b);
     assign mul1 = $signed(a) * $signed(b);
 
-    // Using signed keyword next to signals
-    wire signed [7:0] signed_a = a; // Cast a as signed
-    wire signed [7:0] signed_b = b; // Cast b as signed
+    // Use signed keyword directly for signals
+    wire signed [7:0] signed_a = a;  // Declare a as signed (this will properly interpret the sign)
+    wire signed [7:0] signed_b = b;  // Declare b as signed (this will properly interpret the sign)
 
-    assign add2 = signed_a + signed_b;
-    assign mul2 = signed_a * signed_b;
+    assign add2 = signed_a + signed_b; // Addition with signed values
+    assign mul2 = signed_a * signed_b; // Multiplication with signed values
 
 endmodule
