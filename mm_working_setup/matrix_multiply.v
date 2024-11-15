@@ -27,10 +27,6 @@ module matrix_multiply(
     reg first_mult;
     reg last_calc_done;
 
-    // Debug counters
-    reg [31:0] computation_count;
-    reg [31:0] multiplication_count;
-
     always @(posedge clk) begin
         current_state <= next_state;
     end
@@ -60,12 +56,6 @@ module matrix_multiply(
                     first_mult <= 1;
                     input_addr <= 0;
                     weight_addr <= 0;
-                    computation_count <= 0;
-                    multiplication_count <= 0;
-                    
-                    $display("\n=== Starting Matrix Multiplication ===");
-                    $display("Matrix Dimensions: (%0d x %0d) @ (%0d x %0d)", m, k, k, n);
-                    $display("Expected number of multiplications: %0d", m * n * k);
                 end
             end
 
@@ -74,53 +64,28 @@ module matrix_multiply(
                 
                 if (wait_cycle) begin
                     wait_cycle <= 0;
-                    $display("\n[Wait Cycle] Indices (i=%0d, j=%0d, p=%0d)", i, j, p);
-                    $display("Current Addresses: input_addr=%0d, weight_addr=%0d", input_addr, weight_addr);
                 end else if (!final_store_done) begin
-                    computation_count <= computation_count + 1;
-                    
-                    $display("\n--- Computation Step %0d ---", computation_count);
-                    $display("Current Indices: i=%0d, j=%0d, p=%0d", i, j, p);
-                    $display("Memory Addresses: input_addr=%0d, weight_addr=%0d", input_addr, weight_addr);
-                    $display("Input Values: input_data=%0d, weight_data=%0d", input_data, weight_data);
-                    
                     if (first_mult) begin
                         temp_sum <= input_data * weight_data;
                         first_mult <= 0;
-                        multiplication_count <= multiplication_count + 1;
-                        $display("First multiplication: %0d * %0d = %0d", 
-                                input_data, weight_data, input_data * weight_data);
                     end else begin
                         temp_sum <= temp_sum + (input_data * weight_data);
-                        multiplication_count <= multiplication_count + 1;
-                        $display("Accumulating: previous_sum=%0d + (%0d * %0d) = %0d",
-                                temp_sum, input_data, weight_data, 
-                                temp_sum + (input_data * weight_data));
                     end
 
                     if (p == k-1) begin
                         output_addr <= i * n + j;
                         output_data <= temp_sum + (input_data * weight_data);
                         write_enable <= 1;
-                        
-                        $display("\n=== Dot Product Complete ===");
-                        $display("Storing at output_addr=%0d: final_sum=%0d", 
-                                i * n + j, temp_sum + (input_data * weight_data));
 
                         if (i == m-1 && j == n-1) begin
                             final_store_done <= 1;
                             last_calc_done <= 1;
-                            $display("\n*** Matrix Multiplication Complete ***");
-                            $display("Total computations: %0d", computation_count + 1);
-                            $display("Total multiplications: %0d", multiplication_count + 1);
                         end else begin
                             if (j == n-1) begin
                                 i <= i + 1;
                                 j <= 0;
-                                $display("\n>>> Moving to next row <<<");
                             end else begin
                                 j <= j + 1;
-                                $display("\n>>> Moving to next column <<<");
                             end
                             p <= 0;
                             temp_sum <= 0;
@@ -141,7 +106,6 @@ module matrix_multiply(
             FINISH: begin
                 done <= 1;
                 write_enable <= 0;
-                $display("\n=== Matrix Multiplication Finished ===");
             end
         endcase
     end
