@@ -1,0 +1,330 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dW:/project/working_implementation/ModelSim
+vargmax
+Z1 !s110 1731624337
+!i10b 1
+!s100 UFg>DLm[azBGl=PO7]O@[1
+I3@6oG4?gM3K6`PX2=ce2A2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1731604199
+8../argmax.v
+F../argmax.v
+L0 2
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1731624337.000000
+!s107 ../argmax.v|
+!s90 -reportprogress|300|../argmax.v|
+!i113 1
+Z4 tCvgOpt 0
+vimage_memory
+R1
+!i10b 1
+!s100 RZJh3gk?7F?TOXS_?FG060
+IzI?n?F;]<J7_91@giZ<@50
+R2
+R0
+w1731457973
+8../image_memory.v
+F../image_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z5 !s108 1731624334.000000
+!s107 ../image_memory.v|
+!s90 -reportprogress|300|../image_memory.v|
+!i113 1
+R4
+vmatrix1
+Z6 !s110 1731624324
+!i10b 1
+!s100 Qo5e@CKLO9>F;ZabYG>i@0
+IIOzh@EDPfBa<:[ITLTnCm2
+R2
+R0
+w1731457974
+8../matrix1.v
+F../matrix1.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z7 !s108 1731624324.000000
+!s107 ../matrix1.v|
+!s90 -reportprogress|300|../matrix1.v|
+!i113 1
+R4
+vmatrix2
+!s110 1731624325
+!i10b 1
+!s100 YYe:iW:5X;YZD64Q8kn8l3
+IAUZf@j;RUEk5N`kSWH8Z_1
+R2
+R0
+w1731457978
+8../matrix2.v
+F../matrix2.v
+L0 1
+R3
+r1
+!s85 0
+31
+R7
+!s107 ../matrix2.v|
+!s90 -reportprogress|300|../matrix2.v|
+!i113 1
+R4
+vmatrix3
+!s110 1731624326
+!i10b 1
+!s100 f<>`6IR8E03XfiBSKJ1Ba2
+I]iaOkf407L6oEfHle;J?]2
+R2
+R0
+w1731457979
+8../matrix3.v
+F../matrix3.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z8 !s108 1731624326.000000
+!s107 ../matrix3.v|
+!s90 -reportprogress|300|../matrix3.v|
+!i113 1
+R4
+vmatrix4
+!s110 1731624327
+!i10b 1
+!s100 z8fkEnz59:]^<^LWI4AY21
+I8eZMD`:3coFgkZ58C[=EB1
+R2
+R0
+w1731457984
+8../matrix4.v
+F../matrix4.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../matrix4.v|
+!s90 -reportprogress|300|../matrix4.v|
+!i113 1
+R4
+vmatrix_multiply
+Z9 !s110 1731624320
+!i10b 1
+!s100 hIdma4o]BdF>YC:0FdbkE0
+I=TdBe<le`6UV>ai8?Ob=43
+R2
+R0
+w1731619251
+8../matrix_multiply.v
+F../matrix_multiply.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z10 !s108 1731624320.000000
+!s107 ../matrix_multiply.v|
+!s90 -reportprogress|300|../matrix_multiply.v|
+!i113 1
+R4
+vmm1_memory
+!s110 1731624328
+!i10b 1
+!s100 RL7o`SX<93L1c2UDI9iT31
+I`lZB;NEQdeFGgh]FR0E:X0
+R2
+R0
+w1731624180
+8../mm1_memory.v
+F../mm1_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1731624327.000000
+!s107 ../mm1_memory.v|
+!s90 -reportprogress|300|../mm1_memory.v|
+!i113 1
+R4
+vmm2_memory
+Z11 !s110 1731624329
+!i10b 1
+!s100 VWOX8X7kMFMoP7TMVo^8Q1
+IO5YQl:lT@aVSeFA3[Y?=b3
+R2
+R0
+w1731624182
+8../mm2_memory.v
+F../mm2_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1731624328.000000
+!s107 ../mm2_memory.v|
+!s90 -reportprogress|300|../mm2_memory.v|
+!i113 1
+R4
+vmm3_memory
+R11
+!i10b 1
+!s100 XS7[S]0h_`iVOzHEE<7zI2
+ICDeS8FeJljbN28;@_HbX^3
+R2
+R0
+w1731624184
+8../mm3_memory.v
+F../mm3_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z12 !s108 1731624329.000000
+!s107 ../mm3_memory.v|
+!s90 -reportprogress|300|../mm3_memory.v|
+!i113 1
+R4
+vmm4_memory
+R11
+!i10b 1
+!s100 iHazPi7Y^U6icn<O[hAbd1
+IdjSHZ9:X9koL=Bkzi`Lik1
+R2
+R0
+w1731624188
+8../mm4_memory.v
+F../mm4_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R12
+!s107 ../mm4_memory.v|
+!s90 -reportprogress|300|../mm4_memory.v|
+!i113 1
+R4
+vrelu
+R6
+!i10b 1
+!s100 @Bi`:@9HVDo31O[Me=9M03
+I[EAL5c6f3@<`TQd1[=:7L3
+R2
+R0
+w1731624303
+8../relu.v
+F../relu.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1731624323.000000
+!s107 ../relu.v|
+!s90 -reportprogress|300|../relu.v|
+!i113 1
+R4
+vrelu1_memory
+!s110 1731624333
+!i10b 1
+!s100 dmKLG][<2WXa0PAmIUMTT1
+I8^Gi3d82=l9dim[3oAN1J1
+R2
+R0
+w1731624190
+8../relu1_memory.v
+F../relu1_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1731624330.000000
+!s107 ../relu1_memory.v|
+!s90 -reportprogress|300|../relu1_memory.v|
+!i113 1
+R4
+vrelu2_memory
+Z13 !s110 1731624334
+!i10b 1
+!s100 gD8XbKA=G`g7>Kmd6aI:B3
+IZ<aR_dB]@PKYN2fc9lPVd2
+R2
+R0
+w1731624193
+8../relu2_memory.v
+F../relu2_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1731624333.000000
+!s107 ../relu2_memory.v|
+!s90 -reportprogress|300|../relu2_memory.v|
+!i113 1
+R4
+vrelu3_memory
+R13
+!i10b 1
+!s100 YH`U?P<8h<g>c6>MPc`C31
+I=lJTBSN^_zH99@a:5ekmi1
+R2
+R0
+w1731624194
+8../relu3_memory.v
+F../relu3_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R5
+!s107 ../relu3_memory.v|
+!s90 -reportprogress|300|../relu3_memory.v|
+!i113 1
+R4
+vtb_neural_network
+R9
+!i10b 1
+!s100 6YB^lGiiizZ_^Tm1HojBQ0
+I87DEO3T[inI_ihVDlbHUi1
+R2
+R0
+w1731623596
+8../tb_neural_network.v
+F../tb_neural_network.v
+L0 1
+R3
+r1
+!s85 0
+31
+R10
+!s107 ../tb_neural_network.v|
+!s90 -reportprogress|300|../tb_neural_network.v|
+!i113 1
+R4
