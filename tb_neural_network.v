@@ -7,7 +7,7 @@ module tb_neural_network;
     wire [15:0] input_addr, weight1_addr, weight2_addr, weight3_addr, weight4_addr;
     
     // Memory data signals
-    wire [31:0] input_data, weight1_data, weight2_data, weight3_data, weight4_data;
+    wire signed [31:0] input_data, weight1_data, weight2_data, weight3_data, weight4_data;
     
     // Separate read/write addresses for each memory module
     wire [15:0] mm1_write_addr, mm1_read_addr;
@@ -19,13 +19,13 @@ module tb_neural_network;
     wire [15:0] mm4_write_addr, mm4_read_addr;
 
     // Layer data and memory interfaces
-    wire [31:0] mm1_data, mm2_data, mm3_data, mm4_data;
-    wire [31:0] relu1_data, relu2_data, relu3_data, relu4_data;
+    wire signed [31:0] mm1_data, mm2_data, mm3_data, mm4_data;
+    wire signed [31:0] relu1_data, relu2_data, relu3_data, relu4_data;
 
-    wire [31:0] mm1_data_out, relu1_data_out;
-    wire [31:0] mm2_data_out, relu2_data_out;
-    wire [31:0] mm3_data_out, relu3_data_out;
-    wire [31:0] mm4_data_out;
+    wire signed [31:0] mm1_data_out, relu1_data_out;
+    wire signed [31:0] mm2_data_out, relu2_data_out;
+    wire signed [31:0] mm3_data_out, relu3_data_out;
+    wire signed [31:0] mm4_data_out;
 
     // Write enable signals
     wire write_mm1, write_relu1;
@@ -263,9 +263,9 @@ module tb_neural_network;
         current_state <= next_state;
     end
 
+    // For the output
     assign done = (current_state == DONE);
     
-    // Control logic remains mostly the same, but with clearer state transitions
     // Control logic
     always @(*) begin
         start_mm1 = 0;
