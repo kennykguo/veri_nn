@@ -17,7 +17,7 @@ module matrix_multiply(
     localparam IDLE = 2'b00;
     localparam COMPUTE = 2'b01;
     localparam FINISH = 2'b10;
-
+ 
     reg [1:0] current_state;
     reg [1:0] next_state;
     reg [9:0] i, j, p;
