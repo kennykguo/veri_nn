@@ -1,7 +1,11 @@
-module tb_neural_network;
-    reg clk;
-    reg start;
-    wire done;
+module neural_network_core (
+    input wire clk,
+    input wire start,
+    output wire done,
+    output reg [3:0] current_state,
+    output wire [3:0] next_state,
+    output wire [3:0] argmax_output
+);
 
     // Memory addresses for weights and inputs
     wire [15:0] input_addr, weight1_addr, weight2_addr, weight3_addr, weight4_addr;
@@ -20,8 +24,7 @@ module tb_neural_network;
 
     // Layer data and memory interfaces
     wire signed [31:0] mm1_data, mm2_data, mm3_data, mm4_data;
-    wire signed [31:0] relu1_data, relu2_data, relu3_data, relu4_data;
-
+    wire signed [31:0] relu1_data, relu2_data, relu3_data;
     wire signed [31:0] mm1_data_out, relu1_data_out;
     wire signed [31:0] mm2_data_out, relu2_data_out;
     wire signed [31:0] mm3_data_out, relu3_data_out;
@@ -33,10 +36,7 @@ module tb_neural_network;
     wire write_mm3, write_relu3;
     wire write_mm4;
 
-    wire [3:0] argmax_output;
-
     // Control signals
-    reg [3:0] current_state, next_state;
     reg start_mm1, start_mm2, start_mm3, start_mm4;
     reg start_relu1, start_relu2, start_relu3;
     reg start_argmax;
@@ -72,6 +72,7 @@ module tb_neural_network;
         .data_out(weight4_data)
     );
 
+    // Memory modules for intermediate results
     mm1_memory mm1_mem(
         .clk(clk),
         .write_addr(mm1_write_addr),
@@ -263,10 +264,10 @@ module tb_neural_network;
         current_state <= next_state;
     end
 
-    // For the output
+    // Output assignment
     assign done = (current_state == DONE);
     
-    // Control logic
+    // State machine control logic
     always @(*) begin
         start_mm1 = 0;
         start_relu1 = 0;
@@ -279,20 +280,15 @@ module tb_neural_network;
 
         case (current_state)
             IDLE: begin
-                if (start) begin
-                    next_state = LAYER1_MM;
-                    start_mm1 = 1;
-                    start = 0;
-                end else begin
-                    next_state = IDLE;
-                end
+                if (start) next_state = LAYER1_MM;
+                else next_state = IDLE;
+                start_mm1 = start;
             end
             
             LAYER1_MM: begin
                 if (mm1_done) begin
                     next_state = LAYER1_RELU;
                     start_relu1 = 1;
-                    start_mm1 = 0;
                 end else begin
                     next_state = LAYER1_MM;
                 end
@@ -353,11 +349,8 @@ module tb_neural_network;
             end
             
             ARGMAX: begin
-                if (argmax_done) begin
-                    next_state = DONE;
-                end else begin
-                    next_state = ARGMAX;
-                end
+                if (argmax_done) next_state = DONE;
+                else next_state = ARGMAX;
             end
             
             DONE: begin
@@ -369,27 +362,5 @@ module tb_neural_network;
             end
         endcase
     end
-
-    // Updated simulation logic with reset
-    initial begin
-        clk = 0;
-        // rst = 1;  // Start with reset active
-        start = 0;
-        
-        // Reset sequence
-        // #20 rst = 0;  // Release reset
-        #20 start = 1; // Start the operation
-        $display("Simulation started.");
-        #40 start = 0;
-
-        @(posedge done);
-        $display("Simulation completed.");
-        $display("\nPredicted class: %0d", argmax_output);
-        
-        #100 $finish;
-    end
-
-    // Clock generation
-    always #10 clk = ~clk;
 
 endmodule
