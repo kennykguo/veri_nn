@@ -35,7 +35,6 @@ module neural_network_top (
     assign HEX0 = seg7_display;
 
     assign LEDR[9] = start;  // Shows if start is active
-    assign LEDR[8] = mm1_done;  // Shows if mm1 is done
     assign LEDR[3:0] = current_state;  // Shows current state in binary
 
     // Neural network instance
