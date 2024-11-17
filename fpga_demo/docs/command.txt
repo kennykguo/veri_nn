@@ -1,2 +1,0 @@
-    cd W:/project/working_implementation/ModelSim
-    do testbench.tcl

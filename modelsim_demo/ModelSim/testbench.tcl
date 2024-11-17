@@ -29,7 +29,11 @@ vlog ../argmax.v
 # Start simulation
 vsim -t 1ps work.tb_neural_network
 
-# Add waves with specific formatting
+# Add image visualization (simplified approach)
+add wave -noupdate -divider "MNIST Image Visualization"
+add wave -position end -radix binary /tb_neural_network/input_mem/memory
+
+# Add your existing waves
 add wave -noupdate -divider "Control Signals"
 add wave -position insertpoint -radix unsigned /tb_neural_network/current_state
 add wave -position insertpoint -radix unsigned /tb_neural_network/next_state
@@ -127,8 +131,33 @@ configure wave -datasetprefix 0
 configure wave -rowmargin 4
 configure wave -childrowmargin 2
 
-# Zoom full
-wave zoom full
+# Add image display procedure
+proc display_image_memory {} {
+    puts "\nMNIST Image Visualization:"
+    puts "------------------------"
+    for {set row 0} {$row < 28} {incr row} {
+        set line ""
+        for {set col 0} {$col < 28} {incr col} {
+            set addr [expr {$row * 28 + $col}]
+            set value [examine -radix binary /tb_neural_network/input_mem/memory($addr)]
+            if {$value == 1} {
+                append line "xx"
+            } else {
+                append line "  "
+            }
+        }
+        puts $line
+    }
+    puts "------------------------"
+}
 
-# Run simulation
+# Window button for refreshing display
+# button .refresh -text "Refresh Image View" -command display_image_memory
+# pack .refresh
+
+# Run simulation and display initial image
 run -all
+display_image_memory
+
+# Zoom wave window to show everything
+wave zoom full
