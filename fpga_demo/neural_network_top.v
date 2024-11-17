@@ -8,6 +8,7 @@ module neural_network_top (
     // Internal signals
     wire clk;
     wire start;
+    wire reset;
     wire done;
     wire [3:0] argmax_output;
     
@@ -18,6 +19,7 @@ module neural_network_top (
     // Assign clock and start
     assign clk = CLOCK_50;
     assign start = ~KEY1; // Keys are active low
+    assign reset = SW[0];
 
     // Seven segment decoder
     reg [6:0] seg7_display;
@@ -29,6 +31,7 @@ module neural_network_top (
     // Your existing neural network instance
     neural_network nn (
         .clk(clk),
+        .reset(reset),
         .start(start),
         .done(done),
         .current_state(current_state),

@@ -1,5 +1,6 @@
 module neural_network (
     input wire clk,
+    input wire reset,
     input wire start,
     output wire done,
     output reg [3:0] current_state,
@@ -260,10 +261,13 @@ module neural_network (
     localparam DONE = 4'd9;
 
     // State transitions
-    always @(posedge clk) begin
-        current_state <= next_state;
-    end
-
+    always @(posedge clk) 
+        begin
+            if (!reset)
+                current_state <= next_state;
+            else
+                current_state <= IDLE;
+        end
     // Output assignment
     assign done = (current_state == DONE);
     
