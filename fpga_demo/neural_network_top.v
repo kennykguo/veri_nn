@@ -8,7 +8,7 @@ module neural_network_top (
 
     // Internal signals
     wire clk;
-    wire clk_slow;  // New slower clock
+    wire clk_slow;
     wire start;
     wire resetn;
     wire done;
@@ -48,21 +48,25 @@ module neural_network_top (
         .argmax_output(argmax_output)
     );
 
-    // Seven segment display decoder
+    // Seven segment display decoder with reset
     always @(*) begin
-        case(argmax_output)
-            4'd0: seg7_display = 7'b1000000; // 0
-            4'd1: seg7_display = 7'b1111001; // 1
-            4'd2: seg7_display = 7'b0100100; // 2
-            4'd3: seg7_display = 7'b0110000; // 3
-            4'd4: seg7_display = 7'b0011001; // 4
-            4'd5: seg7_display = 7'b0010010; // 5
-            4'd6: seg7_display = 7'b0000010; // 6
-            4'd7: seg7_display = 7'b1111000; // 7
-            4'd8: seg7_display = 7'b0000000; // 8
-            4'd9: seg7_display = 7'b0010000; // 9
-            default: seg7_display = 7'b1111111; // Off
-        endcase
+        if (!resetn) begin
+            seg7_display = 7'b1111111; // Off when reset is active (low)
+        end else begin
+            case(argmax_output)
+                4'd0: seg7_display = 7'b1000000; // 0
+                4'd1: seg7_display = 7'b1111001; // 1
+                4'd2: seg7_display = 7'b0100100; // 2
+                4'd3: seg7_display = 7'b0110000; // 3
+                4'd4: seg7_display = 7'b0011001; // 4
+                4'd5: seg7_display = 7'b0010010; // 5
+                4'd6: seg7_display = 7'b0000010; // 6
+                4'd7: seg7_display = 7'b1111000; // 7
+                4'd8: seg7_display = 7'b0000000; // 8
+                4'd9: seg7_display = 7'b0010000; // 9
+                default: seg7_display = 7'b1111111; // Off
+            endcase
+        end
     end
 
 endmodule
