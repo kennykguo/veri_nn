@@ -1,0 +1,16 @@
+WIDTH = 4;
+DEPTH = 32;
+ADDRESS_RADIX = HEX;
+DATA_RADIX = BIN;
+
+CONTENT
+BEGIN
+0		: 1111;
+1		: 1110;
+2		: 1101;
+3		: 1100;
+4		: 1011;
+5		: 1010;
+6		: 1001;
+7		: 1000;
+END;

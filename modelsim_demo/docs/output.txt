@@ -1,0 +1,3 @@
+# Accumulated Sum at (i=   4, j=   4, p= 782): temp_sum =       21500
+# Current Input: input_data =        -100, weight_data =        -100
+# Accumulated Sum at (i=   4, j=   4, p= 783): temp_sum =       27516
