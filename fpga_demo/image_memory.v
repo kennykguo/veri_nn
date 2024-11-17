@@ -5,7 +5,7 @@ module image_memory (
     reg signed [31:0] memory [0:783];  // 32-bit values
 
     initial begin
-        $readmemh("image.mif", memory);
+        $readmemh("mem/image.mif", memory);
         // if ($test$plusargs("DEBUG")) begin
         //     $display("Image memory file successfully loaded.");
         // end

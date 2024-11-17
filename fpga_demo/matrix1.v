@@ -5,7 +5,7 @@ module matrix1 (
     reg signed [31:0] memory [0:50175];  // 32-bit values
 
     initial begin
-        $readmemh("matrix1.mif", memory);
+        $readmemh("mem/matrix1.mif", memory);
         // if ($test$plusargs("DEBUG")) begin
         //     $display("Weight matrix 1 memory file successfully loaded.");
         // end

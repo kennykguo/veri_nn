@@ -5,7 +5,7 @@ module matrix3 (
     reg signed [31:0] memory [0:2048];  // 32-bit values
 
     initial begin
-        $readmemh("matrix3.mif", memory);
+        $readmemh("mem/matrix3.mif", memory);
     end
 
     always @(address) begin
