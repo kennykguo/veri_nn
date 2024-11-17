@@ -65,7 +65,7 @@ module neural_network_top (
                 4'd7: seg7_display = 7'b1111000; // 7
                 4'd8: seg7_display = 7'b0000000; // 8
                 4'd9: seg7_display = 7'b0010000; // 9
-					 4'd10: seg7_display = 7'b11111110; // Default
+					 4'd10: seg7_display = 7'b01111111; // Default
                 default: seg7_display = 7'b1111111; // Off
             endcase
         end
