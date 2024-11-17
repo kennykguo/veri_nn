@@ -1,6 +1,7 @@
 module tb_neural_network;
     reg clk;
     reg start;
+    reg resetn;
     wire done;
 
     // Memory addresses for weights and inputs
@@ -259,8 +260,12 @@ module tb_neural_network;
     localparam DONE = 4'd9;
 
     // State transitions
-    always @(posedge clk) begin
-        current_state <= next_state;
+    always @(posedge clk or negedge resetn) begin
+        if (!resetn) begin
+            current_state <= IDLE;
+        end else begin
+            current_state <= next_state;
+        end
     end
 
     // For the output
@@ -370,15 +375,14 @@ module tb_neural_network;
         endcase
     end
 
-    // Updated simulation logic with reset
     initial begin
         clk = 0;
-        // rst = 1;  // Start with reset active
+        resetn = 0;  // Start with reset active (low)
         start = 0;
         
         // Reset sequence
-        // #20 rst = 0;  // Release reset
-        #20 start = 1; // Start the operation
+        #20 resetn = 1;  // Release reset by bringing it high
+        #30 start = 1;  // Start the operation
         $display("Simulation started.");
         #40 start = 0;
 

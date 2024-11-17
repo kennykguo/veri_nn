@@ -1,14 +1,16 @@
 module neural_network_top (
-    input  CLOCK_50,
-    input  KEY1,      // Start signal (active low)
+    input CLOCK_50,
+    input KEY0,      // Start signal (active low)
+    input [9:0] SW,
     output [9:0] LEDR, // LEDs for state indication
     output [6:0] HEX0  // 7-segment display for output
 );
 
     // Internal signals
     wire clk;
+    wire clk_slow;  // New slower clock
     wire start;
-    wire reset;
+    wire resetn;
     wire done;
     wire [3:0] argmax_output;
     
@@ -16,22 +18,29 @@ module neural_network_top (
     reg [3:0] current_state;
     reg [3:0] next_state;
     
-    // Assign clock and start
-    assign clk = CLOCK_50;
-    assign start = ~KEY1; // Keys are active low
-    assign reset = SW[0];
+    // Clock divider instance
+    clock_divider clk_div (
+        .clk_in(CLOCK_50),
+        .clk_out(clk_slow),
+        .DIVISOR(32'd8)  // Adjust this value to change clock speed
+    );
+
+    // Assign clock, start and reset
+    assign clk = clk_slow;  // Use the slower clock
+    assign start = ~KEY0;   // Keys are active low
+    assign resetn = SW[0];
 
     // Seven segment decoder
     reg [6:0] seg7_display;
     assign HEX0 = seg7_display;
 
     // LED state indicators
-    assign LEDR[9:0] = (10'b1 << current_state); // One-hot encoding for states
+    assign LEDR[9:0] = (10'b1 << current_state);
 
-    // Your existing neural network instance
+    // Neural network instance
     neural_network nn (
         .clk(clk),
-        .reset(reset),
+        .resetn(resetn),
         .start(start),
         .done(done),
         .current_state(current_state),
