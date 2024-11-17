@@ -14,16 +14,22 @@ module neural_network_top (
     wire done;
     wire [3:0] argmax_output;
     
+
+
     // State signals - Changed to wire since they're outputs from neural_network
     wire [3:0] current_state;
     wire [3:0] next_state;
     
+
+
     // Clock divider instance
     clock_divider clk_div (
         .clk_in(CLOCK_50),
         .clk_out(clk_slow),
         .DIVISOR(32'd2)  // Adjust this value to change clock speed
     );
+
+
 
     // Assign clock, start and reset
     assign clk = clk_slow;  // Use the slower clock
