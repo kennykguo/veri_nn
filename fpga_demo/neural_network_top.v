@@ -22,7 +22,7 @@ module neural_network_top (
     clock_divider clk_div (
         .clk_in(CLOCK_50),
         .clk_out(clk_slow),
-        .DIVISOR(32'd8)  // Adjust this value to change clock speed
+        .DIVISOR(32'd2)  // Adjust this value to change clock speed
     );
 
     // Assign clock, start and reset
