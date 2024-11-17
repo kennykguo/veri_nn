@@ -264,6 +264,7 @@ module neural_network (
     always @(posedge clk or negedge resetn) begin
         if (!resetn) begin
             current_state <= IDLE;
+            argmax_output <= 4'b1111110;
         end else begin
             current_state <= next_state;
         end
