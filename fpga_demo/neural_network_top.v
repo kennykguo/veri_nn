@@ -14,9 +14,9 @@ module neural_network_top (
     wire done;
     wire [3:0] argmax_output;
     
-    // State signals
-    reg [3:0] current_state;
-    reg [3:0] next_state;
+    // State signals - Changed to wire since they're outputs from neural_network
+    wire [3:0] current_state;
+    wire [3:0] next_state;
     
     // Clock divider instance
     clock_divider clk_div (
