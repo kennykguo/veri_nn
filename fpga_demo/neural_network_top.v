@@ -22,7 +22,7 @@ module neural_network_top (
     clock_divider clk_div (
         .clk_in(CLOCK_50),
         .clk_out(clk_slow),
-        .DIVISOR(32'd4)  // Adjust this value to change clock speed
+        .DIVISOR(32'd500)  // Adjust this value to change clock speed
     );
 
     // Assign clock, start and reset
@@ -52,6 +52,7 @@ module neural_network_top (
     always @(*) begin
         if (!resetn) begin
             seg7_display = 7'b1111111; // Off when reset is active (low)
+				
         end else begin
             case(argmax_output)
                 4'd0: seg7_display = 7'b1000000; // 0
@@ -64,6 +65,7 @@ module neural_network_top (
                 4'd7: seg7_display = 7'b1111000; // 7
                 4'd8: seg7_display = 7'b0000000; // 8
                 4'd9: seg7_display = 7'b0010000; // 9
+					 4'd10: seg7_display = 7'b01111111; // Default
                 default: seg7_display = 7'b1111111; // Off
             endcase
         end
