@@ -2,20 +2,18 @@ module vga_demo(
     input CLOCK_50,    
     input [9:0] SW,
     input [3:0] KEY,
-    output [6:0] HEX3, HEX2, HEX1, HEX0,
     output [7:0] VGA_R, VGA_G, VGA_B,
-    output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK,
-    output [9:0] LEDR
+    output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK
 );
     
     // Grid constants (28x28)
     parameter GRID_SIZE = 28;
-    parameter PIXEL_SIZE = 4;  // Reduced for 160x120 resolution
+    parameter PIXEL_SIZE = 4;
     parameter GRID_OFFSET_X = 10;
     parameter GRID_OFFSET_Y = 10;
     
     // Memory array for pixel storage
-    reg [0:0] pixel_memory [0:783]; // 28x28 = 784 pixels
+    reg [0:0] pixel_memory [0:783];
     
     // Cursor position registers
     reg [4:0] current_x = 5'd14;
@@ -30,10 +28,10 @@ module vga_demo(
     parameter DELAY_MAX = 20'd100000;
     
     // VGA signals
-    wire [7:0] x;  // Changed to 8-bit for 160x120
-    wire [6:0] y;  // Changed to 7-bit for 160x120
-    wire [2:0] colour_out;  // Final output color
-    reg [2:0] grid_colour;  // Color from grid logic
+    wire [7:0] x;
+    wire [6:0] y;
+    wire [2:0] colour_out;
+    reg [2:0] grid_colour;
     
     // Drawing control
     reg plot;
@@ -44,9 +42,6 @@ module vga_demo(
     reg [2:0] draw_state;
     reg [4:0] grid_x, grid_y;
     
-    // Debug register
-    reg [3:0] debug_state;
-    
     // Initialize memory and registers
     integer i;
     initial begin
@@ -54,7 +49,6 @@ module vga_demo(
             pixel_memory[i] <= 1'b0;
         end
         key_prev <= 4'b1111;
-        debug_state <= 4'b0000;
         draw_state <= 3'b000;
         draw_x <= GRID_OFFSET_X;
         draw_y <= GRID_OFFSET_Y;
@@ -74,8 +68,6 @@ module vga_demo(
             end
             
             3'b001: begin
-                grid_colour <= 3'b111;  // White background
-                
                 draw_x <= draw_x + PIXEL_SIZE;
                 if (draw_x >= (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE - 1)) begin
                     draw_x <= GRID_OFFSET_X;
@@ -89,10 +81,7 @@ module vga_demo(
             end
             
             3'b010: begin
-                if (!SW[9]) begin
-                    current_x <= 5'd14;
-                    current_y <= 5'd14;
-                end
+                // Empty state - movement handled in separate block
             end
         endcase
     end
@@ -105,11 +94,11 @@ module vga_demo(
                 for(i = 0; i < 784; i = i + 1) begin
                     pixel_memory[i] <= 1'b0;
                 end
-                debug_state <= 4'b0001;
+                current_x <= 5'd14;
+                current_y <= 5'd14;
             end
             else begin
                 key_prev <= ~KEY;
-                debug_state <= 4'b0010;
                 
                 if (move_delay == 0) begin
                     if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin
@@ -140,27 +129,17 @@ module vga_demo(
         end
     end
     
-    // Grid color logic
-    always @(*) begin
-        if (x >= GRID_OFFSET_X && x < (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE) &&
-            y >= GRID_OFFSET_Y && y < (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE)) begin
-            
-            grid_x = (x - GRID_OFFSET_X) / PIXEL_SIZE;
-            grid_y = (y - GRID_OFFSET_Y) / PIXEL_SIZE;
-            
-            if (grid_x == current_x && grid_y == current_y) begin
-                grid_colour = pixel_memory[grid_y * GRID_SIZE + grid_x] ? 3'b001 : 3'b100;
-            end else begin
-                grid_colour = pixel_memory[grid_y * GRID_SIZE + grid_x] ? 3'b000 : 3'b111;
-            end
-        end
-        else begin
-            grid_colour = 3'b111;  // White background
-        end
-    end
-    
-    // Color multiplexer
-    assign colour_out = (draw_state == 3'b001) ? 3'b111 : grid_colour;
+    // Color output logic
+    assign colour_out = (draw_state == 3'b001) ? 3'b111 : 
+                       ((x >= GRID_OFFSET_X && x < (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE) &&
+                         y >= GRID_OFFSET_Y && y < (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE)) ?
+                        ((((x - GRID_OFFSET_X) / PIXEL_SIZE) == current_x && 
+                          ((y - GRID_OFFSET_Y) / PIXEL_SIZE) == current_y) ?
+                         (pixel_memory[((y - GRID_OFFSET_Y) / PIXEL_SIZE) * GRID_SIZE + 
+                                     ((x - GRID_OFFSET_X) / PIXEL_SIZE)] ? 3'b001 : 3'b100) :
+                         (pixel_memory[((y - GRID_OFFSET_Y) / PIXEL_SIZE) * GRID_SIZE + 
+                                     ((x - GRID_OFFSET_X) / PIXEL_SIZE)] ? 3'b000 : 3'b111)) :
+                        3'b111);
     
     // VGA controller
     vga_adapter VGA (
