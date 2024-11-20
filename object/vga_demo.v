@@ -11,8 +11,8 @@ module vga_demo(
     // Grid constants (28x28)
     parameter GRID_SIZE = 28;
     parameter PIXEL_SIZE = 16;  // Increased to make grid more visible
-    parameter GRID_OFFSET_X = 80;
-    parameter GRID_OFFSET_Y = 60;
+    parameter GRID_OFFSET_X = 40;
+    parameter GRID_OFFSET_Y = 20;
     
     // Memory array for pixel storage
     reg [0:0] pixel_memory [0:783]; // 28x28 = 784 pixels
@@ -106,13 +106,13 @@ module vga_demo(
         end
     end
     
+
     reg [4:0] grid_x, grid_y;
     
     // VGA color logic
     always @(*) begin
         // Default to white background
         colour = 3'b111;
-
         // Check if within grid bounds
         if (x >= GRID_OFFSET_X && x < (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE) &&
             y >= GRID_OFFSET_Y && y < (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE)) begin
@@ -152,7 +152,7 @@ module vga_demo(
         .VGA_SYNC_N(VGA_SYNC_N),
         .VGA_CLK(VGA_CLK)
     );
-    defparam VGA.RESOLUTION = "640x480";  // Standard VGA resolution
+    defparam VGA.RESOLUTION = "160x120";  // Standard VGA resolution
     defparam VGA.MONOCHROME = "FALSE";
     defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
     defparam VGA.BACKGROUND_IMAGE = "black.mif";
