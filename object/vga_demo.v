@@ -127,9 +127,9 @@ module vga_demo(
     vga_adapter VGA (
         .resetn(1'b1),
         .clock(CLOCK_50),
-        .colour(color),
-        .x(vga_x),
-        .y(vga_y),
+        .colour(colour),    // Was 'color'
+        .x(x),             // Was 'vga_x'
+        .y(y),             // Was 'vga_y'
         .plot(1'b1),
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
