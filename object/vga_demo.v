@@ -8,7 +8,7 @@ module vga_demo(
     output [9:0] LEDR
 );
     
-    // Grid constants (28x28)
+    // Grid constants
     parameter GRID_SIZE = 28;
     parameter PIXEL_SIZE = 4;
     parameter GRID_OFFSET_X = 10;
@@ -18,15 +18,15 @@ module vga_demo(
     reg [0:0] pixel_memory [0:783];
     
     // Cursor position registers
-    reg [4:0] current_x = 5'd14;
-    reg [4:0] current_y = 5'd14;
+    reg [4:0] current_x;
+    reg [4:0] current_y;
     
     // Button press detection
     reg [3:0] key_prev;
     wire [3:0] key_pressed = ~KEY & ~key_prev;
     
     // Movement control
-    reg [19:0] move_delay = 20'd0;
+    reg [19:0] move_delay;
     parameter DELAY_MAX = 20'd100000;
     
     // VGA signals
@@ -69,7 +69,10 @@ module vga_demo(
         for(i = 0; i < 784; i = i + 1) begin
             pixel_memory[i] <= 1'b0;
         end
+        current_x <= 5'd14;
+        current_y <= 5'd14;
         key_prev <= 4'b1111;
+        move_delay <= 20'd0;
         draw_state <= 3'b000;
         draw_x <= GRID_OFFSET_X;
         draw_y <= GRID_OFFSET_Y;
@@ -79,10 +82,10 @@ module vga_demo(
         plot <= 1'b0;
     end
     
-    // Background drawing state machine
+    // Combined state machine for drawing and movement
     always @(posedge CLOCK_50) begin
         case(draw_state)
-            3'b000: begin
+            3'b000: begin // Initialize grid drawing
                 draw_x <= GRID_OFFSET_X;
                 draw_y <= GRID_OFFSET_Y;
                 grid_x <= 5'b00000;
@@ -93,7 +96,7 @@ module vga_demo(
                 plot <= 1'b1;
             end
             
-            3'b001: begin
+            3'b001: begin // Draw initial grid
                 if (pixel_x_offset == 2'b11) begin
                     pixel_x_offset <= 2'b00;
                     if (pixel_y_offset == 2'b11) begin
@@ -118,81 +121,79 @@ module vga_demo(
                 end
             end
             
-            3'b010: begin
-                // Movement and drawing state
-                case(pixel_draw_state)
-                    3'b000: begin  // Idle state
-                        draw_pixel_x <= 2'b00;
-                        draw_pixel_y <= 2'b00;
-                        if (SW[1]) pixel_draw_state <= 3'b001;
+            // Main operation state
+            3'b010: begin 
+                // Handle reset
+                if (!SW[9]) begin
+                    move_delay <= 20'd0;
+                    for(i = 0; i < 784; i = i + 1) begin
+                        pixel_memory[i] <= 1'b0;
                     end
-                    
-                    3'b001: begin  // Drawing state
-                        plot <= 1'b1;
-                        // Calculate absolute screen position
-                        draw_x <= GRID_OFFSET_X + (current_x * PIXEL_SIZE) + draw_pixel_x;
-                        draw_y <= GRID_OFFSET_Y + (current_y * PIXEL_SIZE) + draw_pixel_y;
-                        pixel_draw_state <= 3'b010;
-                    end
-                    
-                    3'b010: begin  // Update pixel coordinates
-                        plot <= 1'b0;
-                        if (draw_pixel_x == 2'b11) begin
-                            draw_pixel_x <= 2'b00;
-                            if (draw_pixel_y == 2'b11) begin
-                                pixel_draw_state <= 3'b000;
-                                pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
-                            end else begin
-                                draw_pixel_y <= draw_pixel_y + 1'b1;
-                                pixel_draw_state <= 3'b001;
-                            end
-                        end else begin
-                            draw_pixel_x <= draw_pixel_x + 1'b1;
-                            pixel_draw_state <= 3'b001;
-                        end
-                    end
-                endcase
-            end
-        endcase
-    end
-    
-    // Movement logic
-    always @(posedge CLOCK_50) begin
-        if (draw_state == 3'b010 && pixel_draw_state == 3'b000) begin
-            if (!SW[9]) begin
-                move_delay <= 20'd0;
-                for(i = 0; i < 784; i = i + 1) begin
-                    pixel_memory[i] <= 1'b0;
-                end
-                current_x <= 5'd14;
-                current_y <= 5'd14;
-            end
-            else begin
-                key_prev <= ~KEY;
-                
-                if (move_delay == 0) begin
-                    if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin
-                        current_x <= current_x + 1'd1;
-                        move_delay <= DELAY_MAX;
-                    end
-                    if (key_pressed[2] && current_x > 0) begin
-                        current_x <= current_x - 1'd1;
-                        move_delay <= DELAY_MAX;
-                    end
-                    if (key_pressed[1] && current_y > 0) begin
-                        current_y <= current_y - 1'd1;
-                        move_delay <= DELAY_MAX;
-                    end
-                    if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin
-                        current_y <= current_y + 1'd1;
-                        move_delay <= DELAY_MAX;
-                    end
+                    current_x <= 5'd14;
+                    current_y <= 5'd14;
+                    pixel_draw_state <= 3'b000;
                 end
                 else begin
-                    move_delay <= move_delay - 1'd1;
+                    // Movement control
+                    key_prev <= ~KEY;
+                    if (move_delay > 0) begin
+                        move_delay <= move_delay - 1'd1;
+                    end
+                    else if (pixel_draw_state == 3'b000) begin
+                        if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin
+                            current_x <= current_x + 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
+                        if (key_pressed[2] && current_x > 0) begin
+                            current_x <= current_x - 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
+                        if (key_pressed[1] && current_y > 0) begin
+                            current_y <= current_y - 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
+                        if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin
+                            current_y <= current_y + 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
+                    end
+
+                    // Drawing control
+                    case(pixel_draw_state)
+                        3'b000: begin  // Idle state
+                            draw_pixel_x <= 2'b00;
+                            draw_pixel_y <= 2'b00;
+                            plot <= 1'b0;
+                            if (SW[1]) pixel_draw_state <= 3'b001;
+                        end
+                        
+                        3'b001: begin  // Drawing state
+                            plot <= 1'b1;
+                            draw_x <= GRID_OFFSET_X + (current_x * PIXEL_SIZE) + draw_pixel_x;
+                            draw_y <= GRID_OFFSET_Y + (current_y * PIXEL_SIZE) + draw_pixel_y;
+                            pixel_draw_state <= 3'b010;
+                        end
+                        
+                        3'b010: begin  // Update pixel coordinates
+                            plot <= 1'b0;
+                            if (draw_pixel_x == 2'b11) begin
+                                draw_pixel_x <= 2'b00;
+                                if (draw_pixel_y == 2'b11) begin
+                                    pixel_draw_state <= 3'b000;
+                                    pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
+                                end else begin
+                                    draw_pixel_y <= draw_pixel_y + 1'b1;
+                                    pixel_draw_state <= 3'b001;
+                                end
+                            end else begin
+                                draw_pixel_x <= draw_pixel_x + 1'b1;
+                                pixel_draw_state <= 3'b001;
+                            end
+                        end
+                    endcase
                 end
             end
-        end
+        endcase
     end
     
     // Color output logic
