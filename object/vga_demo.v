@@ -89,44 +89,47 @@ module vga_demo(
             end
         end
     end
-    
+	 
+	 
+	 
+	 
+	 
+	 
+    reg [4:0] grid_x, grid_y;
+	 
     // VGA color logic
-    always @(*) begin
-        // Default to white background
-        colour = 3'b111;
-        
-        // Check if within grid bounds
-        if (x >= GRID_OFFSET_X && x < (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE) &&
-            y >= GRID_OFFSET_Y && y < (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE)) begin
-            
-            // Calculate grid position
-            wire [4:0] grid_x = (x - GRID_OFFSET_X) / PIXEL_SIZE;
-            wire [4:0] grid_y = (y - GRID_OFFSET_Y) / PIXEL_SIZE;
-            
-            // Check if current position is cursor
-            if (grid_x == current_x && grid_y == current_y) begin
-                // Red cursor on white, blue cursor on black
-                colour = pixel_memory[grid_y * GRID_SIZE + grid_x] ? 3'b001 : 3'b100;
-            end
-            else begin
-                // Normal pixel color (black if set, white if clear)
-                colour = pixel_memory[grid_y * GRID_SIZE + grid_x] ? 3'b000 : 3'b111;
-            end
-        end
-    end
+	always @(*) begin
+		 // Default to white background
+		 colour = 3'b111;
+
+		 // Check if within grid bounds
+		 if (x >= GRID_OFFSET_X && x < (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE) &&
+			  y >= GRID_OFFSET_Y && y < (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE)) begin
+
+			  // Calculate grid position
+			  grid_x = (x - GRID_OFFSET_X) / PIXEL_SIZE;
+			  grid_y = (y - GRID_OFFSET_Y) / PIXEL_SIZE;
+
+			  // Check if current position is cursor
+			  if (grid_x == current_x && grid_y == current_y) begin
+					// Red cursor on white, blue cursor on black
+					colour = pixel_memory[grid_y * GRID_SIZE + grid_x] ? 3'b001 : 3'b100;
+			  end else begin
+					// Normal pixel color (black if set, white if clear)
+					colour = pixel_memory[grid_y * GRID_SIZE + grid_x] ? 3'b000 : 3'b111;
+			  end
+		 end
+	end
+
+
     
-    // VGA controller instantiation
-    vga_adapter #(
-        .RESOLUTION("160x120"),
-        .MONOCHROME("FALSE"),
-        .BITS_PER_COLOUR_CHANNEL(1),
-        .BACKGROUND_IMAGE("black.mif")
-    ) VGA(
+    // VGA controller
+    vga_adapter VGA (
         .resetn(1'b1),
         .clock(CLOCK_50),
-        .colour(colour),
-        .x(x),
-        .y(y),
+        .colour(color),
+        .x(vga_x),
+        .y(vga_y),
         .plot(1'b1),
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
@@ -137,6 +140,12 @@ module vga_demo(
         .VGA_SYNC_N(VGA_SYNC_N),
         .VGA_CLK(VGA_CLK)
     );
+    defparam VGA.RESOLUTION = "160x120";
+    defparam VGA.MONOCHROME = "FALSE";
+    defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
+    defparam VGA.BACKGROUND_IMAGE = "black.mif";
+	 
+	 
     
 endmodule
 
