@@ -104,6 +104,7 @@ module vga_demo(
 endmodule
 
 
+
 module ps2_mouse(
     input clk,
     input PS2_CLK,
@@ -158,3 +159,4 @@ module ps2_mouse(
         end
     end
 endmodule
+
