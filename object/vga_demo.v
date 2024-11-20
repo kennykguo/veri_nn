@@ -14,25 +14,25 @@ module vga_demo(
     
     // Grid constants (28x28)
     parameter GRID_SIZE = 28;
-    parameter PIXEL_SIZE = 4; // Each grid pixel is 4x4 VGA pixels
-    parameter GRID_OFFSET_X = 16; // Center the grid
+    parameter PIXEL_SIZE = 16;  // Increased pixel size to 16x16
+    parameter GRID_OFFSET_X = 16;
     parameter GRID_OFFSET_Y = 12;
     
     // Memory array for pixel storage
     reg [0:0] pixel_memory [0:783]; // 28x28 = 784 pixels
     
     // Cursor position registers
-    reg [4:0] current_x = 5'd14; // Start in middle
+    reg [4:0] current_x = 5'd14;
     reg [4:0] current_y = 5'd14;
     
     // VGA coordinates
-    wire [7:0] vga_x;
-    wire [6:0] vga_y;
-    wire [2:0] color;
+    wire [7:0] x_pos;
+    wire [6:0] y_pos;
+    reg [2:0] color;
     
     // Movement control
-    reg [19:0] move_delay = 20'd0;
-    parameter DELAY_MAX = 20'd500000; // Debounce delay
+    reg [24:0] move_delay = 25'd0;
+    parameter DELAY_MAX = 25'd1250000; // Increased delay for better control
     
     // Calculate memory address from cursor position
     assign mem_address = current_y * GRID_SIZE + current_x;
@@ -53,10 +53,10 @@ module vga_demo(
     
     // Movement and drawing logic
     always @(posedge CLOCK_50) begin
-        if (!KEY[0]) begin // Reset
+        if (!SW[9]) begin // Changed reset to SW[9]
             current_x <= 5'd14;
             current_y <= 5'd14;
-            move_delay <= 20'd0;
+            move_delay <= 25'd0;
             // Reset memory to all white
             for(i = 0; i < 784; i = i + 1) begin
                 pixel_memory[i] <= 1'b0;
@@ -64,39 +64,59 @@ module vga_demo(
         end
         else begin
             if (move_delay == DELAY_MAX) begin
-                move_delay <= 20'd0;
+                move_delay <= 25'd0;
                 
-                // Movement controls
-                if (!KEY[3] && current_x < (GRID_SIZE-1)) current_x <= current_x + 1; // Right
-                if (!KEY[2] && current_x > 0) current_x <= current_x - 1; // Left
-                if (!KEY[1] && current_y > 0) current_y <= current_y - 1; // Up
-                if (!KEY[0] && current_y < (GRID_SIZE-1)) current_y <= current_y + 1; // Down
+                // Movement controls with boundary checks
+                if (!KEY[3] && current_x < (GRID_SIZE-1)) current_x <= current_x + 1'd1; // Right
+                if (!KEY[2] && current_x > 0) current_x <= current_x - 1'd1; // Left
+                if (!KEY[1] && current_y > 0) current_y <= current_y - 1'd1; // Up
+                if (!KEY[0] && current_y < (GRID_SIZE-1)) current_y <= current_y + 1'd1; // Down
                 
                 // Drawing when SW[1] is on
                 if (SW[1]) begin
-                    pixel_memory[mem_address] <= 1'b1; // Set pixel to black
+                    pixel_memory[mem_address] <= 1'b1;
                 end
             end
-            else
-                move_delay <= move_delay + 1;
+            else begin
+                move_delay <= move_delay + 1'd1;
+            end
         end
     end
     
     // VGA coordinate calculation
-    assign vga_x = GRID_OFFSET_X + (current_x * PIXEL_SIZE);
-    assign vga_y = GRID_OFFSET_Y + (current_y * PIXEL_SIZE);
+    assign x_pos = GRID_OFFSET_X + (current_x * PIXEL_SIZE);
+    assign y_pos = GRID_OFFSET_Y + (current_y * PIXEL_SIZE);
     
-    // Color determination based on memory content
-    assign color = pixel_memory[mem_address] ? 3'b000 : 3'b111; // Black if 1, white if 0
+    // Color determination based on position and memory content
+    // Check if current pixel being drawn is within the cursor area
+    wire is_cursor = (VGA_X >= x_pos && VGA_X < x_pos + PIXEL_SIZE &&
+                     VGA_Y >= y_pos && VGA_Y < y_pos + PIXEL_SIZE);
+                     
+    wire [7:0] VGA_X;
+    wire [6:0] VGA_Y;
+    
+    // Color logic
+    always @(*) begin
+        if (is_cursor) begin
+            if (pixel_memory[mem_address])
+                color = 3'b001; // Blue cursor over black pixel
+            else
+                color = 3'b100; // Red cursor over white pixel
+        end else begin
+            // Regular pixel color from memory
+            color = pixel_memory[(VGA_Y-GRID_OFFSET_Y)/PIXEL_SIZE * GRID_SIZE + 
+                               (VGA_X-GRID_OFFSET_X)/PIXEL_SIZE] ? 3'b000 : 3'b111;
+        end
+    end
     
     // VGA controller
     vga_adapter VGA (
-        .resetn(KEY[0]),
+        .resetn(1'b1),  // Changed reset
         .clock(CLOCK_50),
         .colour(color),
-        .x(vga_x),
-        .y(vga_y),
-        .plot(1'b1), // Always plotting to show cursor position
+        .x(VGA_X),
+        .y(VGA_Y),
+        .plot(1'b1),
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
@@ -117,19 +137,6 @@ module hex7seg(
     input [3:0] hex,
     output reg [6:0] display
 );
-    /*
-     *       0  
-     *      ---  
-     *     |   |
-     *    5|   |1
-     *     | 6 |
-     *      ---  
-     *     |   |
-     *    4|   |2
-     *     |   |
-     *      ---  
-     *       3  
-     */
     always @(*) begin
         case(hex)
             4'h0: display = 7'b1000000;
