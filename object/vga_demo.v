@@ -191,4 +191,71 @@ module vga_demo(
                 else begin
                     move_delay <= move_delay - 1'd1;
                 end
-            en
+            end
+        end
+    end
+    
+    // Color output logic
+    assign colour_out = (draw_state == 3'b001) ? 3'b111 : // White grid
+                       (pixel_draw_state == 3'b001 || pixel_draw_state == 3'b010) ? 3'b000 : // Black for drawing
+                       ((x >= GRID_OFFSET_X && x < (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE) &&
+                         y >= GRID_OFFSET_Y && y < (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE)) ?
+                        ((((x - GRID_OFFSET_X) / PIXEL_SIZE) == current_x && 
+                          ((y - GRID_OFFSET_Y) / PIXEL_SIZE) == current_y) ?
+                         3'b100 : // Red cursor
+                         (pixel_memory[((y - GRID_OFFSET_Y) / PIXEL_SIZE) * GRID_SIZE + 
+                                     ((x - GRID_OFFSET_X) / PIXEL_SIZE)] ? 3'b000 : 3'b111)) :
+                        3'b000);  // Black background
+    
+    // VGA controller
+    vga_adapter VGA (
+        .resetn(1'b1),
+        .clock(CLOCK_50),
+        .colour(colour_out),
+        .x(draw_state == 3'b001 ? draw_x + pixel_x_offset :
+           (pixel_draw_state == 3'b001 || pixel_draw_state == 3'b010) ? draw_x : x),
+        .y(draw_state == 3'b001 ? draw_y + pixel_y_offset :
+           (pixel_draw_state == 3'b001 || pixel_draw_state == 3'b010) ? draw_y : y),
+        .plot(draw_state == 3'b001 || pixel_draw_state == 3'b001),
+        .VGA_R(VGA_R),
+        .VGA_G(VGA_G),
+        .VGA_B(VGA_B),
+        .VGA_HS(VGA_HS),
+        .VGA_VS(VGA_VS),
+        .VGA_BLANK_N(VGA_BLANK_N),
+        .VGA_SYNC_N(VGA_SYNC_N),
+        .VGA_CLK(VGA_CLK)
+    );
+    defparam VGA.RESOLUTION = "160x120";
+    defparam VGA.MONOCHROME = "FALSE";
+    defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
+    defparam VGA.BACKGROUND_IMAGE = "black.mif";
+    
+endmodule
+
+// Hex display module remains the same
+module hex_display(
+    input [3:0] IN,
+    output reg [6:0] OUT
+);
+    always @(*)
+        case (IN)
+            4'h0: OUT = 7'b1000000;
+            4'h1: OUT = 7'b1111001;
+            4'h2: OUT = 7'b0100100;
+            4'h3: OUT = 7'b0110000;
+            4'h4: OUT = 7'b0011001;
+            4'h5: OUT = 7'b0010010;
+            4'h6: OUT = 7'b0000010;
+            4'h7: OUT = 7'b1111000;
+            4'h8: OUT = 7'b0000000;
+            4'h9: OUT = 7'b0010000;
+            4'hA: OUT = 7'b0001000;
+            4'hB: OUT = 7'b0000011;
+            4'hC: OUT = 7'b1000110;
+            4'hD: OUT = 7'b0100001;
+            4'hE: OUT = 7'b0000110;
+            4'hF: OUT = 7'b0001110;
+            default: OUT = 7'b1111111;
+        endcase
+endmodule
