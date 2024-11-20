@@ -139,4 +139,22 @@ module vga_demo(
     vga_adapter VGA (
         .resetn(1'b1),
         .clock(CLOCK_50),
-        .colour(colo
+        .colour(colour),
+        .x(x),
+        .y(y),
+        .plot(1'b1),
+        .VGA_R(VGA_R),
+        .VGA_G(VGA_G),
+        .VGA_B(VGA_B),
+        .VGA_HS(VGA_HS),
+        .VGA_VS(VGA_VS),
+        .VGA_BLANK_N(VGA_BLANK_N),
+        .VGA_SYNC_N(VGA_SYNC_N),
+        .VGA_CLK(VGA_CLK)
+    );
+    defparam VGA.RESOLUTION = "640x480";  // Standard VGA resolution
+    defparam VGA.MONOCHROME = "FALSE";
+    defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
+    defparam VGA.BACKGROUND_IMAGE = "black.mif";
+    
+endmodule
