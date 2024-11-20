@@ -9,7 +9,7 @@ module vga_demo(
     
     // Grid constants (28x28)
     parameter GRID_SIZE = 28;
-    parameter PIXEL_SIZE = 16;  // Each grid cell is 16x16 pixels
+    parameter PIXEL_SIZE = 4;  // Reduced size to fit screen better
     parameter GRID_OFFSET_X = 16;
     parameter GRID_OFFSET_Y = 12;
     
@@ -22,22 +22,24 @@ module vga_demo(
     
     // Button press detection
     reg [3:0] key_prev;
-    wire [3:0] key_pressed = ~KEY & ~key_prev; // Active high pulse when button pressed
+    wire [3:0] key_pressed = ~KEY & ~key_prev;
     
     // Movement control
     reg [19:0] move_delay = 20'd0;
-    parameter DELAY_MAX = 20'd100000; // Smaller delay for better responsiveness
+    parameter DELAY_MAX = 20'd100000;
     
-    // Calculate memory address from coordinates
-    wire [9:0] mem_address = current_y * GRID_SIZE + current_x;
+    // VGA signals
+    wire [7:0] x;
+    wire [6:0] y;
+    reg [2:0] colour;
     
-    // Initialize memory to all zeros (white pixels)
+    // Initialize memory and key_prev
     integer i;
     initial begin
         for(i = 0; i < 784; i = i + 1) begin
-            pixel_memory[i] = 1'b0;
+            pixel_memory[i] <= 1'b0;
         end
-        key_prev = 4'b1111;
+        key_prev <= 4'b1111;
     end
     
     // Position display on hex
@@ -48,7 +50,7 @@ module vga_demo(
     
     // Movement and drawing logic
     always @(posedge CLOCK_50) begin
-        if (!SW[9]) begin // Reset
+        if (!SW[9]) begin
             current_x <= 5'd14;
             current_y <= 5'd14;
             move_delay <= 20'd0;
@@ -57,31 +59,29 @@ module vga_demo(
             end
         end
         else begin
-            // Store previous key states
             key_prev <= ~KEY;
             
             if (move_delay == 0) begin
-                // Single pixel movement on button press
-                if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin // Right
+                if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin
                     current_x <= current_x + 1'd1;
                     move_delay <= DELAY_MAX;
                 end
-                if (key_pressed[2] && current_x > 0) begin // Left
+                if (key_pressed[2] && current_x > 0) begin
                     current_x <= current_x - 1'd1;
                     move_delay <= DELAY_MAX;
                 end
-                if (key_pressed[1] && current_y > 0) begin // Up
+                if (key_pressed[1] && current_y > 0) begin
                     current_y <= current_y - 1'd1;
                     move_delay <= DELAY_MAX;
                 end
-                if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin // Down
+                if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin
                     current_y <= current_y + 1'd1;
                     move_delay <= DELAY_MAX;
                 end
                 
-                // Drawing when SW[1] is on
+                // Drawing logic
                 if (SW[1]) begin
-                    pixel_memory[mem_address] <= 1'b1;
+                    pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
                 end
             end
             else begin
@@ -90,46 +90,43 @@ module vga_demo(
         end
     end
     
-    // VGA signal generation
-    wire [7:0] vga_x;
-    wire [6:0] vga_y;
-    reg [2:0] color;
-    
-    // Calculate grid position from VGA coordinates
-    wire [4:0] grid_x = (vga_x - GRID_OFFSET_X) / PIXEL_SIZE;
-    wire [4:0] grid_y = (vga_y - GRID_OFFSET_Y) / PIXEL_SIZE;
-    wire [9:0] display_address = grid_y * GRID_SIZE + grid_x;
-    
-    // Check if current pixel is within cursor area
-    wire is_cursor = (grid_x == current_x && grid_y == current_y &&
-                     vga_x >= GRID_OFFSET_X && vga_x < GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE &&
-                     vga_y >= GRID_OFFSET_Y && vga_y < GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE);
-    
-    // Color determination
+    // VGA color logic
     always @(*) begin
-        if (vga_x >= GRID_OFFSET_X && vga_x < GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE &&
-            vga_y >= GRID_OFFSET_Y && vga_y < GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE) begin
+        // Default to white background
+        colour = 3'b111;
+        
+        // Check if within grid bounds
+        if (x >= GRID_OFFSET_X && x < (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE) &&
+            y >= GRID_OFFSET_Y && y < (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE)) begin
             
-            if (is_cursor) begin
-                if (pixel_memory[display_address])
-                    color = 3'b001; // Blue cursor over black pixel
-                else
-                    color = 3'b100; // Red cursor over white pixel
-            end else begin
-                color = pixel_memory[display_address] ? 3'b000 : 3'b111; // Black or white
+            // Calculate grid position
+            wire [4:0] grid_x = (x - GRID_OFFSET_X) / PIXEL_SIZE;
+            wire [4:0] grid_y = (y - GRID_OFFSET_Y) / PIXEL_SIZE;
+            
+            // Check if current position is cursor
+            if (grid_x == current_x && grid_y == current_y) begin
+                // Red cursor on white, blue cursor on black
+                colour = pixel_memory[grid_y * GRID_SIZE + grid_x] ? 3'b001 : 3'b100;
             end
-        end else begin
-            color = 3'b111; // White background outside grid
+            else begin
+                // Normal pixel color (black if set, white if clear)
+                colour = pixel_memory[grid_y * GRID_SIZE + grid_x] ? 3'b000 : 3'b111;
+            end
         end
     end
     
-    // VGA controller
-    vga_adapter VGA (
+    // VGA controller instantiation
+    vga_adapter #(
+        .RESOLUTION("160x120"),
+        .MONOCHROME("FALSE"),
+        .BITS_PER_COLOUR_CHANNEL(1),
+        .BACKGROUND_IMAGE("black.mif")
+    ) VGA(
         .resetn(1'b1),
         .clock(CLOCK_50),
-        .colour(color),
-        .x(vga_x),
-        .y(vga_y),
+        .colour(colour),
+        .x(x),
+        .y(y),
         .plot(1'b1),
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
@@ -140,10 +137,6 @@ module vga_demo(
         .VGA_SYNC_N(VGA_SYNC_N),
         .VGA_CLK(VGA_CLK)
     );
-    defparam VGA.RESOLUTION = "160x120";
-    defparam VGA.MONOCHROME = "FALSE";
-    defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
-    defparam VGA.BACKGROUND_IMAGE = "black.mif";
     
 endmodule
 
