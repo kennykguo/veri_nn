@@ -36,10 +36,10 @@ module vga_demo(
     assign LEDR[9] = SW[0];            // Drawing enable indicator
 
     // 7-segment display for cursor coordinates
-    hex_display hex0(current_x[3:0], HEX0);
-    hex_display hex1({3'b000, current_x[4]}, HEX1);
-    hex_display hex2(current_y[3:0], HEX2);
-    hex_display hex3({3'b000, current_y[4]}, HEX3);
+    hex_display hex0(current_x[3:0], HEX0);            // Ones place
+    hex_display hex1(current_x[4], HEX1);              // Tens place
+    hex_display hex2(current_y[3:0], HEX2);            // Ones place
+    hex_display hex3(current_y[4], HEX3);              // Tens place
 
     // Initialize memory and cursor position
     integer i;
@@ -68,6 +68,27 @@ module vga_demo(
         // Update pixel memory based on drawing enable and cursor position
         if (draw_enable) begin
             pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
+        end
+    end
+
+    // Update cursor position on button presses
+    always @(posedge CLOCK_50) begin
+        // Cursor movement logic
+        if (~KEY[0]) begin
+            if (current_x < GRID_SIZE - 1) 
+                current_x <= current_x + 1;
+        end
+        if (~KEY[1]) begin
+            if (current_x > 0) 
+                current_x <= current_x - 1;
+        end
+        if (~KEY[2]) begin
+            if (current_y < GRID_SIZE - 1) 
+                current_y <= current_y + 1;
+        end
+        if (~KEY[3]) begin
+            if (current_y > 0) 
+                current_y <= current_y - 1;
         end
     end
 
