@@ -22,7 +22,7 @@ module neural_network (
     wire [15:0] relu2_write_addr, relu2_read_addr;
     wire [15:0] mm3_write_addr, mm3_read_addr;
     wire [15:0] relu3_write_addr, relu3_read_addr;
-    wire [15:0] mm4_write_addr, mm4_read_addr;
+    wire [15:0] mm4_write_addr, mm4_read_addr; 
 
     // Layer data and memory interfaces
     wire signed [31:0] mm1_data, mm2_data, mm3_data, mm4_data;
