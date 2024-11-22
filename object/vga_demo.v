@@ -8,196 +8,191 @@ module vga_demo(
     output [9:0] LEDR // LED outputs for debugging and showing data
 );
     
-    // Grid constants for grid size, pixel size, and offsets for drawing
-    parameter GRID_SIZE = 28;      // Number of cells in the grid (28x28)
-    parameter PIXEL_SIZE = 4;      // Size of each pixel (4x4)
-    parameter GRID_OFFSET_X = 10;  // Horizontal offset for grid drawing
-    parameter GRID_OFFSET_Y = 10;  // Vertical offset for grid drawing
+    // Grid configuration parameters
+    parameter GRID_SIZE = 28;      
+    parameter CELL_SIZE = 4;      
+    parameter GRID_START_X = 10;  
+    parameter GRID_START_Y = 10;  
     
-    // Memory array to store the state of each pixel (whether it is on or off)
-    reg [0:0] pixel_memory [0:783];  // 784 pixels, 1-bit per pixel (28x28 grid)
+    // Memory array to store grid cell states
+    reg [0:0] grid_cells [0:783];  // 784 cells (28x28 grid)
     
-    // Registers to track the current cursor position
-    reg [4:0] current_x; // Current horizontal cursor position (0 to 27 in the grid)
-    reg [4:0] current_y; // Current vertical cursor position (0 to 27 in the grid)
+    // Cursor position tracking
+    reg [4:0] cursor_pos_x; // CURRENT POSITION IN THE GRID
+    reg [4:0] cursor_pos_y; // CURRENT POSITION IN THE GRID
     
-    // Button press detection logic for moving the cursor
-    reg [3:0] key_prev;  // Stores previous state of buttons
-    wire [3:0] key_pressed = ~KEY & ~key_prev;  // Detects which button is pressed
+    // Button input handling
+    reg [3:0] prev_button_state;  
+    wire [3:0] button_pressed = ~KEY & ~prev_button_state;
 
-    // Movement control, with a delay to make movement not too fast
-    reg [19:0] move_delay; // Counter for movement delay
-    parameter DELAY_MAX = 20'd100000; // Maximum delay value for key press debounce
+    // Movement timing control
+    reg [19:0] move_cooldown; 
+    parameter MOVE_DELAY_MAX = 20'd100000; 
     
-    // VGA signals
-    wire [7:0] temp_x;  // Temporary VGA X coordinate
-    wire [6:0] temp_y;  // Temporary VGA Y coordinate
-    wire [2:0] colour_out; // 3-bit color output (RGB)
+    // VGA coordinate tracking
+    wire [7:0] vga_scan_x; // Goes into VGA module
+    wire [6:0] vga_scan_y; // Goes into VGA module
+    wire [2:0] pixel_color;
 
-    // Drawing control signals and pixel coordinate registers
-    reg plot;  // Signal to indicate if a pixel is being drawn
-    reg [7:0] current_draw_x;  // Current X-coordinate for drawing (goes into the vga)
-    reg [6:0] current_draw_y;  // Current Y-coordinate for drawing (goes into the vga)
+    // Drawing control
+    reg draw_enable;
+    reg [7:0] draw_pos_x;  // CURRENT P
+    reg [6:0] draw_pos_y;  
     
-    // Offset for drawing individual pixels - 4 x 4 drawing tool
-    reg [1:0] current_pixel_x_offset; // Current x offset in the grid
-    reg [1:0] current_pixel_y_offset; // Current y offset in the grid
+    // Cell subdivision tracking
+    reg [1:0] subcell_pos_x; 
+    reg [1:0] subcell_pos_y; 
     
-    // State control for pixel drawing
-    reg [2:0] pixel_draw_state;  // 3-bit state for pixel drawing process
-    reg [1:0] temp_draw_pixel_x;  // Temporary X-offset for pixel drawing
-    reg [1:0] temp_draw_pixel_y;  // Temporary Y-offset for pixel drawing
+    // Drawing state machines
+    reg [2:0] cell_draw_state;  
+    reg [1:0] temp_subcell_x;  
+    reg [1:0] temp_subcell_y;  
     
-    // State machine for grid background drawing
-    reg [2:0] draw_state;   // State for the grid drawing process
-    reg [4:0] current_grid_x, current_grid_y;  // Current position in the grid
+    // Grid drawing state control
+    reg [2:0] grid_draw_state;   
+    reg [4:0] grid_pos_x, grid_pos_y;  
     
-    // Debugging output: show current cursor position on LEDs
-    assign LEDR[9] = SW[9];  // Show switch 9 state on LED 9
-    assign LEDR[8] = SW[1];  // Show switch 1 state on LED 8
-    assign LEDR[4:0] = current_x[4:0];  // Show cursor X-coordinate on LED 4-0
+    // Debug output connections
+    assign LEDR[9] = SW[9];  
+    assign LEDR[8] = SW[1];  
+    assign LEDR[4:0] = cursor_pos_x[4:0];  
     
-    // 7-segment display modules to show the cursor coordinates (X and Y)
-    hex_display hex0(current_x[3:0], HEX0);  // Display lower 4 bits of current_x
-    hex_display hex1({3'b000, current_x[4]}, HEX1);  // Display upper bit of current_x
-    hex_display hex2(current_y[3:0], HEX2);  // Display lower 4 bits of current_y
-    hex_display hex3({3'b000, current_y[4]}, HEX3);  // Display upper bit of current_y
+    // Coordinate displays
+    hex_display hex0(cursor_pos_x[3:0], HEX0);
+    hex_display hex1({3'b000, cursor_pos_x[4]}, HEX1);
+    hex_display hex2(cursor_pos_y[3:0], HEX2);
+    hex_display hex3({3'b000, cursor_pos_y[4]}, HEX3);
     
-    // Initialize memory and registers
+    // Initialization block
     integer i;
     initial begin
-        // Initialize all pixels to 0 (off) at the start
         for(i = 0; i < 784; i = i + 1) begin
-            pixel_memory[i] <= 1'b0;
+            grid_cells[i] <= 1'b0;
         end
-        // Start in the middle of the grid
-        current_x <= 5'd14;  // Middle X position
-        current_y <= 5'd14;  // Middle Y position
+        cursor_pos_x <= 5'd14;
+        cursor_pos_y <= 5'd14;
         
-        key_prev <= 4'b1111;  // No key pressed initially
-        move_delay <= 20'd0;  // No delay initially
-        draw_state <= 3'b000;  // Start with state 0 (initialize grid)
-        current_draw_x <= GRID_OFFSET_X;  // Set initial X draw position
-        current_draw_y <= GRID_OFFSET_Y;  // Set initial Y draw position
-        current_pixel_x_offset <= 2'b00;  // Start with pixel offset 0
-        current_pixel_y_offset <= 2'b00;  // Start with pixel offset 0
-        pixel_draw_state <= 3'b000;  // Idle state for pixel drawing
-        plot <= 1'b0;  // No pixel to plot initially
+        prev_button_state <= 4'b1111;
+        move_cooldown <= 20'd0;
+        grid_draw_state <= 3'b000;
+        draw_pos_x <= GRID_START_X;
+        draw_pos_y <= GRID_START_Y;
+        subcell_pos_x <= 2'b00;
+        subcell_pos_y <= 2'b00;
+        cell_draw_state <= 3'b000;
+        draw_enable <= 1'b0;
     end
     
-    // Parameters for draw_state
-    parameter DRAW_STATE_INIT = 3'b000;  // Grid initialization state
-    parameter DRAW_STATE_DRAW = 3'b001;  // Drawing the grid state
-    parameter DRAW_STATE_MAIN_OP = 3'b010;  // Main operation state
+    // State machine parameters
+    parameter STATE_INIT = 3'b000;
+    parameter STATE_DRAW = 3'b001;
+    parameter STATE_OPERATE = 3'b010;
 
-    // Parameters for pixel_draw_state
-    parameter PIXEL_DRAW_IDLE = 3'b000;  // Idle state (waiting to draw)
-    parameter PIXEL_DRAW_DRAW = 3'b001;  // Drawing pixel state
-    parameter PIXEL_DRAW_UPDATE = 3'b010;  // Updating pixel coordinates state
+    // Cell drawing states
+    parameter CELL_DRAW_IDLE = 3'b000;
+    parameter CELL_DRAW_ACTIVE = 3'b001;
+    parameter CELL_DRAW_UPDATE = 3'b010;
 
-    // Pixel drawing FSM
+    // Main drawing state machine
     always @(posedge CLOCK_50) begin
-        case(draw_state)
-            DRAW_STATE_INIT: begin
-                current_draw_x <= GRID_OFFSET_X;
-                current_draw_y <= GRID_OFFSET_Y;
-                current_grid_x <= 5'b00000;
-                current_grid_y <= 5'b00000;
-                current_pixel_x_offset <= 2'b00;
-                current_pixel_y_offset <= 2'b00;
-                draw_state <= DRAW_STATE_DRAW;
-                plot <= 1'b1;
+        case(grid_draw_state)
+            STATE_INIT: begin
+                draw_pos_x <= GRID_START_X;
+                draw_pos_y <= GRID_START_Y;
+                grid_pos_x <= 5'b00000;
+                grid_pos_y <= 5'b00000;
+                subcell_pos_x <= 2'b00;
+                subcell_pos_y <= 2'b00;
+                grid_draw_state <= STATE_DRAW;
+                draw_enable <= 1'b1;
             end
             
-            DRAW_STATE_DRAW: begin
-                if (current_pixel_x_offset == 2'b11) begin
-                    current_pixel_x_offset <= 2'b00;
-                    if (current_pixel_y_offset == 2'b11) begin
-                        current_pixel_y_offset <= 2'b00;
-                        // Increment to the next pixel
-                        current_draw_x <= current_draw_x + PIXEL_SIZE;
-                        if (current_draw_x >= (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE - PIXEL_SIZE)) begin
-                            current_draw_x <= GRID_OFFSET_X;
-                            current_draw_y <= current_draw_y + PIXEL_SIZE;
+            STATE_DRAW: begin
+                if (subcell_pos_x == 2'b11) begin
+                    subcell_pos_x <= 2'b00;
+                    if (subcell_pos_y == 2'b11) begin
+                        subcell_pos_y <= 2'b00;
+                        draw_pos_x <= draw_pos_x + CELL_SIZE;
+                        if (draw_pos_x >= (GRID_START_X + GRID_SIZE * CELL_SIZE - CELL_SIZE)) begin
+                            draw_pos_x <= GRID_START_X;
+                            draw_pos_y <= draw_pos_y + CELL_SIZE;
                         end
                     end else begin
-                        current_pixel_y_offset <= current_pixel_y_offset + 1'b1;
+                        subcell_pos_y <= subcell_pos_y + 1'b1;
                     end
                 end else begin
-                    current_pixel_x_offset <= current_pixel_x_offset + 1'b1;
+                    subcell_pos_x <= subcell_pos_x + 1'b1;
                 end
                 
-                if (current_draw_y >= (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE - PIXEL_SIZE) && 
-                    current_pixel_y_offset == 2'b11 && current_pixel_x_offset == 2'b11) begin
-                    draw_state <= DRAW_STATE_MAIN_OP;
-                    pixel_draw_state <= PIXEL_DRAW_IDLE;
-                    plot <= 1'b0;
+                if (draw_pos_y >= (GRID_START_Y + GRID_SIZE * CELL_SIZE - CELL_SIZE) && 
+                    subcell_pos_y == 2'b11 && subcell_pos_x == 2'b11) begin
+                    grid_draw_state <= STATE_OPERATE;
+                    cell_draw_state <= CELL_DRAW_IDLE;
+                    draw_enable <= 1'b0;
                 end
             end
             
-            DRAW_STATE_MAIN_OP: begin
-                // Movement control, drawing logic, etc.
+            STATE_OPERATE: begin
+                // Movement and drawing logic
             end
         endcase
-        
 
-
-
-        case(pixel_draw_state)
-            PIXEL_DRAW_IDLE: begin
-                temp_draw_pixel_x <= 2'b00;
-                temp_draw_pixel_y <= 2'b00;
-                plot <= 1'b0;
-                if (SW[1]) pixel_draw_state <= PIXEL_DRAW_DRAW;
+        // This FSM ensures that the position to draw is always updated
+        case(cell_draw_state)
+            CELL_DRAW_IDLE: begin
+                temp_subcell_x <= 2'b00;
+                temp_subcell_y <= 2'b00;
+                draw_enable <= 1'b0;
+                if (SW[1]) cell_draw_state <= CELL_DRAW_ACTIVE;
             end
             
-            PIXEL_DRAW_DRAW: begin
-                plot <= 1'b1;
-                current_draw_x <= GRID_OFFSET_X + (current_x * PIXEL_SIZE) + temp_draw_pixel_x;
-                current_draw_y <= GRID_OFFSET_Y + (current_y * PIXEL_SIZE) + temp_draw_pixel_y;
-                pixel_draw_state <= PIXEL_DRAW_UPDATE;
+            CELL_DRAW_ACTIVE: begin
+                draw_enable <= 1'b1;
+                draw_pos_x <= GRID_START_X + (cursor_pos_x * CELL_SIZE) + temp_subcell_x;
+                draw_pos_y <= GRID_START_Y + (cursor_pos_y * CELL_SIZE) + temp_subcell_y;
+                cell_draw_state <= CELL_DRAW_UPDATE;
             end
             
-            PIXEL_DRAW_UPDATE: begin
-                plot <= 1'b0;
-                if (temp_draw_pixel_x == 2'b11) begin
-                    temp_draw_pixel_x <= 2'b00;
-                    if (temp_draw_pixel_y == 2'b11) begin
-                        pixel_draw_state <= PIXEL_DRAW_IDLE;
-                        pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
+            CELL_DRAW_UPDATE: begin
+                draw_enable <= 1'b0;
+                if (temp_subcell_x == 2'b11) begin
+                    temp_subcell_x <= 2'b00;
+                    if (temp_subcell_y == 2'b11) begin
+                        cell_draw_state <= CELL_DRAW_IDLE;
+                        grid_cells[cursor_pos_y * GRID_SIZE + cursor_pos_x] <= 1'b1;
                     end else begin
-                        temp_draw_pixel_y <= temp_draw_pixel_y + 1'b1;
-                        pixel_draw_state <= PIXEL_DRAW_DRAW;
+                        temp_subcell_y <= temp_subcell_y + 1'b1;
+                        cell_draw_state <= CELL_DRAW_ACTIVE;
                     end
                 end else begin
-                    temp_draw_pixel_x <= temp_draw_pixel_x + 1'b1;
-                    pixel_draw_state <= PIXEL_DRAW_DRAW;
+                    temp_subcell_x <= temp_subcell_x + 1'b1;
+                    cell_draw_state <= CELL_DRAW_ACTIVE;
                 end
             end
         endcase
     end
 
-    // Color output logic for the VGA
-    assign colour_out = (draw_state == 3'b001) ? 3'b111 :
-                       (pixel_draw_state == 3'b001 || pixel_draw_state == 3'b010) ? 3'b000 :
-                       ((temp_x >= GRID_OFFSET_X && temp_x < (GRID_OFFSET_X + GRID_SIZE * PIXEL_SIZE) &&
-                         temp_y >= GRID_OFFSET_Y && temp_y < (GRID_OFFSET_Y + GRID_SIZE * PIXEL_SIZE)) ? 
-                        ((((temp_x - GRID_OFFSET_X) / PIXEL_SIZE) == current_x && 
-                          ((temp_y - GRID_OFFSET_Y) / PIXEL_SIZE) == current_y) ? 3'b100 :
-                         (pixel_memory[((temp_y - GRID_OFFSET_Y) / PIXEL_SIZE) * GRID_SIZE + 
-                                     ((temp_x - GRID_OFFSET_X) / PIXEL_SIZE)] ? 3'b000 : 3'b111)) :
+    // Color output logic
+    assign pixel_color = (grid_draw_state == STATE_DRAW) ? 3'b111 :
+                       (cell_draw_state == CELL_DRAW_ACTIVE || cell_draw_state == CELL_DRAW_UPDATE) ? 3'b000 :
+                       ((vga_scan_x >= GRID_START_X && vga_scan_x < (GRID_START_X + GRID_SIZE * CELL_SIZE) &&
+                         vga_scan_y >= GRID_START_Y && vga_scan_y < (GRID_START_Y + GRID_SIZE * CELL_SIZE)) ? 
+                        ((((vga_scan_x - GRID_START_X) / CELL_SIZE) == cursor_pos_x && 
+                          ((vga_scan_y - GRID_START_Y) / CELL_SIZE) == cursor_pos_y) ? 3'b100 :
+                         (grid_cells[((vga_scan_y - GRID_START_Y) / CELL_SIZE) * GRID_SIZE + 
+                                   ((vga_scan_x - GRID_START_X) / CELL_SIZE)] ? 3'b000 : 3'b111)) :
                         3'b000);
     
-    // VGA controller
+    // VGA controller instantiation
     vga_adapter VGA (
         .resetn(1'b1),
         .clock(CLOCK_50),
-        .colour(colour_out),
-        .x(draw_state == 3'b001 ? current_draw_x + current_pixel_x_offset :
-           (pixel_draw_state == 3'b001 || pixel_draw_state == 3'b010) ? current_draw_x : temp_x),
-        .y(draw_state == 3'b001 ? current_draw_y + current_pixel_y_offset :
-           (pixel_draw_state == 3'b001 || pixel_draw_state == 3'b010) ? current_draw_y : temp_y),
-        .plot(draw_state == 3'b001 || pixel_draw_state == 3'b001),
+        .colour(pixel_color),
+        .x(grid_draw_state == STATE_DRAW ? draw_pos_x + subcell_pos_x :
+           (cell_draw_state == CELL_DRAW_ACTIVE || cell_draw_state == CELL_DRAW_UPDATE) ? draw_pos_x : vga_scan_x),
+        .y(grid_draw_state == STATE_DRAW ? draw_pos_y + subcell_pos_y :
+           (cell_draw_state == CELL_DRAW_ACTIVE || cell_draw_state == CELL_DRAW_UPDATE) ? draw_pos_y : vga_scan_y),
+        .plot(grid_draw_state == STATE_DRAW || cell_draw_state == CELL_DRAW_ACTIVE),
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
