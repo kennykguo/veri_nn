@@ -138,33 +138,44 @@ module vga_demo(
             end
             
             DRAW_GRID: begin
-                // Increment pixel by pixel within a 4x4 block
-                if (pixel_x_offset == 2'b11) begin
-                    pixel_x_offset <= 2'b00;
-                    if (pixel_y_offset == 2'b11) begin
-                        pixel_y_offset <= 2'b00;
-                        // Move to next grid cell
-                        draw_x <= draw_x + 1'd1;
-                        
-                        if (draw_x >= (GRID_SIZE * PIXEL_SIZE - 1)) begin
-                            draw_x <= 8'd0;
-                            draw_y <= draw_y + 1'd1;
+
+                if (draw_y < (GRID_SIZE * PIXEL_SIZE) && draw_x < (GRID_SIZE * PIXEL_SIZE)) begin
+                    plot <= 1'b1;
+                    // Rest of your DRAW_GRID logic
+                    plot <= 1'b1;
+                    // Increment pixel by pixel within a 4x4 block
+                    if (pixel_x_offset == 2'b11) begin
+                        pixel_x_offset <= 2'b00;
+                        if (pixel_y_offset == 2'b11) begin
+                            pixel_y_offset <= 2'b00;
+                            // Move to next grid cell
+                            draw_x <= draw_x + 1'd1;
+                            
+                            if (draw_x >= (GRID_SIZE * PIXEL_SIZE - 1)) begin
+                                draw_x <= 8'd0;
+                                draw_y <= draw_y + 1'd1;
+                            end
+                        end 
+                        else begin
+                            pixel_y_offset <= pixel_y_offset + 1'b1;
                         end
                     end 
                     else begin
-                        pixel_y_offset <= pixel_y_offset + 1'b1;
+                        pixel_x_offset <= pixel_x_offset + 1'b1;
+                    end
+                    
+                    // Check if we've drawn the entire grid
+                    if (draw_y >= (GRID_SIZE * PIXEL_SIZE - 1) && 
+                        pixel_y_offset == 2'b11 && pixel_x_offset == 2'b11) begin
+                        draw_x <= 8'd0;
+                        draw_y <= 7'd0;
                     end
                 end 
+                
                 else begin
-                    pixel_x_offset <= pixel_x_offset + 1'b1;
+                    plot <= 1'b0;
                 end
                 
-                // Check if we've drawn the entire grid
-                if (draw_y >= (GRID_SIZE * PIXEL_SIZE - 1) && 
-                    pixel_y_offset == 2'b11 && pixel_x_offset == 2'b11) begin
-                    draw_x <= 8'd0;
-                    draw_y <= 7'd0;
-                end
             end
         endcase
     end
@@ -176,12 +187,12 @@ module vga_demo(
     wire is_pixel_set = pixel_memory[mem_y * GRID_SIZE + mem_x];
     
     wire [2:0] colour_out = is_cursor ? 3'b100 :           // Red for cursor
-                           is_pixel_set ? 3'b111 : 3'b000; // White for set pixels, black otherwise
-
-    // VGA position calculation
-    wire [7:0] actual_x = draw_x + pixel_x_offset;
-    wire [6:0] actual_y = draw_y + pixel_y_offset;
+                        is_pixel_set ? 3'b111 : 3'b001; // White for set pixels, dark blue for grid
     
+    // VGA position calculation
+    wire [7:0] actual_x = {draw_x[7:2], pixel_x_offset};
+    wire [6:0] actual_y = {draw_y[6:2], pixel_y_offset};
+
     // VGA controller
     vga_adapter VGA (
         .resetn(1'b1),
