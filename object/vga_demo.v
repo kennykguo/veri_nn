@@ -20,75 +20,69 @@ module vga_demo(
     // Memory array for pixel storage
     reg [0:0] pixel_memory [0:783];
     
-    // Cursor position registers
-    // Initially set to the middle
-    reg [4:0] current_x = 5'd14;
-    reg [4:0] current_y = 5'd14;
+    // Cursor position registers (no initial values)
+    reg [4:0] current_x;
+    reg [4:0] current_y;
     
     // Button press detection
     reg [3:0] key_prev;
     wire [3:0] key_pressed = ~KEY & ~key_prev;
     
-    // Movement control - Increased delay
-    reg [19:0] move_delay = 20'd0;
+    // Movement control
+    reg [19:0] move_delay;
     parameter DELAY_MAX = 20'd2000000;
     
-    // Drawing control (goes into the VGA component)
+    // Drawing control
     reg plot;
     reg [7:0] draw_x;
     reg [6:0] draw_y;
     
-    // Inner pixel drawing control (used for temporary looping in a pixel chunk)
+    // Inner pixel drawing control
     reg [1:0] pixel_x_offset;
     reg [1:0] pixel_y_offset;
     
-    // State registers for both FSMs
+    // State registers
     reg [2:0] draw_state;
     reg [2:0] move_state;
+    
+    // Reset synchronizer
+    reg reset_sync1, reset_sync2;
+    always @(posedge CLOCK_50) begin
+        reset_sync1 <= ~SW[9];
+        reset_sync2 <= reset_sync1;
+    end
+    wire reset = reset_sync2;
     
     // Debug signals
     assign LEDR[9] = SW[9];
     assign LEDR[8] = SW[1];
     assign LEDR[4:0] = current_x[4:0];
+    
+    // 7-segment display outputs
     hex_display hex0(current_x[3:0], HEX0);
     hex_display hex1({3'b000, current_x[4]}, HEX1);
     hex_display hex2(current_y[3:0], HEX2);
     hex_display hex3({3'b000, current_y[4]}, HEX3);
     
-
-    // Initialize memory and registers
-    integer i;
+    // Initialize registers (minimal initialization)
     initial begin
-        // Initialize the memory to zero
-        for(i = 0; i < 784; i = i + 1) begin
-            pixel_memory[i] <= 1'b0;
-        end
-
-        key_prev <= 4'b1111;
-        draw_state <= INIT;
-        move_state <= INIT;
-        draw_x <= 8'd0;
-        draw_y <= 7'd0;
-        pixel_x_offset <= 2'b00;
-        pixel_y_offset <= 2'b00;
-        plot <= 1'b0;
+        key_prev = 4'b1111;
+        plot = 1'b0;
+        reset_sync1 = 1'b1;
+        reset_sync2 = 1'b1;
     end
     
-
-    // Add a reset signal
-    reg reset;
+    // Movement FSM with synchronous reset
+	 integer i;
     always @(posedge CLOCK_50) begin
-        reset <= SW[9];  // Synchronize reset
-    end
-
-    // Modify the movement FSM
-    always @(posedge CLOCK_50) begin
-        if (reset) begin  // When SW[9] is HIGH
-            move_delay <= 20'd0;
+        if (reset) begin
+            // Synchronous reset logic
             current_x <= 5'd14;
             current_y <= 5'd14;
+            move_delay <= 20'd0;
             move_state <= INIT;
-            // Initialize pixel memory
+            key_prev <= 4'b1111;
+            // Reset pixel memory
             for(i = 0; i < 784; i = i + 1) begin
                 pixel_memory[i] <= 1'b0;
             end
@@ -103,103 +97,115 @@ module vga_demo(
                 
                 MOVE: begin
                     key_prev <= ~KEY;
+                    
                     if (move_delay == 0) begin
-                        // Movement logic
-                        if (key_pressed[0] && current_y < GRID_SIZE-1) begin  // DOWN
-                            current_y <= current_y + 1'd1;
-                            move_delay <= DELAY_MAX;
-                        end
-                        else if (key_pressed[1] && current_x < GRID_SIZE-1) begin  // RIGHT
+                        if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin
                             current_x <= current_x + 1'd1;
                             move_delay <= DELAY_MAX;
                         end
-                        else if (key_pressed[2] && current_y > 0) begin  // UP
+                        if (key_pressed[2] && current_x > 0) begin
+                            current_x <= current_x - 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
+                        if (key_pressed[1] && current_y > 0) begin
                             current_y <= current_y - 1'd1;
                             move_delay <= DELAY_MAX;
                         end
-                        else if (key_pressed[3] && current_x > 0) begin  // LEFT
-                            current_x <= current_x - 1'd1;
+                        if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin
+                            current_y <= current_y + 1'd1;
                             move_delay <= DELAY_MAX;
+                        end
+                        
+                        if (SW[1]) begin
+                            pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
                         end
                     end
                     else begin
                         move_delay <= move_delay - 1'd1;
                     end
-                    
-                    if (SW[1]) begin
-                        pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
-                    end
                 end
+                
+                default: move_state <= INIT;
             endcase
         end
     end
 
-    // Drawing FSM
+    // Drawing FSM with synchronous reset
     always @(posedge CLOCK_50) begin
-        case(draw_state)
-            INIT: begin
-                draw_x <= 8'd0;
-                draw_y <= 7'd0;
-                pixel_x_offset <= 2'b00;
-                pixel_y_offset <= 2'b00;
-                plot <= 1'b1;
-                draw_state <= DRAW_GRID;
-            end
-            
-            DRAW_GRID: begin
-
-                if (draw_y < (GRID_SIZE * PIXEL_SIZE) && draw_x < (GRID_SIZE * PIXEL_SIZE)) begin
+        if (reset) begin
+            draw_x <= 8'd0;
+            draw_y <= 7'd0;
+            pixel_x_offset <= 2'b00;
+            pixel_y_offset <= 2'b00;
+            plot <= 1'b1;
+            draw_state <= INIT;
+        end
+        else begin
+            case(draw_state)
+                INIT: begin
+                    draw_x <= 8'd0;
+                    draw_y <= 7'd0;
+                    pixel_x_offset <= 2'b00;
+                    pixel_y_offset <= 2'b00;
                     plot <= 1'b1;
-
-                    // Increment pixel by pixel within a 4x4 block
-                    if (pixel_x_offset == 2'b11) begin
-                        pixel_x_offset <= 2'b00;
-                        if (pixel_y_offset == 2'b11) begin
-                            pixel_y_offset <= 2'b00;
-                            // Move to next grid cell
-                            draw_x <= draw_x + 1'd1;
-                            
-                            if (draw_x >= (GRID_SIZE * PIXEL_SIZE - 1)) begin
-                                draw_x <= 8'd0;
-                                draw_y <= draw_y + 1'd1;
-                            end
-
-                        end 
-                        else begin
-                            pixel_y_offset <= pixel_y_offset + 1'b1;
-                        end
-
-                    end 
-                    else begin
-                        pixel_x_offset <= pixel_x_offset + 1'b1;
-                    end
-                     
-                    // Check if we've drawn the entire grid
-                    if (draw_y >= (GRID_SIZE * PIXEL_SIZE - 1) && 
-                        pixel_y_offset == 2'b11 && pixel_x_offset == 2'b11) begin
-                        draw_x <= 8'd0;
-                        draw_y <= 7'd0;
-                    end
-                end 
-                
-                else begin
-                    plot <= 1'b0;
+                    draw_state <= DRAW_GRID;
                 end
                 
-            end
-        endcase
+                DRAW_GRID: begin
+                    if (draw_y < (GRID_SIZE * PIXEL_SIZE) && draw_x < (GRID_SIZE * PIXEL_SIZE)) begin
+                        plot <= 1'b1;
+
+                        if (pixel_x_offset == 2'b11) begin
+                            pixel_x_offset <= 2'b00;
+                            if (pixel_y_offset == 2'b11) begin
+                                pixel_y_offset <= 2'b00;
+                                draw_x <= draw_x + 1'd1;
+                                
+                                if (draw_x >= (GRID_SIZE * PIXEL_SIZE - 1)) begin
+                                    draw_x <= 8'd0;
+                                    draw_y <= draw_y + 1'd1;
+                                end
+                            end 
+                            else begin
+                                pixel_y_offset <= pixel_y_offset + 1'b1;
+                            end
+                        end 
+                        else begin
+                            pixel_x_offset <= pixel_x_offset + 1'b1;
+                        end
+                        
+                        if (draw_y >= (GRID_SIZE * PIXEL_SIZE - 1) && 
+                            pixel_y_offset == 2'b11 && pixel_x_offset == 2'b11) begin
+                            draw_x <= 8'd0;
+                            draw_y <= 7'd0;
+                        end
+                    end 
+                    else begin
+                        plot <= 1'b0;
+                    end
+                end
+                
+                default: draw_state <= INIT;
+            endcase
+        end
     end
 
-    // Color output logic - simplified
-    wire [4:0] mem_x = draw_x[7:2]; // Divide by 4 to get memory position
+    // Color output logic
+    wire [4:0] mem_x = draw_x[7:2];
     wire [4:0] mem_y = draw_y[6:2];
-
     wire is_cursor = (mem_x == current_x && mem_y == current_y);
-
     wire is_pixel_set = pixel_memory[mem_y * GRID_SIZE + mem_x];
     
-    wire [2:0] colour_out = is_cursor ? 3'b100 :           // Red for cursor
-                        is_pixel_set ? 3'b111 : 3'b001; // White for set pixels, dark blue for grid
+    reg [2:0] colour_out;
+    always @(posedge CLOCK_50) begin
+        if (reset) begin
+            colour_out <= 3'b001;  // Default background color
+        end
+        else begin
+            colour_out <= is_cursor ? 3'b100 :           // Red for cursor
+                         is_pixel_set ? 3'b111 : 3'b001; // White for set pixels, dark blue for grid
+        end
+    end
     
     // VGA position calculation
     wire [7:0] actual_x = {draw_x[7:2], pixel_x_offset};
@@ -207,7 +213,7 @@ module vga_demo(
 
     // VGA controller
     vga_adapter VGA (
-        .resetn(1'b1),
+        .resetn(~reset),  // Active-low reset
         .clock(CLOCK_50),
         .colour(colour_out),
         .x(actual_x),
@@ -230,9 +236,7 @@ module vga_demo(
     
 endmodule
 
-
-
-
+// Hex display module (unchanged)
 module hex_display(
     input [3:0] IN,
     output reg [6:0] OUT
@@ -258,3 +262,4 @@ module hex_display(
             default: OUT = 7'b1111111;
         endcase
 endmodule
+
