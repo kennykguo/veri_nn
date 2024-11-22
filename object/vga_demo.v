@@ -50,13 +50,12 @@ module vga_demo(
     assign LEDR[9] = SW[9];
     assign LEDR[8] = SW[1];
     assign LEDR[4:0] = current_x[4:0];
-    
-    // Seven-segment display for coordinates
     hex_display hex0(current_x[3:0], HEX0);
     hex_display hex1({3'b000, current_x[4]}, HEX1);
     hex_display hex2(current_y[3:0], HEX2);
     hex_display hex3({3'b000, current_y[4]}, HEX3);
     
+
     // Initialize memory and registers
     integer i;
     initial begin
@@ -64,6 +63,7 @@ module vga_demo(
         for(i = 0; i < 784; i = i + 1) begin
             pixel_memory[i] <= 1'b0;
         end
+
         key_prev <= 4'b1111;
         draw_state <= INIT;
         move_state <= INIT;
@@ -94,6 +94,7 @@ module vga_demo(
                     current_x <= 5'd14;
                     current_y <= 5'd14;
                 end
+
                 else begin
                     if (move_delay == 0) begin
                         if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin
@@ -117,11 +118,13 @@ module vga_demo(
                             pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
                         end
                     end
+
                     else begin
                         move_delay <= move_delay - 1'd1;
                     end
                 end
             end
+
         endcase
     end
 
@@ -141,8 +144,7 @@ module vga_demo(
 
                 if (draw_y < (GRID_SIZE * PIXEL_SIZE) && draw_x < (GRID_SIZE * PIXEL_SIZE)) begin
                     plot <= 1'b1;
-                    // Rest of your DRAW_GRID logic
-                    plot <= 1'b1;
+
                     // Increment pixel by pixel within a 4x4 block
                     if (pixel_x_offset == 2'b11) begin
                         pixel_x_offset <= 2'b00;
@@ -155,15 +157,17 @@ module vga_demo(
                                 draw_x <= 8'd0;
                                 draw_y <= draw_y + 1'd1;
                             end
+
                         end 
                         else begin
                             pixel_y_offset <= pixel_y_offset + 1'b1;
                         end
+
                     end 
                     else begin
                         pixel_x_offset <= pixel_x_offset + 1'b1;
                     end
-                    
+                     
                     // Check if we've drawn the entire grid
                     if (draw_y >= (GRID_SIZE * PIXEL_SIZE - 1) && 
                         pixel_y_offset == 2'b11 && pixel_x_offset == 2'b11) begin
@@ -183,7 +187,9 @@ module vga_demo(
     // Color output logic - simplified
     wire [4:0] mem_x = draw_x[7:2]; // Divide by 4 to get memory position
     wire [4:0] mem_y = draw_y[6:2];
+
     wire is_cursor = (mem_x == current_x && mem_y == current_y);
+
     wire is_pixel_set = pixel_memory[mem_y * GRID_SIZE + mem_x];
     
     wire [2:0] colour_out = is_cursor ? 3'b100 :           // Red for cursor
@@ -210,12 +216,16 @@ module vga_demo(
         .VGA_SYNC_N(VGA_SYNC_N),
         .VGA_CLK(VGA_CLK)
     );
+
     defparam VGA.RESOLUTION = "160x120";
     defparam VGA.MONOCHROME = "FALSE";
     defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
     defparam VGA.BACKGROUND_IMAGE = "black.mif";
     
 endmodule
+
+
+
 
 module hex_display(
     input [3:0] IN,
