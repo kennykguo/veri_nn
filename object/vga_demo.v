@@ -104,7 +104,23 @@ module vga_demo(
                 MOVE: begin
                     key_prev <= ~KEY;
                     if (move_delay == 0) begin
-                        // Your existing movement logic
+                        // Movement logic
+                        if (key_pressed[0] && current_y < GRID_SIZE-1) begin  // DOWN
+                            current_y <= current_y + 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
+                        else if (key_pressed[1] && current_x < GRID_SIZE-1) begin  // RIGHT
+                            current_x <= current_x + 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
+                        else if (key_pressed[2] && current_y > 0) begin  // UP
+                            current_y <= current_y - 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
+                        else if (key_pressed[3] && current_x > 0) begin  // LEFT
+                            current_x <= current_x - 1'd1;
+                            move_delay <= DELAY_MAX;
+                        end
                     end
                     else begin
                         move_delay <= move_delay - 1'd1;
