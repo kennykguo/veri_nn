@@ -71,6 +71,8 @@ module vga_demo(
         reset_sync1 = 1'b1;
         reset_sync2 = 1'b1;
     end
+
+    integer i;
     
     // Movement FSM with synchronous reset
     always @(posedge CLOCK_50) begin
@@ -82,7 +84,7 @@ module vga_demo(
             move_state <= INIT;
             key_prev <= 4'b1111;
             // Reset pixel memory
-            for(integer i = 0; i < 784; i = i + 1) begin
+            for(i = 0; i < 784; i = i + 1) begin
                 pixel_memory[i] <= 1'b0;
             end
         end
