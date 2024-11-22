@@ -18,8 +18,8 @@ module vga_demo(
     reg [4:0] cursor_pos_y;
     reg [3:0] prev_button_state;
     wire [3:0] button_pressed = ~KEY & ~prev_button_state;
-    reg [19:0] move_cooldown;
-    parameter MOVE_DELAY_MAX = 20'd100000;
+    reg [24:0] move_cooldown;  // Increased size for slower movement
+    parameter MOVE_DELAY_MAX = 25'd1000000; // Increased delay
     
     wire [7:0] vga_scan_x;
     wire [6:0] vga_scan_y;
@@ -43,7 +43,7 @@ module vga_demo(
         cursor_pos_x <= 5'd14;
         cursor_pos_y <= 5'd14;
         prev_button_state <= 4'b1111;
-        move_cooldown <= 20'd0;
+        move_cooldown <= 25'd0;
     end
     
     // Movement and drawing logic
@@ -82,17 +82,22 @@ module vga_demo(
     // VGA color output logic
     wire [9:0] relative_x = vga_scan_x - GRID_START_X;
     wire [9:0] relative_y = vga_scan_y - GRID_START_Y;
-    wire [4:0] grid_x = relative_x[9:2];  // Divide by 4 (CELL_SIZE)
-    wire [4:0] grid_y = relative_y[9:2];
+    wire [4:0] grid_x = relative_x / CELL_SIZE;
+    wire [4:0] grid_y = relative_y / CELL_SIZE;
+    
     wire in_grid_area = (vga_scan_x >= GRID_START_X) && 
                        (vga_scan_x < GRID_START_X + GRID_SIZE * CELL_SIZE) &&
                        (vga_scan_y >= GRID_START_Y) && 
                        (vga_scan_y < GRID_START_Y + GRID_SIZE * CELL_SIZE);
     
+    wire is_cursor = (grid_x == cursor_pos_x) && (grid_y == cursor_pos_y);
+    wire is_drawn = grid_cells[grid_y * GRID_SIZE + grid_x];
+    
+    // Color assignment logic
     assign pixel_color = in_grid_area ? 
-                        ((grid_x == cursor_pos_x && grid_y == cursor_pos_y) ? 3'b100 :  // Red cursor
-                         (grid_cells[grid_y * GRID_SIZE + grid_x] ? 3'b000 : 3'b111))   // Black/White cells
-                        : 3'b000;  // Black background
+                        (is_cursor ? 3'b100 :           // Red cursor
+                         (is_drawn ? 3'b000 : 3'b111))  // Black pixels on white background
+                        : 3'b111;                       // White background outside grid
     
     // VGA controller instantiation
     vga_adapter VGA (
