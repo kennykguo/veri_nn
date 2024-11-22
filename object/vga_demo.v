@@ -51,6 +51,7 @@ module vga_demo(
         reset_sync1 <= ~SW[9];
         reset_sync2 <= reset_sync1;
     end
+
     wire reset = reset_sync2;
     
     // Debug signals
@@ -73,7 +74,7 @@ module vga_demo(
     end
     
     // Movement FSM with synchronous reset
-	 integer i;
+	integer i;
     always @(posedge CLOCK_50) begin
         if (reset) begin
             // Synchronous reset logic
