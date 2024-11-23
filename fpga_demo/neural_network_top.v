@@ -10,14 +10,13 @@ module neural_network_top (
     output [9:0] LEDR
 );
 
-    // Internal signals
-    wire clk;              
-    // wire clk_slow;         
+    // Internal signals     
+    wire clk_slow;         
     wire start;            
     wire resetn;           
-    wire init;             
-    wire on;              
-    wire done;             
+    wire init;       
+    wire on;            
+    wire done;            
 
     // Memory interface signals
     wire [15:0] image_read_addr;
@@ -29,23 +28,29 @@ module neural_network_top (
     wire [3:0] next_state;
 
     // Clock divider instance
-    // clock_divider clk_div (
-    //     .clk_in(CLOCK_50),
-    //     .clk_out(clk_slow),
-    //     .DIVISOR(32'd500)
-    // );
+    clock_divider clk_div (
+         .clk_in(CLOCK_50),
+         .clk_out(clk_slow),
+         .DIVISOR(32'd20)
+    );
+	  
+	  
 
     // Control signal assignments
-    assign clk = CLOCK_50;
+
     assign start = SW[2];    // Press to start (high)
     assign resetn = ~SW[9];    // ON to stop reset
     assign on = SW[0];         // Drawing grid enable
     assign draw = SW[1];
-    
+
+	 
+	 
     // Debug LEDs
     assign LEDR[9] = start;
     assign LEDR[3:0] = current_state;
 
+	 
+	 
     mnist_drawing_grid drawing_grid (
         .CLOCK_50(CLOCK_50),
         .reset(resetn),
@@ -66,13 +71,14 @@ module neural_network_top (
         .HEX0(HEX2),
         .HEX1(HEX3),
         .HEX2(HEX4),
-        .HEX3(HEX5)
+        .HEX3(HEX5),
+		  .led_control(LEDR[8:4])
     );
 
 
     // Neural network instance
     neural_network nn (
-        .clk(CLOCK_50),
+        .clk(clk_slow),
         .resetn(resetn),
         .start(start),
         .image_read_addr(image_read_addr),
@@ -83,6 +89,9 @@ module neural_network_top (
         .argmax_output(argmax_output)
     );
 
+	 
+	 
+	 
     // Seven segment decoder logic
     reg [6:0] seg7_display;
     assign HEX0 = seg7_display;
@@ -108,6 +117,8 @@ module neural_network_top (
         end
     end
 
+	 
+	 
     // Turn off unused display
     assign HEX1 = 7'b1111111;
 

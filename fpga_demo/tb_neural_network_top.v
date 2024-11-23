@@ -35,8 +35,12 @@ module tb_neural_network_top;
         $display("Simulation started.");
         
         // Reset sequence
+
         #0 SW[9] = 1'b0;   // SET reset to 0
         #20000 SW[9] = 1'b1;  // Assert reset for ~1000 clock cycles to ensure completion
+        
+        #0 SW[9] = 1'b0;   // SET reset
+        #20000 SW[9] = 1'b1;  // Assert reset
         
         // Drawing sequence
         #50;
