@@ -13,15 +13,15 @@ module argmax (
     reg running;                     // Indicates whether the operation is running
 
     // Always block with reset functionality
-    always @(posedge clk or negedge resetn) begin
-        if (~resetn) begin  // Reset when resetn is low (active-low reset)
+    always @(posedge clk or posedge resetn) begin
+        if (resetn) begin  // Reset when resetn is low (active-low reset)
             addr <= 0;                             // Reset address pointer
             max_value <= 32'h80000000;             // Initialize max_value to a very low value
             current_max_index <= 0;               // Reset current max index
             max_index <= 4'b1010;                  // Reset max_index to 0
             running <= 0;                          // Reset running flag
             done <= 0;                             // Reset done flag
-            $display("\nTime=%0t: Argmax operation reset", $time);
+            // $display("\nTime=%0t: Argmax operation reset", $time);
         
         end else if (start) begin
             // Initialize the operation when the start signal is asserted
