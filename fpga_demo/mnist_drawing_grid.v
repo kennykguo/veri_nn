@@ -9,7 +9,8 @@ module mnist_drawing_grid(
     output wire signed [31:0] data_out,  // Output for pixel data
     output [7:0] VGA_R, VGA_G, VGA_B,
     output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK,
-    output [6:0] HEX0, HEX1, HEX2, HEX3
+    output [6:0] HEX0, HEX1, HEX2, HEX3,
+    input [4:0] led_control
 );
 
     // Grid constants (28x28)
@@ -64,6 +65,7 @@ module mnist_drawing_grid(
     // Instantiate image_memory module
     image_memory img_mem (
         .clk(CLOCK_50),
+        .reset(reset),
         .write_addr(write_addr),
         .read_addr(read_addr),
         .data_in(data_in),
@@ -100,7 +102,7 @@ module mnist_drawing_grid(
     assign write_addr = current_y * GRID_SIZE + current_x;
     assign mem_x = draw_x[7:2];  // Convert display coordinates to grid coordinates
     assign mem_y = draw_y[6:2];
-    assign read_addr = mem_y * GRID_SIZE + mem_x;
+    // assign read_addr = mem_y * GRID_SIZE + mem_x;
 
     // Initialize registers
     initial begin
@@ -109,8 +111,8 @@ module mnist_drawing_grid(
         reset_sync2 = 1'b1;
         write_enable = 1'b0;
         data_in = 32'd0;
-        current_x = 5'd14;
-        current_y = 5'd14;
+        current_x = 5'd0;
+        current_y = 5'd0;
         move_delay = 20'd0;
         move_state = INIT;
         draw_state = INIT;
@@ -122,8 +124,8 @@ module mnist_drawing_grid(
     
     always @(posedge CLOCK_50) begin
         if (reset_f) begin
-            current_x <= 5'd14;
-            current_y <= 5'd14;
+            current_x <= 5'd0;
+            current_y <= 5'd0;
             move_delay <= 20'd0;
             move_state <= INIT;
             write_enable <= 1'b0;
@@ -136,8 +138,8 @@ module mnist_drawing_grid(
             if (on) begin // Only process logic when on=1
                 case(move_state)
                     INIT: begin
-                        current_x <= 5'd14;
-                        current_y <= 5'd14;
+                        current_x <= 5'd0;
+                        current_y <= 5'd0;
                         move_state <= MOVE;
                     end
                     
