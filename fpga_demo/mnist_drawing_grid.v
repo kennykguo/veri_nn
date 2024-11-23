@@ -9,7 +9,13 @@ module mnist_drawing_grid(
     output [9:0] LEDR,
     output reg [783:0] pixel_memory
 );
-    
+    // Add a ready signal for init?
+
+    // wire ready;
+    // assign ready = (move_state == MOVE && move_delay == 0 && ps2_done_tick);
+
+    // // Gate the initialization of image_memory
+    // assign init = ready && on && some_condition_to_start_memory_init;
     // Grid constants (28x28)
     parameter GRID_SIZE = 28;
     parameter PIXEL_SIZE = 4;
@@ -57,6 +63,7 @@ module mnist_drawing_grid(
         reset_sync1 <= ~SW[9];
         reset_sync2 <= reset_sync1;
     end
+
     wire reset = reset_sync2;
     
     // Debug signals
@@ -78,6 +85,7 @@ module mnist_drawing_grid(
         .done_tick(ps2_done_tick)
     );
     
+
     // Initialize registers
     initial begin
         plot = 1'b0;
@@ -89,17 +97,21 @@ module mnist_drawing_grid(
     
     // Movement FSM with synchronous reset
     always @(posedge CLOCK_50) begin
+        // Reset takes highest priority
         if (reset) begin
             // Synchronous reset logic
             current_x <= 5'd14;
             current_y <= 5'd14;
             move_delay <= 20'd0;
             move_state <= INIT;
+
             // Reset pixel memory
             for(i = 0; i < 784; i = i + 1) begin
                 pixel_memory[i] <= 1'b0;
             end
+
         end
+        // If not on, don't do anything
         else if (on) begin
             case(move_state)
                 INIT: begin
@@ -140,15 +152,19 @@ module mnist_drawing_grid(
                         end
                         
                         if (SW[1]) begin
+                            // Using 0:0 bit memory to represent each pixel
                             pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
                         end
+
                     end
+
                     else begin
                         move_delay <= move_delay - 1'd1;
                     end
                 end
                 
                 default: move_state <= INIT;
+
             endcase
         end
     end
@@ -163,6 +179,7 @@ module mnist_drawing_grid(
             plot <= 1'b1;
             draw_state <= INIT;
         end
+
         else if (on) begin
             case(draw_state)
                 INIT: begin
@@ -184,6 +201,7 @@ module mnist_drawing_grid(
                                 pixel_y_offset <= 2'b00;
                                 draw_x <= draw_x + 1'd1;
                                 
+
                                 if (draw_x >= (GRID_SIZE * PIXEL_SIZE - 1)) begin
                                     draw_x <= 8'd0;
                                     draw_y <= draw_y + 1'd1;
@@ -213,6 +231,7 @@ module mnist_drawing_grid(
         end
     end
 
+
     // Color output logic
     wire [4:0] mem_x = draw_x[7:2];
     wire [4:0] mem_y = draw_y[6:2];
@@ -236,125 +255,23 @@ module mnist_drawing_grid(
 
     // VGA controller instantiation
     vga_adapter VGA (
-        .resetn(~reset),  // Active-low reset
+        .resetn(~reset),  // Active low reset
         .clock(CLOCK_50),
         .colour(colour_out),
         .x(actual_x),
         .y(actual_y),
-        .plot(plot),
-        .VGA_R(VGA_R),
+        .VGA_R(VGA_R), 
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
-        .VGA_HS(VGA_HS),
-        .VGA_VS(VGA_VS),
-        .VGA_BLANK_N(VGA_BLANK_N),
-        .VGA_SYNC_N(VGA_SYNC_N),
+        .VGA_HS(VGA_HS), 
+        .VGA_VS(VGA_VS), 
+        .VGA_BLANK_N(VGA_BLANK_N), 
+        .VGA_SYNC_N(VGA_SYNC_N), 
         .VGA_CLK(VGA_CLK)
     );
 
-    defparam VGA.RESOLUTION = "160x120";
-    defparam VGA.MONOCHROME = "FALSE";
-    defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
-    defparam VGA.BACKGROUND_IMAGE = "black.mif";
-    
 endmodule
 
-// PS2 Keyboard Controller Module
-module ps2_keyboard(
-    input clk, reset,
-    input ps2d, ps2c,     // PS2 data and clock inputs
-    output reg [7:0] scan_code,  // received scan code
-    output reg done_tick    // signal to indicate new scan code received
-);
-
-    // State declarations
-    localparam [1:0] 
-        idle = 2'b00,
-        dps  = 2'b01,   // data phase start
-        load = 2'b10;
-
-    // Signal declarations
-    reg [1:0] state_reg, state_next;
-    reg [7:0] filter_reg;
-    wire [7:0] filter_next;
-    reg f_ps2c_reg;
-    wire f_ps2c_next;
-    reg [3:0] n_reg;
-    reg [3:0] n_next;
-    reg [10:0] s_reg;
-    reg [10:0] s_next;
-    wire fall_edge;
-
-    // Filter and falling edge tick generation for PS2 clock
-    always @(posedge clk) begin
-        if (reset) begin
-            filter_reg <= 0;
-            f_ps2c_reg <= 0;
-        end
-        else begin
-            filter_reg <= filter_next;
-            f_ps2c_reg <= f_ps2c_next;
-        end
-    end
-
-    assign filter_next = {ps2c, filter_reg[7:1]};
-    assign f_ps2c_next = (filter_reg == 8'b11111111) ? 1'b1 :
-                        (filter_reg == 8'b00000000) ? 1'b0 :
-                        f_ps2c_reg;
-    assign fall_edge = f_ps2c_reg & ~f_ps2c_next;
-
-    // FSMD state & data registers
-    always @(posedge clk) begin
-        if (reset) begin
-            state_reg <= idle;
-            n_reg <= 0;
-            s_reg <= 0;
-        end
-        else begin
-            state_reg <= state_next;
-            n_reg <= n_next;
-            s_reg <= s_next;
-        end
-    end
-
-    // FSMD next-state logic
-    always @* begin
-        state_next = state_reg;
-        n_next = n_reg;
-        s_next = s_reg;
-        done_tick = 1'b0;
-
-        case (state_reg)
-            idle: begin
-                if (fall_edge & ~ps2d) begin // start bit
-                    n_next = 4'b1001;  // count 10 bits
-                    s_next = {ps2d, s_reg[10:1]}; // shift in start bit
-                    state_next = dps;
-                end
-            end
-
-            dps: begin // data phase shift
-                if (fall_edge) begin
-                    n_next = n_reg - 1;
-                    s_next = {ps2d, s_reg[10:1]}; // shift in data, parity, stop bits
-                    if (n_reg == 0)
-                        state_next = load;
-                end
-            end
-
-            load: begin // check parity and stop bits
-                if (s_reg[0] == 1'b0 && s_reg[10] == 1'b1) begin // start bit = 0, stop bit = 1
-                    scan_code <= s_reg[8:1]; // extract scan code
-                    done_tick = 1'b1;
-                end
-                state_next = idle;
-            end
-
-            default: state_next = idle;
-        endcase
-    end
-
-endmodule
 
 // Hex display module
 module hex_display(

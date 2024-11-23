@@ -5,6 +5,7 @@ module neural_network (
     input wire start,
     input wire [783:0] pixel_data,  // New input
     output wire done,
+    output wire input_done,
     output reg [3:0] current_state,
     output reg [3:0] next_state,
     output wire [3:0] argmax_output
@@ -51,11 +52,13 @@ module neural_network (
 
     // Memory instantiations
     image_memory input_mem(
+        .clk(clk),
         .reset(resetn),
         .init(init)
         .address(input_addr),
         .pixel_data(pixel_data),
-        .data_out(input_data)
+        .data_out(input_data),
+        .done(input_done)
     );
 
     matrix1 weight_mem1(

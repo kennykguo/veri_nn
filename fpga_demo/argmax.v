@@ -13,8 +13,9 @@ module argmax (
     reg running;                     // Indicates whether the operation is running
 
     // Always block with reset functionality
-    always @(posedge clk or negedge resetn) begin
-        if (~resetn) begin  // Reset when resetn is low (active-low reset)
+    // NO CHANGES OTHER THAN POSEDGE RESET
+    always @(posedge clk or posedge resetn) begin
+        if (resetn) begin  // Reset when resetn is low (active-low reset)
             addr <= 0;                             // Reset address pointer
             max_value <= 32'h80000000;             // Initialize max_value to a very low value
             current_max_index <= 0;               // Reset current max index

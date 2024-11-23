@@ -9,6 +9,7 @@ module mm3_memory (
     reg signed [31:0] memory [0:31];  // 1x32 output
 
     // Read operation (getter)
+     // NEED TO TEST POSEDGE CLOCK ON MODELSIM
     always @(posedge clk) begin
         data_out = memory[read_addr];
         if (read_addr < 64) begin  // Debug for read

@@ -15,9 +15,12 @@ module neural_network_top (
     wire clk_slow;         // Divided clock
     wire start;            // Start signal
     wire resetn;           // Active low reset
-    wire init;
+    wire init;              // Init memory movement
     wire on;              // Added on signal
     wire done;             // Done signal from the neural network
+
+    wire input_done;
+
     wire [3:0] argmax_output;  // Neural network classification output
     wire [783:0] pixel_data;   // Internal signal for pixel data
 
@@ -31,15 +34,16 @@ module neural_network_top (
         .clk_out(clk_slow),
         .DIVISOR(32'd500)
     );
-    
-	assign LEDR[9] = start;
-	assign LEDR[3:0] = current_state;
+
+	assign LEDR[9] = start; // Start
+    assign LEDR[8] = init;
+	assign LEDR[3:0] = current_state; // Tracks current state of the NN FSM
 	 
     // Assign control signals
     assign clk = clk_slow;
-    assign start = ~KEY[0];
-    assign resetn = ~SW[9];  
-    assign init = ~KEY[1];
+    assign start = ~KEY[0]; // Press to start (high)
+    assign resetn = ~SW[9];  // ON to stop reset
+    assign init = ~KEY[1]; // Press to init (high)
     assign on = SW[0];    // Added on signal assignment
 
 
@@ -75,7 +79,7 @@ module neural_network_top (
         .done(done),
         .current_state(current_state),
         .next_state(next_state),
-        .argmax_output(argmax_output)
+        .argmax_output(argmax_output) // OUTPUT FROM the neural_network
     );
 
 
@@ -83,7 +87,8 @@ module neural_network_top (
     reg [6:0] seg7_display;
     assign HEX0 = seg7_display;
 
-
+    // * * * *
+    // // May need to change to posedge clk
     always @(*) begin
         if (resetn) begin
             seg7_display = 7'b1111111; // Turn off all segments when reset
@@ -99,7 +104,7 @@ module neural_network_top (
                 4'd7: seg7_display = 7'b1111000; // Display '7'
                 4'd8: seg7_display = 7'b0000000; // Display '8'
                 4'd9: seg7_display = 7'b0010000; // Display '9'
-                4'd10: seg7_display = 7'b01111111; // Default
+                4'd10: seg7_display = 7'b01111111; // 10 - RESET
                 default: seg7_display = 7'b1111111; // Turn off segments for invalid input
             endcase
         end
@@ -107,5 +112,6 @@ module neural_network_top (
 
     // Optional coordinate display (HEX1)
     assign HEX1 = 7'b1111111;  // Turn off HEX1 if unused
+
 endmodule
 
