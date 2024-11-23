@@ -15,7 +15,8 @@ module neural_network_top (
     wire start;            
     wire resetn;           
     wire init;       
-    wire on;            
+    wire on;
+	 wire draw;
     wire done;            
 
     // Memory interface signals
@@ -31,7 +32,7 @@ module neural_network_top (
     clock_divider clk_div (
          .clk_in(CLOCK_50),
          .clk_out(clk_slow),
-         .DIVISOR(32'd20)
+         .DIVISOR(32'd500)
     );
 	  
 	  
