@@ -63,9 +63,12 @@ module mnist_drawing_grid(
     wire reset = reset_sync2;
     
     // Debug signals
-    assign LEDR[9] = SW[9];
     assign LEDR[8] = SW[1];
-    assign LEDR[4:0] = current_x[4:0];
+    assign LEDR[7] = (pixel_memory[0] == 1'b1) ? 1 : 0;     // Top-left corner
+    assign LEDR[6] = (pixel_memory[27] == 1'b1) ? 1 : 0;    // Top-right corner
+    assign LEDR[5] = (pixel_memory[756] == 1'b1) ? 1 : 0;   // Bottom-left corner
+    assign LEDR[4] = (pixel_memory[783] == 1'b1) ? 1 : 0;   // Bottom-right corne
+
     
     // 7-segment display outputs
     hex_display hex0(current_x[3:0], HEX0);
