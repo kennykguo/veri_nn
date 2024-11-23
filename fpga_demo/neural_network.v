@@ -269,7 +269,7 @@ module neural_network (
     localparam DONE = 4'd9;
 
     // State transitions
-    always @(posedge clk or posedge resetn) begin
+    always @(*) begin
         if (resetn) begin
             current_state <= IDLE;
         end else begin
@@ -281,7 +281,7 @@ module neural_network (
     assign done = (current_state == DONE);
     
     // State machine control logic
-    always @(*) begin
+    always @(posedge clk) begin
         start_mm1 = 0;
         start_relu1 = 0;
         start_mm2 = 0;
@@ -294,8 +294,9 @@ module neural_network (
         case (current_state)
             IDLE: begin
                 if (start) begin
-                    next_state = LAYER1_MM;
                     start_mm1 = 1;
+                    $display("here");
+                    next_state = LAYER1_MM;
                 end else begin
                     next_state = IDLE;
                 end
