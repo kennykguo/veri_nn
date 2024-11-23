@@ -1,13 +1,13 @@
 module mnist_drawing_grid(
     input CLOCK_50,    
-    input [9:0] SW,
     input PS2_CLK,        // PS2 clock input
     input PS2_DAT,        // PS2 data input
+    input on,             // Added control signal
     output [7:0] VGA_R, VGA_G, VGA_B,
     output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK,
     output [6:0] HEX0, HEX1, HEX2, HEX3,
     output [9:0] LEDR,
-    output reg [783:0] pixel_memory  // Add this line
+    output reg [783:0] pixel_memory
 );
     
     // Grid constants (28x28)
@@ -24,9 +24,6 @@ module mnist_drawing_grid(
     parameter RIGHT_ARROW = 8'h74;
     parameter UP_ARROW = 8'h75;
     parameter DOWN_ARROW = 8'h72;
-    
-    // Memory array for pixel storage
-    // reg [0:0] pixel_memory [0:783];
     
     // Cursor position registers
     reg [4:0] current_x;
@@ -64,11 +61,6 @@ module mnist_drawing_grid(
     
     // Debug signals
     assign LEDR[8] = SW[1];
-    assign LEDR[7] = (pixel_memory[0] == 1'b1) ? 1 : 0;     // Top-left corner
-    assign LEDR[6] = (pixel_memory[27] == 1'b1) ? 1 : 0;    // Top-right corner
-    assign LEDR[5] = (pixel_memory[756] == 1'b1) ? 1 : 0;   // Bottom-left corner
-    assign LEDR[4] = (pixel_memory[783] == 1'b1) ? 1 : 0;   // Bottom-right corne
-
     
     // 7-segment display outputs
     hex_display hex0(current_x[3:0], HEX0);
@@ -108,7 +100,7 @@ module mnist_drawing_grid(
                 pixel_memory[i] <= 1'b0;
             end
         end
-        else begin
+        else if (on) begin
             case(move_state)
                 INIT: begin
                     current_x <= 5'd14;
@@ -171,7 +163,7 @@ module mnist_drawing_grid(
             plot <= 1'b1;
             draw_state <= INIT;
         end
-        else begin
+        else if (on) begin
             case(draw_state)
                 INIT: begin
                     draw_x <= 8'd0;
@@ -232,7 +224,7 @@ module mnist_drawing_grid(
         if (reset) begin
             colour_out <= 3'b001;  // Default background color
         end
-        else begin
+        else if (on) begin
             colour_out <= is_cursor ? 3'b100 :           // Red for cursor
                          is_pixel_set ? 3'b111 : 3'b001; // White for set pixels, dark blue for grid
         end

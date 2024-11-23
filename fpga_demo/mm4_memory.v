@@ -9,7 +9,7 @@ module mm4_memory (
     reg signed [31:0] memory [0:9];
 
     // Read operation (getter)
-    always @(*) begin
+    always @(posedge clk) begin
         data_out = memory[read_addr];
         if (read_addr < 64) begin  // Debug for read
             // $display("MM4_MEM Time=%0t Reading addr=%d, data=%h", $time, read_addr, data_out);

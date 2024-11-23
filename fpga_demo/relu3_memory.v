@@ -9,7 +9,7 @@ module relu3_memory (
     reg signed [31:0] memory [0:63];  // 1x64 output
 
     // Read operation (getter)
-    always @(*) begin
+    always @(posedge clk) begin
         data_out = memory[read_addr];
         if (read_addr < 64) begin  // Debug for read
             // $display("RELU1_MEM Time=%0t Reading addr=%d, data=%h", $time, read_addr, data_out);

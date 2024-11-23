@@ -16,6 +16,7 @@ module neural_network_top (
     wire start;            // Start signal
     wire resetn;           // Active low reset
     wire init;
+    wire on;              // Added on signal
     wire done;             // Done signal from the neural network
     wire [3:0] argmax_output;  // Neural network classification output
     wire [783:0] pixel_data;   // Internal signal for pixel data
@@ -37,15 +38,17 @@ module neural_network_top (
     // Assign control signals
     assign clk = clk_slow;
     assign start = ~KEY[0];
-    assign resetn = ~SW[9];  // Active low reset
+    assign resetn = ~SW[9];  
     assign init = ~KEY[1];
+    assign on = SW[0];    // Added on signal assignment
+
 
     // MNIST Drawing Grid instance
     mnist_drawing_grid drawing_grid (
         .CLOCK_50(CLOCK_50),
-        .SW(SW),
         .PS2_CLK(PS2_CLK),
         .PS2_DAT(PS2_DAT),
+        .on(on),          // Connect on signal
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
@@ -54,17 +57,19 @@ module neural_network_top (
         .VGA_BLANK_N(VGA_BLANK_N),
         .VGA_SYNC_N(VGA_SYNC_N),
         .VGA_CLK(VGA_CLK),
-        .HEX0(HEX2),  // Connect HEX0 for displaying the neural network result
+        .HEX0(HEX2),
         .HEX1(HEX3),
         .HEX2(HEX4),
         .HEX3(HEX5),
-        .pixel_memory(pixel_data)  // Provide pixel data to the neural network
+        .pixel_memory(pixel_data)
     );
+
 
     // Neural network instance
     neural_network nn (
         .clk(clk),
         .resetn(resetn),
+        .init(start),
         .start(start),
         .pixel_data(pixel_data),  // Connect pixel data from mnist_drawing_grid
         .done(done),
@@ -72,6 +77,7 @@ module neural_network_top (
         .next_state(next_state),
         .argmax_output(argmax_output)
     );
+
 
     // Seven segment decoder logic with intermediate reg
     reg [6:0] seg7_display;
