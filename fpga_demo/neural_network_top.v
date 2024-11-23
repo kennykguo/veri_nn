@@ -31,7 +31,7 @@ module neural_network_top (
         .clk_out(clk_slow),
         .DIVISOR(32'd500)
     );
-	 
+    
 	assign LEDR[9] = start;
 	assign LEDR[3:0] = current_state;
 	 
@@ -83,8 +83,9 @@ module neural_network_top (
     reg [6:0] seg7_display;
     assign HEX0 = seg7_display;
 
+
     always @(*) begin
-        if (!resetn) begin
+        if (resetn) begin
             seg7_display = 7'b1111111; // Turn off all segments when reset
         end else begin
             case (argmax_output)

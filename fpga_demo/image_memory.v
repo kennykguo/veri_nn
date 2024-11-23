@@ -11,7 +11,7 @@ module image_memory (
 
     // Single always block to handle memory operations
     always @(posedge clk) begin
-        
+
         if (reset) begin
             // Zero out all memory entries on reset
             for (i = 0; i < 784; i = i + 1) begin
@@ -23,9 +23,14 @@ module image_memory (
         else if (init) begin
             // Initialize memory with pixel data
             for (i = 0; i < 784; i = i + 1) begin
-                memory[i] <= pixel_data[i] ? 32'h00000001 : 32'h00000000;
+                if (pixel_data[i] == 1) begin
+                    memory[i] = 32'h00000001;  // If pixel is 1, set memory[i] to 00000001
+                end else begin
+                    memory[i] = 32'h00000000;  // If pixel is 0, set memory[i] to 00000000
+                end
             end
         end
+
 
         else begin
             // Normal read operation
