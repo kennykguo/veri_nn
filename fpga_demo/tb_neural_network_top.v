@@ -21,7 +21,7 @@ module tb_neural_network_top;
     parameter DOWN_ARROW = 8'h72;
 
     // Clock generation
-    always #1 CLOCK_50 = ~CLOCK_50;  // 500 MHz clock for simulation
+    always #10 CLOCK_50 = ~CLOCK_50;  // 50 MHz clock for simulation
 
     // Test stimulus
     initial begin
@@ -35,8 +35,8 @@ module tb_neural_network_top;
         $display("Simulation started.");
         
         // Reset sequence
-        #0 SW[9] = 1'b0;   // SET reset
-        #100 SW[9] = 1'b1;  // Assert reset
+        #0 SW[9] = 1'b0;   // SET reset to 0
+        #20000 SW[9] = 1'b1;  // Assert reset for ~1000 clock cycles to ensure completion
         
         // Drawing sequence
         #50;

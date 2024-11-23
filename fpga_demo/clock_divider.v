@@ -3,7 +3,11 @@ module clock_divider (
     output reg clk_out,
     input [31:0] DIVISOR
 );
-    reg [31:0] counter;
+    reg [31:0] counter = 32'd0;  // Initialize counter
+    
+    initial begin
+        clk_out = 1'b0;  // Initialize clk_out
+    end
     
     always @(posedge clk_in) begin
         if (counter >= DIVISOR-1) begin
