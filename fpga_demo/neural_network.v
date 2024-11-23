@@ -1,11 +1,10 @@
 module neural_network (
     input wire clk,
     input wire resetn,
-    input wire init,
     input wire start,
-    input wire [783:0] pixel_data,  // New input
+    input wire [15:0] image_read_addr,
+    input wire signed [31:0] image_data_out,
     output wire done,
-    output wire input_done,
     output reg [3:0] current_state,
     output reg [3:0] next_state,
     output wire [3:0] argmax_output
@@ -51,15 +50,15 @@ module neural_network (
     wire argmax_done;
 
     // Memory instantiations
-    image_memory input_mem(
-        .clk(clk),
-        .reset(resetn),
-        .init(init)
-        .address(input_addr),
-        .pixel_data(pixel_data),
-        .data_out(input_data),
-        .done(input_done)
-    );
+    // image_memory input_mem(
+    //     .clk(clk),
+    //     .reset(resetn),
+    //     .init(init)
+    //     .address(input_addr),
+    //     .pixel_data(pixel_data),
+    //     .data_out(input_data),
+    //     .done(input_done)
+    // );
 
     matrix1 weight_mem1(
         .address(weight1_addr),
@@ -152,8 +151,8 @@ module neural_network (
         .m(10'd1),
         .n(10'd64),
         .k(10'd784),
-        .input_addr(input_addr),
-        .input_data(input_data),
+        .input_addr(image_read_addr),
+        .input_data(image_data_out),
         .weight_addr(weight1_addr),
         .weight_data(weight1_data),
         .output_addr(mm1_write_addr),
@@ -248,6 +247,7 @@ module neural_network (
 
     argmax argmax_op(
         .clk(clk),
+        .resetn(resetn),
         .start(start_argmax),
         .size(16'd10),
         .addr(mm4_read_addr),
@@ -293,9 +293,12 @@ module neural_network (
 
         case (current_state)
             IDLE: begin
-                if (start) next_state = LAYER1_MM;
-                else next_state = IDLE;
-                start_mm1 = start;
+                if (start) begin
+                    next_state = LAYER1_MM;
+                    start_mm1 = 1;
+                end else begin
+                    next_state = IDLE;
+                end
             end
             
             LAYER1_MM: begin

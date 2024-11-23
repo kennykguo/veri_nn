@@ -22,7 +22,7 @@ module argmax (
             max_index <= 4'b1010;                  // Reset max_index to 0
             running <= 0;                          // Reset running flag
             done <= 0;                             // Reset done flag
-            $display("\nTime=%0t: Argmax operation reset", $time);
+            // $display("\nTime=%0t: Argmax operation reset", $time);
         
         end else if (start) begin
             // Initialize the operation when the start signal is asserted
@@ -34,6 +34,7 @@ module argmax (
             // max_index <= 4'b1010;                  // Reset max_index to 0 at start
             // $display("\nTime=%0t: Starting argmax operation...", $time);
             // $display("Initialized max_value to %0d", max_value);
+        
         end else if (running) begin
             // If the operation is running, check data values and find the max
             if (addr < size) begin

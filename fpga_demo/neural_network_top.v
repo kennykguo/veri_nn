@@ -11,48 +11,50 @@ module neural_network_top (
 );
 
     // Internal signals
-    wire clk;              // Clock signal for the neural network
-    wire clk_slow;         // Divided clock
-    wire start;            // Start signal
-    wire resetn;           // Active low reset
-    wire init;              // Init memory movement
-    wire on;              // Added on signal
-    wire done;             // Done signal from the neural network
+    wire clk;              
+    // wire clk_slow;         
+    wire start;            
+    wire resetn;           
+    wire init;             
+    wire on;              
+    wire done;             
 
-    wire input_done;
-
-    wire [3:0] argmax_output;  // Neural network classification output
-    wire [783:0] pixel_data;   // Internal signal for pixel data
+    // Memory interface signals
+    wire [15:0] image_read_addr;
+    wire [31:0] image_data_out;
+    wire [3:0] argmax_output;  
 
     // State signals for debugging
     wire [3:0] current_state;
     wire [3:0] next_state;
 
     // Clock divider instance
-    clock_divider clk_div (
-        .clk_in(CLOCK_50),
-        .clk_out(clk_slow),
-        .DIVISOR(32'd500)
-    );
+    // clock_divider clk_div (
+    //     .clk_in(CLOCK_50),
+    //     .clk_out(clk_slow),
+    //     .DIVISOR(32'd500)
+    // );
 
-	assign LEDR[9] = start; // Start
-    assign LEDR[8] = init;
-	assign LEDR[3:0] = current_state; // Tracks current state of the NN FSM
-	 
-    // Assign control signals
-    assign clk = clk_slow;
-    assign start = ~KEY[0]; // Press to start (high)
-    assign resetn = ~SW[9];  // ON to stop reset
-    assign init = ~KEY[1]; // Press to init (high)
-    assign on = SW[0];    // Added on signal assignment
+    // Control signal assignments
+    assign clk = CLOCK_50;
+    assign start = SW[2];    // Press to start (high)
+    assign resetn = ~SW[9];    // ON to stop reset
+    assign on = SW[0];         // Drawing grid enable
+    assign draw = SW[1];
+    
+    // Debug LEDs
+    assign LEDR[9] = start;
+    assign LEDR[3:0] = current_state;
 
-
-    // MNIST Drawing Grid instance
     mnist_drawing_grid drawing_grid (
         .CLOCK_50(CLOCK_50),
+        .reset(resetn),
         .PS2_CLK(PS2_CLK),
         .PS2_DAT(PS2_DAT),
-        .on(on),          // Connect on signal
+        .draw(draw),
+        .on(on),
+        .read_addr(image_read_addr),    
+        .data_out(image_data_out),      
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
@@ -64,54 +66,49 @@ module neural_network_top (
         .HEX0(HEX2),
         .HEX1(HEX3),
         .HEX2(HEX4),
-        .HEX3(HEX5),
-        .pixel_memory(pixel_data)
+        .HEX3(HEX5)
     );
 
 
     // Neural network instance
     neural_network nn (
-        .clk(clk),
+        .clk(CLOCK_50),
         .resetn(resetn),
-        .init(start),
         .start(start),
-        .pixel_data(pixel_data),  // Connect pixel data from mnist_drawing_grid
+        .image_read_addr(image_read_addr),
+        .image_data_out(image_data_out),
         .done(done),
         .current_state(current_state),
         .next_state(next_state),
-        .argmax_output(argmax_output) // OUTPUT FROM the neural_network
+        .argmax_output(argmax_output)
     );
 
-
-    // Seven segment decoder logic with intermediate reg
+    // Seven segment decoder logic
     reg [6:0] seg7_display;
     assign HEX0 = seg7_display;
 
-    // * * * *
-    // // May need to change to posedge clk
     always @(*) begin
         if (resetn) begin
-            seg7_display = 7'b1111111; // Turn off all segments when reset
+            seg7_display = 7'b1111111;
         end else begin
             case (argmax_output)
-                4'd0: seg7_display = 7'b1000000; // Display '0'
-                4'd1: seg7_display = 7'b1111001; // Display '1'
-                4'd2: seg7_display = 7'b0100100; // Display '2'
-                4'd3: seg7_display = 7'b0110000; // Display '3'
-                4'd4: seg7_display = 7'b0011001; // Display '4'
-                4'd5: seg7_display = 7'b0010010; // Display '5'
-                4'd6: seg7_display = 7'b0000010; // Display '6'
-                4'd7: seg7_display = 7'b1111000; // Display '7'
-                4'd8: seg7_display = 7'b0000000; // Display '8'
-                4'd9: seg7_display = 7'b0010000; // Display '9'
-                4'd10: seg7_display = 7'b01111111; // 10 - RESET
-                default: seg7_display = 7'b1111111; // Turn off segments for invalid input
+                4'd0: seg7_display = 7'b1000000;
+                4'd1: seg7_display = 7'b1111001;
+                4'd2: seg7_display = 7'b0100100;
+                4'd3: seg7_display = 7'b0110000;
+                4'd4: seg7_display = 7'b0011001;
+                4'd5: seg7_display = 7'b0010010;
+                4'd6: seg7_display = 7'b0000010;
+                4'd7: seg7_display = 7'b1111000;
+                4'd8: seg7_display = 7'b0000000;
+                4'd9: seg7_display = 7'b0010000;
+                4'd10: seg7_display = 7'b0111111;
+                default: seg7_display = 7'b1111111;
             endcase
         end
     end
 
-    // Optional coordinate display (HEX1)
-    assign HEX1 = 7'b1111111;  // Turn off HEX1 if unused
+    // Turn off unused display
+    assign HEX1 = 7'b1111111;
 
 endmodule
-

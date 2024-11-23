@@ -6,11 +6,12 @@ module mm1_memory (
     input wire write_enable,
     output reg signed [31:0] data_out
 );
+
+
     reg signed [31:0] memory [0:63];  // 1x64 output
 
     // Read operation (getter)
-     // NEED TO TEST POSEDGE CLOCK ON MODELSIM
-    always @(posedge clk) begin
+    always @(*) begin
         data_out = memory[read_addr];
         if (read_addr < 64) begin  // Debug for read
             // $display("MM1_MEM Time=%0t Reading addr=%d, data=%h", $time, read_addr, data_out);

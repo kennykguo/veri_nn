@@ -1,0 +1,3479 @@
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35307000 | Moving to next element in current row/col
+# Next p=7
+
+# Time=35309000 | Memory Access
+# Reading from - Input addr: 7, Weight addr: 470
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35309000 | Moving to next element in current row/col
+# Next p=8
+# 
+# Time=35311000 | Memory Access
+# Reading from - Input addr: 8, Weight addr: 534
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35311000 | Moving to next element in current row/col
+# Next p=9
+# 
+# Time=35313000 | Memory Access
+# Reading from - Input addr: 9, Weight addr: 598
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35313000 | Moving to next element in current row/col
+# Next p=10
+# 
+# Time=35315000 | Memory Access
+# Reading from - Input addr: 10, Weight addr: 662
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35315000 | Moving to next element in current row/col
+# Next p=11
+# 
+# Time=35317000 | Memory Access
+# Reading from - Input addr: 11, Weight addr: 726
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35317000 | Moving to next element in current row/col
+# Next p=12
+# 
+# Time=35319000 | Memory Access
+# Reading from - Input addr: 12, Weight addr: 790
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35319000 | Moving to next element in current row/col
+# Next p=13
+# 
+# Time=35321000 | Memory Access
+# Reading from - Input addr: 13, Weight addr: 854
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35321000 | Moving to next element in current row/col
+# Next p=14
+# 
+# Time=35323000 | Memory Access
+# Reading from - Input addr: 14, Weight addr: 918
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35323000 | Moving to next element in current row/col
+# Next p=15
+# 
+# Time=35325000 | Memory Access
+# Reading from - Input addr: 15, Weight addr: 982
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35325000 | Moving to next element in current row/col
+# Next p=16
+# 
+# Time=35327000 | Memory Access
+# Reading from - Input addr: 16, Weight addr: 1046
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35327000 | Moving to next element in current row/col
+# Next p=17
+# 
+# Time=35329000 | Memory Access
+# Reading from - Input addr: 17, Weight addr: 1110
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35329000 | Moving to next element in current row/col
+# Next p=18
+# 
+# Time=35331000 | Memory Access
+# Reading from - Input addr: 18, Weight addr: 1174
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35331000 | Moving to next element in current row/col
+# Next p=19
+# 
+# Time=35333000 | Memory Access
+# Reading from - Input addr: 19, Weight addr: 1238
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35333000 | Moving to next element in current row/col
+# Next p=20
+# 
+# Time=35335000 | Memory Access
+# Reading from - Input addr: 20, Weight addr: 1302
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35335000 | Moving to next element in current row/col
+# Next p=21
+# 
+# Time=35337000 | Memory Access
+# Reading from - Input addr: 21, Weight addr: 1366
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35337000 | Moving to next element in current row/col
+# Next p=22
+# 
+# Time=35339000 | Memory Access
+# Reading from - Input addr: 22, Weight addr: 1430
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35339000 | Moving to next element in current row/col
+# Next p=23
+# 
+# Time=35341000 | Memory Access
+# Reading from - Input addr: 23, Weight addr: 1494
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35341000 | Moving to next element in current row/col
+# Next p=24
+# 
+# Time=35343000 | Memory Access
+# Reading from - Input addr: 24, Weight addr: 1558
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35343000 | Moving to next element in current row/col
+# Next p=25
+# 
+# Time=35345000 | Memory Access
+# Reading from - Input addr: 25, Weight addr: 1622
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35345000 | Moving to next element in current row/col
+# Next p=26
+# 
+# Time=35347000 | Memory Access
+# Reading from - Input addr: 26, Weight addr: 1686
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35347000 | Moving to next element in current row/col
+# Next p=27
+# 
+# Time=35349000 | Memory Access
+# Reading from - Input addr: 27, Weight addr: 1750
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35349000 | Moving to next element in current row/col
+# Next p=28
+# 
+# Time=35351000 | Memory Access
+# Reading from - Input addr: 28, Weight addr: 1814
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35351000 | Moving to next element in current row/col
+# Next p=29
+# 
+# Time=35353000 | Memory Access
+# Reading from - Input addr: 29, Weight addr: 1878
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35353000 | Moving to next element in current row/col
+# Next p=30
+# 
+# Time=35355000 | Memory Access
+# Reading from - Input addr: 30, Weight addr: 1942
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35355000 | Moving to next element in current row/col
+# Next p=31
+# 
+# Time=35357000 | Memory Access
+# Reading from - Input addr: 31, Weight addr: 2006
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35357000 | Moving to next element in current row/col
+# Next p=32
+# 
+# Time=35359000 | Memory Access
+# Reading from - Input addr: 32, Weight addr: 2070
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35359000 | Moving to next element in current row/col
+# Next p=33
+# 
+# Time=35361000 | Memory Access
+# Reading from - Input addr: 33, Weight addr: 2134
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35361000 | Moving to next element in current row/col
+# Next p=34
+# 
+# Time=35363000 | Memory Access
+# Reading from - Input addr: 34, Weight addr: 2198
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35363000 | Moving to next element in current row/col
+# Next p=35
+# 
+# Time=35365000 | Memory Access
+# Reading from - Input addr: 35, Weight addr: 2262
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35365000 | Moving to next element in current row/col
+# Next p=36
+# 
+# Time=35367000 | Memory Access
+# Reading from - Input addr: 36, Weight addr: 2326
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35367000 | Moving to next element in current row/col
+# Next p=37
+# 
+# Time=35369000 | Memory Access
+# Reading from - Input addr: 37, Weight addr: 2390
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35369000 | Moving to next element in current row/col
+# Next p=38
+# 
+# Time=35371000 | Memory Access
+# Reading from - Input addr: 38, Weight addr: 2454
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35371000 | Moving to next element in current row/col
+# Next p=39
+# 
+# Time=35373000 | Memory Access
+# Reading from - Input addr: 39, Weight addr: 2518
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35373000 | Moving to next element in current row/col
+# Next p=40
+# 
+# Time=35375000 | Memory Access
+# Reading from - Input addr: 40, Weight addr: 2582
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -15
+# Accumulating: previous_sum=x + (x * -15)
+# 
+# Time=35375000 | Moving to next element in current row/col
+# Next p=41
+# 
+# Time=35377000 | Memory Access
+# Reading from - Input addr: 41, Weight addr: 2646
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35377000 | Moving to next element in current row/col
+# Next p=42
+# 
+# Time=35379000 | Memory Access
+# Reading from - Input addr: 42, Weight addr: 2710
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35379000 | Moving to next element in current row/col
+# Next p=43
+# 
+# Time=35381000 | Memory Access
+# Reading from - Input addr: 43, Weight addr: 2774
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35381000 | Moving to next element in current row/col
+# Next p=44
+# 
+# Time=35383000 | Memory Access
+# Reading from - Input addr: 44, Weight addr: 2838
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35383000 | Moving to next element in current row/col
+# Next p=45
+# 
+# Time=35385000 | Memory Access
+# Reading from - Input addr: 45, Weight addr: 2902
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35385000 | Moving to next element in current row/col
+# Next p=46
+# 
+# Time=35387000 | Memory Access
+# Reading from - Input addr: 46, Weight addr: 2966
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35387000 | Moving to next element in current row/col
+# Next p=47
+# 
+# Time=35389000 | Memory Access
+# Reading from - Input addr: 47, Weight addr: 3030
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35389000 | Moving to next element in current row/col
+# Next p=48
+# 
+# Time=35391000 | Memory Access
+# Reading from - Input addr: 48, Weight addr: 3094
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35391000 | Moving to next element in current row/col
+# Next p=49
+# 
+# Time=35393000 | Memory Access
+# Reading from - Input addr: 49, Weight addr: 3158
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35393000 | Moving to next element in current row/col
+# Next p=50
+# 
+# Time=35395000 | Memory Access
+# Reading from - Input addr: 50, Weight addr: 3222
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35395000 | Moving to next element in current row/col
+# Next p=51
+# 
+# Time=35397000 | Memory Access
+# Reading from - Input addr: 51, Weight addr: 3286
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35397000 | Moving to next element in current row/col
+# Next p=52
+# 
+# Time=35399000 | Memory Access
+# Reading from - Input addr: 52, Weight addr: 3350
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35399000 | Moving to next element in current row/col
+# Next p=53
+# 
+# Time=35401000 | Memory Access
+# Reading from - Input addr: 53, Weight addr: 3414
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35401000 | Moving to next element in current row/col
+# Next p=54
+# 
+# Time=35403000 | Memory Access
+# Reading from - Input addr: 54, Weight addr: 3478
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35403000 | Moving to next element in current row/col
+# Next p=55
+# 
+# Time=35405000 | Memory Access
+# Reading from - Input addr: 55, Weight addr: 3542
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35405000 | Moving to next element in current row/col
+# Next p=56
+# 
+# Time=35407000 | Memory Access
+# Reading from - Input addr: 56, Weight addr: 3606
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35407000 | Moving to next element in current row/col
+# Next p=57
+# 
+# Time=35409000 | Memory Access
+# Reading from - Input addr: 57, Weight addr: 3670
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35409000 | Moving to next element in current row/col
+# Next p=58
+# 
+# Time=35411000 | Memory Access
+# Reading from - Input addr: 58, Weight addr: 3734
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35411000 | Moving to next element in current row/col
+# Next p=59
+# 
+# Time=35413000 | Memory Access
+# Reading from - Input addr: 59, Weight addr: 3798
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35413000 | Moving to next element in current row/col
+# Next p=60
+# 
+# Time=35415000 | Memory Access
+# Reading from - Input addr: 60, Weight addr: 3862
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35415000 | Moving to next element in current row/col
+# Next p=61
+# 
+# Time=35417000 | Memory Access
+# Reading from - Input addr: 61, Weight addr: 3926
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -15
+# Accumulating: previous_sum=x + (x * -15)
+# 
+# Time=35417000 | Moving to next element in current row/col
+# Next p=62
+# 
+# Time=35419000 | Memory Access
+# Reading from - Input addr: 62, Weight addr: 3990
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35419000 | Moving to next element in current row/col
+# Next p=63
+# 
+# Time=35421000 | Memory Access
+# Reading from - Input addr: 63, Weight addr: 4054
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35421000 | Moving to next element in current row/col
+# Next p=64
+# 
+# Time=35423000 | Memory Access
+# Reading from - Input addr: 64, Weight addr: 4118
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35423000 | Moving to next element in current row/col
+# Next p=65
+# 
+# Time=35425000 | Memory Access
+# Reading from - Input addr: 65, Weight addr: 4182
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35425000 | Moving to next element in current row/col
+# Next p=66
+# 
+# Time=35427000 | Memory Access
+# Reading from - Input addr: 66, Weight addr: 4246
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 7
+# Accumulating: previous_sum=x + (x * 7)
+# 
+# Time=35427000 | Moving to next element in current row/col
+# Next p=67
+# 
+# Time=35429000 | Memory Access
+# Reading from - Input addr: 67, Weight addr: 4310
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35429000 | Moving to next element in current row/col
+# Next p=68
+# 
+# Time=35431000 | Memory Access
+# Reading from - Input addr: 68, Weight addr: 4374
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35431000 | Moving to next element in current row/col
+# Next p=69
+# 
+# Time=35433000 | Memory Access
+# Reading from - Input addr: 69, Weight addr: 4438
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35433000 | Moving to next element in current row/col
+# Next p=70
+# 
+# Time=35435000 | Memory Access
+# Reading from - Input addr: 70, Weight addr: 4502
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35435000 | Moving to next element in current row/col
+# Next p=71
+# 
+# Time=35437000 | Memory Access
+# Reading from - Input addr: 71, Weight addr: 4566
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35437000 | Moving to next element in current row/col
+# Next p=72
+# 
+# Time=35439000 | Memory Access
+# Reading from - Input addr: 72, Weight addr: 4630
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35439000 | Moving to next element in current row/col
+# Next p=73
+# 
+# Time=35441000 | Memory Access
+# Reading from - Input addr: 73, Weight addr: 4694
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 14
+# Accumulating: previous_sum=x + (x * 14)
+# 
+# Time=35441000 | Moving to next element in current row/col
+# Next p=74
+# 
+# Time=35443000 | Memory Access
+# Reading from - Input addr: 74, Weight addr: 4758
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35443000 | Moving to next element in current row/col
+# Next p=75
+# 
+# Time=35445000 | Memory Access
+# Reading from - Input addr: 75, Weight addr: 4822
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35445000 | Moving to next element in current row/col
+# Next p=76
+# 
+# Time=35447000 | Memory Access
+# Reading from - Input addr: 76, Weight addr: 4886
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35447000 | Moving to next element in current row/col
+# Next p=77
+# 
+# Time=35449000 | Memory Access
+# Reading from - Input addr: 77, Weight addr: 4950
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35449000 | Moving to next element in current row/col
+# Next p=78
+# 
+# Time=35451000 | Memory Access
+# Reading from - Input addr: 78, Weight addr: 5014
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35451000 | Moving to next element in current row/col
+# Next p=79
+# 
+# Time=35453000 | Memory Access
+# Reading from - Input addr: 79, Weight addr: 5078
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35453000 | Moving to next element in current row/col
+# Next p=80
+# 
+# Time=35455000 | Memory Access
+# Reading from - Input addr: 80, Weight addr: 5142
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35455000 | Moving to next element in current row/col
+# Next p=81
+# 
+# Time=35457000 | Memory Access
+# Reading from - Input addr: 81, Weight addr: 5206
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35457000 | Moving to next element in current row/col
+# Next p=82
+# 
+# Time=35459000 | Memory Access
+# Reading from - Input addr: 82, Weight addr: 5270
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35459000 | Moving to next element in current row/col
+# Next p=83
+# 
+# Time=35461000 | Memory Access
+# Reading from - Input addr: 83, Weight addr: 5334
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35461000 | Moving to next element in current row/col
+# Next p=84
+# 
+# Time=35463000 | Memory Access
+# Reading from - Input addr: 84, Weight addr: 5398
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35463000 | Moving to next element in current row/col
+# Next p=85
+# 
+# Time=35465000 | Memory Access
+# Reading from - Input addr: 85, Weight addr: 5462
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35465000 | Moving to next element in current row/col
+# Next p=86
+# 
+# Time=35467000 | Memory Access
+# Reading from - Input addr: 86, Weight addr: 5526
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35467000 | Moving to next element in current row/col
+# Next p=87
+# 
+# Time=35469000 | Memory Access
+# Reading from - Input addr: 87, Weight addr: 5590
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35469000 | Moving to next element in current row/col
+# Next p=88
+# 
+# Time=35471000 | Memory Access
+# Reading from - Input addr: 88, Weight addr: 5654
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35471000 | Moving to next element in current row/col
+# Next p=89
+# 
+# Time=35473000 | Memory Access
+# Reading from - Input addr: 89, Weight addr: 5718
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35473000 | Moving to next element in current row/col
+# Next p=90
+# 
+# Time=35475000 | Memory Access
+# Reading from - Input addr: 90, Weight addr: 5782
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35475000 | Moving to next element in current row/col
+# Next p=91
+# 
+# Time=35477000 | Memory Access
+# Reading from - Input addr: 91, Weight addr: 5846
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35477000 | Moving to next element in current row/col
+# Next p=92
+# 
+# Time=35479000 | Memory Access
+# Reading from - Input addr: 92, Weight addr: 5910
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35479000 | Moving to next element in current row/col
+# Next p=93
+# 
+# Time=35481000 | Memory Access
+# Reading from - Input addr: 93, Weight addr: 5974
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35481000 | Moving to next element in current row/col
+# Next p=94
+# 
+# Time=35483000 | Memory Access
+# Reading from - Input addr: 94, Weight addr: 6038
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35483000 | Moving to next element in current row/col
+# Next p=95
+# 
+# Time=35485000 | Memory Access
+# Reading from - Input addr: 95, Weight addr: 6102
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35485000 | Moving to next element in current row/col
+# Next p=96
+# 
+# Time=35487000 | Memory Access
+# Reading from - Input addr: 96, Weight addr: 6166
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35487000 | Moving to next element in current row/col
+# Next p=97
+# 
+# Time=35489000 | Memory Access
+# Reading from - Input addr: 97, Weight addr: 6230
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -15
+# Accumulating: previous_sum=x + (x * -15)
+# 
+# Time=35489000 | Moving to next element in current row/col
+# Next p=98
+# 
+# Time=35491000 | Memory Access
+# Reading from - Input addr: 98, Weight addr: 6294
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35491000 | Moving to next element in current row/col
+# Next p=99
+# 
+# Time=35493000 | Memory Access
+# Reading from - Input addr: 99, Weight addr: 6358
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35493000 | Moving to next element in current row/col
+# Next p=100
+# 
+# Time=35495000 | Memory Access
+# Reading from - Input addr: 100, Weight addr: 6422
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 4
+# Accumulating: previous_sum=x + (x * 4)
+# 
+# Time=35495000 | Moving to next element in current row/col
+# Next p=101
+# 
+# Time=35497000 | Memory Access
+# Reading from - Input addr: 101, Weight addr: 6486
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35497000 | Moving to next element in current row/col
+# Next p=102
+# 
+# Time=35499000 | Memory Access
+# Reading from - Input addr: 102, Weight addr: 6550
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35499000 | Moving to next element in current row/col
+# Next p=103
+# 
+# Time=35501000 | Memory Access
+# Reading from - Input addr: 103, Weight addr: 6614
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35501000 | Moving to next element in current row/col
+# Next p=104
+# 
+# Time=35503000 | Memory Access
+# Reading from - Input addr: 104, Weight addr: 6678
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35503000 | Moving to next element in current row/col
+# Next p=105
+# 
+# Time=35505000 | Memory Access
+# Reading from - Input addr: 105, Weight addr: 6742
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 9
+# Accumulating: previous_sum=x + (x * 9)
+# 
+# Time=35505000 | Moving to next element in current row/col
+# Next p=106
+# 
+# Time=35507000 | Memory Access
+# Reading from - Input addr: 106, Weight addr: 6806
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35507000 | Moving to next element in current row/col
+# Next p=107
+# 
+# Time=35509000 | Memory Access
+# Reading from - Input addr: 107, Weight addr: 6870
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35509000 | Moving to next element in current row/col
+# Next p=108
+# 
+# Time=35511000 | Memory Access
+# Reading from - Input addr: 108, Weight addr: 6934
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35511000 | Moving to next element in current row/col
+# Next p=109
+# 
+# Time=35513000 | Memory Access
+# Reading from - Input addr: 109, Weight addr: 6998
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35513000 | Moving to next element in current row/col
+# Next p=110
+# 
+# Time=35515000 | Memory Access
+# Reading from - Input addr: 110, Weight addr: 7062
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35515000 | Moving to next element in current row/col
+# Next p=111
+# 
+# Time=35517000 | Memory Access
+# Reading from - Input addr: 111, Weight addr: 7126
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35517000 | Moving to next element in current row/col
+# Next p=112
+# 
+# Time=35519000 | Memory Access
+# Reading from - Input addr: 112, Weight addr: 7190
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35519000 | Moving to next element in current row/col
+# Next p=113
+# 
+# Time=35521000 | Memory Access
+# Reading from - Input addr: 113, Weight addr: 7254
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35521000 | Moving to next element in current row/col
+# Next p=114
+# 
+# Time=35523000 | Memory Access
+# Reading from - Input addr: 114, Weight addr: 7318
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35523000 | Moving to next element in current row/col
+# Next p=115
+# 
+# Time=35525000 | Memory Access
+# Reading from - Input addr: 115, Weight addr: 7382
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35525000 | Moving to next element in current row/col
+# Next p=116
+# 
+# Time=35527000 | Memory Access
+# Reading from - Input addr: 116, Weight addr: 7446
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35527000 | Moving to next element in current row/col
+# Next p=117
+# 
+# Time=35529000 | Memory Access
+# Reading from - Input addr: 117, Weight addr: 7510
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35529000 | Moving to next element in current row/col
+# Next p=118
+# 
+# Time=35531000 | Memory Access
+# Reading from - Input addr: 118, Weight addr: 7574
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35531000 | Moving to next element in current row/col
+# Next p=119
+# 
+# Time=35533000 | Memory Access
+# Reading from - Input addr: 119, Weight addr: 7638
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35533000 | Moving to next element in current row/col
+# Next p=120
+# 
+# Time=35535000 | Memory Access
+# Reading from - Input addr: 120, Weight addr: 7702
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -15
+# Accumulating: previous_sum=x + (x * -15)
+# 
+# Time=35535000 | Moving to next element in current row/col
+# Next p=121
+# 
+# Time=35537000 | Memory Access
+# Reading from - Input addr: 121, Weight addr: 7766
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35537000 | Moving to next element in current row/col
+# Next p=122
+# 
+# Time=35539000 | Memory Access
+# Reading from - Input addr: 122, Weight addr: 7830
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35539000 | Moving to next element in current row/col
+# Next p=123
+# 
+# Time=35541000 | Memory Access
+# Reading from - Input addr: 123, Weight addr: 7894
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35541000 | Moving to next element in current row/col
+# Next p=124
+# 
+# Time=35543000 | Memory Access
+# Reading from - Input addr: 124, Weight addr: 7958
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35543000 | Moving to next element in current row/col
+# Next p=125
+# 
+# Time=35545000 | Memory Access
+# Reading from - Input addr: 125, Weight addr: 8022
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 7
+# Accumulating: previous_sum=x + (x * 7)
+# 
+# Time=35545000 | Moving to next element in current row/col
+# Next p=126
+# 
+# Time=35547000 | Memory Access
+# Reading from - Input addr: 126, Weight addr: 8086
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35547000 | Moving to next element in current row/col
+# Next p=127
+# 
+# Time=35549000 | Memory Access
+# Reading from - Input addr: 127, Weight addr: 8150
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35549000 | Moving to next element in current row/col
+# Next p=128
+# 
+# Time=35551000 | Memory Access
+# Reading from - Input addr: 128, Weight addr: 8214
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35551000 | Moving to next element in current row/col
+# Next p=129
+# 
+# Time=35553000 | Memory Access
+# Reading from - Input addr: 129, Weight addr: 8278
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35553000 | Moving to next element in current row/col
+# Next p=130
+# 
+# Time=35555000 | Memory Access
+# Reading from - Input addr: 130, Weight addr: 8342
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35555000 | Moving to next element in current row/col
+# Next p=131
+# 
+# Time=35557000 | Memory Access
+# Reading from - Input addr: 131, Weight addr: 8406
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35557000 | Moving to next element in current row/col
+# Next p=132
+# 
+# Time=35559000 | Memory Access
+# Reading from - Input addr: 132, Weight addr: 8470
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35559000 | Moving to next element in current row/col
+# Next p=133
+# 
+# Time=35561000 | Memory Access
+# Reading from - Input addr: 133, Weight addr: 8534
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35561000 | Moving to next element in current row/col
+# Next p=134
+# 
+# Time=35563000 | Memory Access
+# Reading from - Input addr: 134, Weight addr: 8598
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -2
+# Accumulating: previous_sum=x + (x * -2)
+# 
+# Time=35563000 | Moving to next element in current row/col
+# Next p=135
+# 
+# Time=35565000 | Memory Access
+# Reading from - Input addr: 135, Weight addr: 8662
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 20
+# Accumulating: previous_sum=x + (x * 20)
+# 
+# Time=35565000 | Moving to next element in current row/col
+# Next p=136
+# 
+# Time=35567000 | Memory Access
+# Reading from - Input addr: 136, Weight addr: 8726
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35567000 | Moving to next element in current row/col
+# Next p=137
+# 
+# Time=35569000 | Memory Access
+# Reading from - Input addr: 137, Weight addr: 8790
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35569000 | Moving to next element in current row/col
+# Next p=138
+# 
+# Time=35571000 | Memory Access
+# Reading from - Input addr: 138, Weight addr: 8854
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35571000 | Moving to next element in current row/col
+# Next p=139
+# 
+# Time=35573000 | Memory Access
+# Reading from - Input addr: 139, Weight addr: 8918
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35573000 | Moving to next element in current row/col
+# Next p=140
+# 
+# Time=35575000 | Memory Access
+# Reading from - Input addr: 140, Weight addr: 8982
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35575000 | Moving to next element in current row/col
+# Next p=141
+# 
+# Time=35577000 | Memory Access
+# Reading from - Input addr: 141, Weight addr: 9046
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 8
+# Accumulating: previous_sum=x + (x * 8)
+# 
+# Time=35577000 | Moving to next element in current row/col
+# Next p=142
+# 
+# Time=35579000 | Memory Access
+# Reading from - Input addr: 142, Weight addr: 9110
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -15
+# Accumulating: previous_sum=x + (x * -15)
+# 
+# Time=35579000 | Moving to next element in current row/col
+# Next p=143
+# 
+# Time=35581000 | Memory Access
+# Reading from - Input addr: 143, Weight addr: 9174
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35581000 | Moving to next element in current row/col
+# Next p=144
+# 
+# Time=35583000 | Memory Access
+# Reading from - Input addr: 144, Weight addr: 9238
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35583000 | Moving to next element in current row/col
+# Next p=145
+# 
+# Time=35585000 | Memory Access
+# Reading from - Input addr: 145, Weight addr: 9302
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35585000 | Moving to next element in current row/col
+# Next p=146
+# 
+# Time=35587000 | Memory Access
+# Reading from - Input addr: 146, Weight addr: 9366
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35587000 | Moving to next element in current row/col
+# Next p=147
+# 
+# Time=35589000 | Memory Access
+# Reading from - Input addr: 147, Weight addr: 9430
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35589000 | Moving to next element in current row/col
+# Next p=148
+# 
+# Time=35591000 | Memory Access
+# Reading from - Input addr: 148, Weight addr: 9494
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 7
+# Accumulating: previous_sum=x + (x * 7)
+# 
+# Time=35591000 | Moving to next element in current row/col
+# Next p=149
+# 
+# Time=35593000 | Memory Access
+# Reading from - Input addr: 149, Weight addr: 9558
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -15
+# Accumulating: previous_sum=x + (x * -15)
+# 
+# Time=35593000 | Moving to next element in current row/col
+# Next p=150
+# 
+# Time=35595000 | Memory Access
+# Reading from - Input addr: 150, Weight addr: 9622
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35595000 | Moving to next element in current row/col
+# Next p=151
+# 
+# Time=35597000 | Memory Access
+# Reading from - Input addr: 151, Weight addr: 9686
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -11
+# Accumulating: previous_sum=x + (x * -11)
+# 
+# Time=35597000 | Moving to next element in current row/col
+# Next p=152
+# 
+# Time=35599000 | Memory Access
+# Reading from - Input addr: 152, Weight addr: 9750
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -4
+# Accumulating: previous_sum=x + (x * -4)
+# 
+# Time=35599000 | Moving to next element in current row/col
+# Next p=153
+# 
+# Time=35601000 | Memory Access
+# Reading from - Input addr: 153, Weight addr: 9814
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 4
+# Accumulating: previous_sum=x + (x * 4)
+# 
+# Time=35601000 | Moving to next element in current row/col
+# Next p=154
+# 
+# Time=35603000 | Memory Access
+# Reading from - Input addr: 154, Weight addr: 9878
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35603000 | Moving to next element in current row/col
+# Next p=155
+# 
+# Time=35605000 | Memory Access
+# Reading from - Input addr: 155, Weight addr: 9942
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35605000 | Moving to next element in current row/col
+# Next p=156
+# 
+# Time=35607000 | Memory Access
+# Reading from - Input addr: 156, Weight addr: 10006
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35607000 | Moving to next element in current row/col
+# Next p=157
+# 
+# Time=35609000 | Memory Access
+# Reading from - Input addr: 157, Weight addr: 10070
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35609000 | Moving to next element in current row/col
+# Next p=158
+# 
+# Time=35611000 | Memory Access
+# Reading from - Input addr: 158, Weight addr: 10134
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35611000 | Moving to next element in current row/col
+# Next p=159
+# 
+# Time=35613000 | Memory Access
+# Reading from - Input addr: 159, Weight addr: 10198
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -12
+# Accumulating: previous_sum=x + (x * -12)
+# 
+# Time=35613000 | Moving to next element in current row/col
+# Next p=160
+# 
+# Time=35615000 | Memory Access
+# Reading from - Input addr: 160, Weight addr: 10262
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35615000 | Moving to next element in current row/col
+# Next p=161
+# 
+# Time=35617000 | Memory Access
+# Reading from - Input addr: 161, Weight addr: 10326
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35617000 | Moving to next element in current row/col
+# Next p=162
+# 
+# Time=35619000 | Memory Access
+# Reading from - Input addr: 162, Weight addr: 10390
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35619000 | Moving to next element in current row/col
+# Next p=163
+# 
+# Time=35621000 | Memory Access
+# Reading from - Input addr: 163, Weight addr: 10454
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -15
+# Accumulating: previous_sum=x + (x * -15)
+# 
+# Time=35621000 | Moving to next element in current row/col
+# Next p=164
+# 
+# Time=35623000 | Memory Access
+# Reading from - Input addr: 164, Weight addr: 10518
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35623000 | Moving to next element in current row/col
+# Next p=165
+# 
+# Time=35625000 | Memory Access
+# Reading from - Input addr: 165, Weight addr: 10582
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35625000 | Moving to next element in current row/col
+# Next p=166
+# 
+# Time=35627000 | Memory Access
+# Reading from - Input addr: 166, Weight addr: 10646
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35627000 | Moving to next element in current row/col
+# Next p=167
+# 
+# Time=35629000 | Memory Access
+# Reading from - Input addr: 167, Weight addr: 10710
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35629000 | Moving to next element in current row/col
+# Next p=168
+# 
+# Time=35631000 | Memory Access
+# Reading from - Input addr: 168, Weight addr: 10774
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35631000 | Moving to next element in current row/col
+# Next p=169
+# 
+# Time=35633000 | Memory Access
+# Reading from - Input addr: 169, Weight addr: 10838
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35633000 | Moving to next element in current row/col
+# Next p=170
+# 
+# Time=35635000 | Memory Access
+# Reading from - Input addr: 170, Weight addr: 10902
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35635000 | Moving to next element in current row/col
+# Next p=171
+# 
+# Time=35637000 | Memory Access
+# Reading from - Input addr: 171, Weight addr: 10966
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35637000 | Moving to next element in current row/col
+# Next p=172
+# 
+# Time=35639000 | Memory Access
+# Reading from - Input addr: 172, Weight addr: 11030
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -9
+# Accumulating: previous_sum=x + (x * -9)
+# 
+# Time=35639000 | Moving to next element in current row/col
+# Next p=173
+# 
+# Time=35641000 | Memory Access
+# Reading from - Input addr: 173, Weight addr: 11094
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35641000 | Moving to next element in current row/col
+# Next p=174
+# 
+# Time=35643000 | Memory Access
+# Reading from - Input addr: 174, Weight addr: 11158
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35643000 | Moving to next element in current row/col
+# Next p=175
+# 
+# Time=35645000 | Memory Access
+# Reading from - Input addr: 175, Weight addr: 11222
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35645000 | Moving to next element in current row/col
+# Next p=176
+# 
+# Time=35647000 | Memory Access
+# Reading from - Input addr: 176, Weight addr: 11286
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35647000 | Moving to next element in current row/col
+# Next p=177
+# 
+# Time=35649000 | Memory Access
+# Reading from - Input addr: 177, Weight addr: 11350
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35649000 | Moving to next element in current row/col
+# Next p=178
+# 
+# Time=35651000 | Memory Access
+# Reading from - Input addr: 178, Weight addr: 11414
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35651000 | Moving to next element in current row/col
+# Next p=179
+# 
+# Time=35653000 | Memory Access
+# Reading from - Input addr: 179, Weight addr: 11478
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35653000 | Moving to next element in current row/col
+# Next p=180
+# 
+# Time=35655000 | Memory Access
+# Reading from - Input addr: 180, Weight addr: 11542
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35655000 | Moving to next element in current row/col
+# Next p=181
+# 
+# Time=35657000 | Memory Access
+# Reading from - Input addr: 181, Weight addr: 11606
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35657000 | Moving to next element in current row/col
+# Next p=182
+# 
+# Time=35659000 | Memory Access
+# Reading from - Input addr: 182, Weight addr: 11670
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35659000 | Moving to next element in current row/col
+# Next p=183
+# 
+# Time=35661000 | Memory Access
+# Reading from - Input addr: 183, Weight addr: 11734
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35661000 | Moving to next element in current row/col
+# Next p=184
+# 
+# Time=35663000 | Memory Access
+# Reading from - Input addr: 184, Weight addr: 11798
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 19
+# Accumulating: previous_sum=x + (x * 19)
+# 
+# Time=35663000 | Moving to next element in current row/col
+# Next p=185
+# 
+# Time=35665000 | Memory Access
+# Reading from - Input addr: 185, Weight addr: 11862
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35665000 | Moving to next element in current row/col
+# Next p=186
+# 
+# Time=35667000 | Memory Access
+# Reading from - Input addr: 186, Weight addr: 11926
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -11
+# Accumulating: previous_sum=x + (x * -11)
+# 
+# Time=35667000 | Moving to next element in current row/col
+# Next p=187
+# 
+# Time=35669000 | Memory Access
+# Reading from - Input addr: 187, Weight addr: 11990
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35669000 | Moving to next element in current row/col
+# Next p=188
+# 
+# Time=35671000 | Memory Access
+# Reading from - Input addr: 188, Weight addr: 12054
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 9
+# Accumulating: previous_sum=x + (x * 9)
+# 
+# Time=35671000 | Moving to next element in current row/col
+# Next p=189
+# 
+# Time=35673000 | Memory Access
+# Reading from - Input addr: 189, Weight addr: 12118
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35673000 | Moving to next element in current row/col
+# Next p=190
+# 
+# Time=35675000 | Memory Access
+# Reading from - Input addr: 190, Weight addr: 12182
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -11
+# Accumulating: previous_sum=x + (x * -11)
+# 
+# Time=35675000 | Moving to next element in current row/col
+# Next p=191
+# 
+# Time=35677000 | Memory Access
+# Reading from - Input addr: 191, Weight addr: 12246
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 17
+# Accumulating: previous_sum=x + (x * 17)
+# 
+# Time=35677000 | Moving to next element in current row/col
+# Next p=192
+# 
+# Time=35679000 | Memory Access
+# Reading from - Input addr: 192, Weight addr: 12310
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35679000 | Moving to next element in current row/col
+# Next p=193
+# 
+# Time=35681000 | Memory Access
+# Reading from - Input addr: 193, Weight addr: 12374
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35681000 | Moving to next element in current row/col
+# Next p=194
+# 
+# Time=35683000 | Memory Access
+# Reading from - Input addr: 194, Weight addr: 12438
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35683000 | Moving to next element in current row/col
+# Next p=195
+# 
+# Time=35685000 | Memory Access
+# Reading from - Input addr: 195, Weight addr: 12502
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35685000 | Moving to next element in current row/col
+# Next p=196
+# 
+# Time=35687000 | Memory Access
+# Reading from - Input addr: 196, Weight addr: 12566
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35687000 | Moving to next element in current row/col
+# Next p=197
+# 
+# Time=35689000 | Memory Access
+# Reading from - Input addr: 197, Weight addr: 12630
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35689000 | Moving to next element in current row/col
+# Next p=198
+# 
+# Time=35691000 | Memory Access
+# Reading from - Input addr: 198, Weight addr: 12694
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35691000 | Moving to next element in current row/col
+# Next p=199
+# 
+# Time=35693000 | Memory Access
+# Reading from - Input addr: 199, Weight addr: 12758
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35693000 | Moving to next element in current row/col
+# Next p=200
+# 
+# Time=35695000 | Memory Access
+# Reading from - Input addr: 200, Weight addr: 12822
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35695000 | Moving to next element in current row/col
+# Next p=201
+# 
+# Time=35697000 | Memory Access
+# Reading from - Input addr: 201, Weight addr: 12886
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35697000 | Moving to next element in current row/col
+# Next p=202
+# 
+# Time=35699000 | Memory Access
+# Reading from - Input addr: 202, Weight addr: 12950
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35699000 | Moving to next element in current row/col
+# Next p=203
+# 
+# Time=35701000 | Memory Access
+# Reading from - Input addr: 203, Weight addr: 13014
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35701000 | Moving to next element in current row/col
+# Next p=204
+# 
+# Time=35703000 | Memory Access
+# Reading from - Input addr: 204, Weight addr: 13078
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -2
+# Accumulating: previous_sum=x + (x * -2)
+# 
+# Time=35703000 | Moving to next element in current row/col
+# Next p=205
+# 
+# Time=35705000 | Memory Access
+# Reading from - Input addr: 205, Weight addr: 13142
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -9
+# Accumulating: previous_sum=x + (x * -9)
+# 
+# Time=35705000 | Moving to next element in current row/col
+# Next p=206
+# 
+# Time=35707000 | Memory Access
+# Reading from - Input addr: 206, Weight addr: 13206
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35707000 | Moving to next element in current row/col
+# Next p=207
+# 
+# Time=35709000 | Memory Access
+# Reading from - Input addr: 207, Weight addr: 13270
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35709000 | Moving to next element in current row/col
+# Next p=208
+# 
+# Time=35711000 | Memory Access
+# Reading from - Input addr: 208, Weight addr: 13334
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -9
+# Accumulating: previous_sum=x + (x * -9)
+# 
+# Time=35711000 | Moving to next element in current row/col
+# Next p=209
+# 
+# Time=35713000 | Memory Access
+# Reading from - Input addr: 209, Weight addr: 13398
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35713000 | Moving to next element in current row/col
+# Next p=210
+# 
+# Time=35715000 | Memory Access
+# Reading from - Input addr: 210, Weight addr: 13462
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35715000 | Moving to next element in current row/col
+# Next p=211
+# 
+# Time=35717000 | Memory Access
+# Reading from - Input addr: 211, Weight addr: 13526
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35717000 | Moving to next element in current row/col
+# Next p=212
+# 
+# Time=35719000 | Memory Access
+# Reading from - Input addr: 212, Weight addr: 13590
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35719000 | Moving to next element in current row/col
+# Next p=213
+# 
+# Time=35721000 | Memory Access
+# Reading from - Input addr: 213, Weight addr: 13654
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35721000 | Moving to next element in current row/col
+# Next p=214
+# 
+# Time=35723000 | Memory Access
+# Reading from - Input addr: 214, Weight addr: 13718
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35723000 | Moving to next element in current row/col
+# Next p=215
+# 
+# Time=35725000 | Memory Access
+# Reading from - Input addr: 215, Weight addr: 13782
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35725000 | Moving to next element in current row/col
+# Next p=216
+# 
+# Time=35727000 | Memory Access
+# Reading from - Input addr: 216, Weight addr: 13846
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35727000 | Moving to next element in current row/col
+# Next p=217
+# 
+# Time=35729000 | Memory Access
+# Reading from - Input addr: 217, Weight addr: 13910
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -1
+# Accumulating: previous_sum=x + (x * -1)
+# 
+# Time=35729000 | Moving to next element in current row/col
+# Next p=218
+# 
+# Time=35731000 | Memory Access
+# Reading from - Input addr: 218, Weight addr: 13974
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35731000 | Moving to next element in current row/col
+# Next p=219
+# 
+# Time=35733000 | Memory Access
+# Reading from - Input addr: 219, Weight addr: 14038
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35733000 | Moving to next element in current row/col
+# Next p=220
+# 
+# Time=35735000 | Memory Access
+# Reading from - Input addr: 220, Weight addr: 14102
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35735000 | Moving to next element in current row/col
+# Next p=221
+# 
+# Time=35737000 | Memory Access
+# Reading from - Input addr: 221, Weight addr: 14166
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 9
+# Accumulating: previous_sum=x + (x * 9)
+# 
+# Time=35737000 | Moving to next element in current row/col
+# Next p=222
+# 
+# Time=35739000 | Memory Access
+# Reading from - Input addr: 222, Weight addr: 14230
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35739000 | Moving to next element in current row/col
+# Next p=223
+# 
+# Time=35741000 | Memory Access
+# Reading from - Input addr: 223, Weight addr: 14294
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35741000 | Moving to next element in current row/col
+# Next p=224
+# 
+# Time=35743000 | Memory Access
+# Reading from - Input addr: 224, Weight addr: 14358
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35743000 | Moving to next element in current row/col
+# Next p=225
+# 
+# Time=35745000 | Memory Access
+# Reading from - Input addr: 225, Weight addr: 14422
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35745000 | Moving to next element in current row/col
+# Next p=226
+# 
+# Time=35747000 | Memory Access
+# Reading from - Input addr: 226, Weight addr: 14486
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35747000 | Moving to next element in current row/col
+# Next p=227
+# 
+# Time=35749000 | Memory Access
+# Reading from - Input addr: 227, Weight addr: 14550
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -2
+# Accumulating: previous_sum=x + (x * -2)
+# 
+# Time=35749000 | Moving to next element in current row/col
+# Next p=228
+# 
+# Time=35751000 | Memory Access
+# Reading from - Input addr: 228, Weight addr: 14614
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35751000 | Moving to next element in current row/col
+# Next p=229
+# 
+# Time=35753000 | Memory Access
+# Reading from - Input addr: 229, Weight addr: 14678
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -4
+# Accumulating: previous_sum=x + (x * -4)
+# 
+# Time=35753000 | Moving to next element in current row/col
+# Next p=230
+# 
+# Time=35755000 | Memory Access
+# Reading from - Input addr: 230, Weight addr: 14742
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -9
+# Accumulating: previous_sum=x + (x * -9)
+# 
+# Time=35755000 | Moving to next element in current row/col
+# Next p=231
+# 
+# Time=35757000 | Memory Access
+# Reading from - Input addr: 231, Weight addr: 14806
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35757000 | Moving to next element in current row/col
+# Next p=232
+# 
+# Time=35759000 | Memory Access
+# Reading from - Input addr: 232, Weight addr: 14870
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35759000 | Moving to next element in current row/col
+# Next p=233
+# 
+# Time=35761000 | Memory Access
+# Reading from - Input addr: 233, Weight addr: 14934
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35761000 | Moving to next element in current row/col
+# Next p=234
+# 
+# Time=35763000 | Memory Access
+# Reading from - Input addr: 234, Weight addr: 14998
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 19
+# Accumulating: previous_sum=x + (x * 19)
+# 
+# Time=35763000 | Moving to next element in current row/col
+# Next p=235
+# 
+# Time=35765000 | Memory Access
+# Reading from - Input addr: 235, Weight addr: 15062
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35765000 | Moving to next element in current row/col
+# Next p=236
+# 
+# Time=35767000 | Memory Access
+# Reading from - Input addr: 236, Weight addr: 15126
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35767000 | Moving to next element in current row/col
+# Next p=237
+# 
+# Time=35769000 | Memory Access
+# Reading from - Input addr: 237, Weight addr: 15190
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35769000 | Moving to next element in current row/col
+# Next p=238
+# 
+# Time=35771000 | Memory Access
+# Reading from - Input addr: 238, Weight addr: 15254
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35771000 | Moving to next element in current row/col
+# Next p=239
+# 
+# Time=35773000 | Memory Access
+# Reading from - Input addr: 239, Weight addr: 15318
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35773000 | Moving to next element in current row/col
+# Next p=240
+# 
+# Time=35775000 | Memory Access
+# Reading from - Input addr: 240, Weight addr: 15382
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35775000 | Moving to next element in current row/col
+# Next p=241
+# 
+# Time=35777000 | Memory Access
+# Reading from - Input addr: 241, Weight addr: 15446
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35777000 | Moving to next element in current row/col
+# Next p=242
+# 
+# Time=35779000 | Memory Access
+# Reading from - Input addr: 242, Weight addr: 15510
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35779000 | Moving to next element in current row/col
+# Next p=243
+# 
+# Time=35781000 | Memory Access
+# Reading from - Input addr: 243, Weight addr: 15574
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 14
+# Accumulating: previous_sum=x + (x * 14)
+# 
+# Time=35781000 | Moving to next element in current row/col
+# Next p=244
+# 
+# Time=35783000 | Memory Access
+# Reading from - Input addr: 244, Weight addr: 15638
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35783000 | Moving to next element in current row/col
+# Next p=245
+# 
+# Time=35785000 | Memory Access
+# Reading from - Input addr: 245, Weight addr: 15702
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -11
+# Accumulating: previous_sum=x + (x * -11)
+# 
+# Time=35785000 | Moving to next element in current row/col
+# Next p=246
+# 
+# Time=35787000 | Memory Access
+# Reading from - Input addr: 246, Weight addr: 15766
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35787000 | Moving to next element in current row/col
+# Next p=247
+# 
+# Time=35789000 | Memory Access
+# Reading from - Input addr: 247, Weight addr: 15830
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35789000 | Moving to next element in current row/col
+# Next p=248
+# 
+# Time=35791000 | Memory Access
+# Reading from - Input addr: 248, Weight addr: 15894
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35791000 | Moving to next element in current row/col
+# Next p=249
+# 
+# Time=35793000 | Memory Access
+# Reading from - Input addr: 249, Weight addr: 15958
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 7
+# Accumulating: previous_sum=x + (x * 7)
+# 
+# Time=35793000 | Moving to next element in current row/col
+# Next p=250
+# 
+# Time=35795000 | Memory Access
+# Reading from - Input addr: 250, Weight addr: 16022
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35795000 | Moving to next element in current row/col
+# Next p=251
+# 
+# Time=35797000 | Memory Access
+# Reading from - Input addr: 251, Weight addr: 16086
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35797000 | Moving to next element in current row/col
+# Next p=252
+# 
+# Time=35799000 | Memory Access
+# Reading from - Input addr: 252, Weight addr: 16150
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35799000 | Moving to next element in current row/col
+# Next p=253
+# 
+# Time=35801000 | Memory Access
+# Reading from - Input addr: 253, Weight addr: 16214
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35801000 | Moving to next element in current row/col
+# Next p=254
+# 
+# Time=35803000 | Memory Access
+# Reading from - Input addr: 254, Weight addr: 16278
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35803000 | Moving to next element in current row/col
+# Next p=255
+# 
+# Time=35805000 | Memory Access
+# Reading from - Input addr: 255, Weight addr: 16342
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35805000 | Moving to next element in current row/col
+# Next p=256
+# 
+# Time=35807000 | Memory Access
+# Reading from - Input addr: 256, Weight addr: 16406
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35807000 | Moving to next element in current row/col
+# Next p=257
+# 
+# Time=35809000 | Memory Access
+# Reading from - Input addr: 257, Weight addr: 16470
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -9
+# Accumulating: previous_sum=x + (x * -9)
+# 
+# Time=35809000 | Moving to next element in current row/col
+# Next p=258
+# 
+# Time=35811000 | Memory Access
+# Reading from - Input addr: 258, Weight addr: 16534
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35811000 | Moving to next element in current row/col
+# Next p=259
+# 
+# Time=35813000 | Memory Access
+# Reading from - Input addr: 259, Weight addr: 16598
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35813000 | Moving to next element in current row/col
+# Next p=260
+# 
+# Time=35815000 | Memory Access
+# Reading from - Input addr: 260, Weight addr: 16662
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -14
+# Accumulating: previous_sum=x + (x * -14)
+# 
+# Time=35815000 | Moving to next element in current row/col
+# Next p=261
+# 
+# Time=35817000 | Memory Access
+# Reading from - Input addr: 261, Weight addr: 16726
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35817000 | Moving to next element in current row/col
+# Next p=262
+# 
+# Time=35819000 | Memory Access
+# Reading from - Input addr: 262, Weight addr: 16790
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 12
+# Accumulating: previous_sum=x + (x * 12)
+# 
+# Time=35819000 | Moving to next element in current row/col
+# Next p=263
+# 
+# Time=35821000 | Memory Access
+# Reading from - Input addr: 263, Weight addr: 16854
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35821000 | Moving to next element in current row/col
+# Next p=264
+# 
+# Time=35823000 | Memory Access
+# Reading from - Input addr: 264, Weight addr: 16918
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35823000 | Moving to next element in current row/col
+# Next p=265
+# 
+# Time=35825000 | Memory Access
+# Reading from - Input addr: 265, Weight addr: 16982
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35825000 | Moving to next element in current row/col
+# Next p=266
+# 
+# Time=35827000 | Memory Access
+# Reading from - Input addr: 266, Weight addr: 17046
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35827000 | Moving to next element in current row/col
+# Next p=267
+# 
+# Time=35829000 | Memory Access
+# Reading from - Input addr: 267, Weight addr: 17110
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35829000 | Moving to next element in current row/col
+# Next p=268
+# 
+# Time=35831000 | Memory Access
+# Reading from - Input addr: 268, Weight addr: 17174
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35831000 | Moving to next element in current row/col
+# Next p=269
+# 
+# Time=35833000 | Memory Access
+# Reading from - Input addr: 269, Weight addr: 17238
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35833000 | Moving to next element in current row/col
+# Next p=270
+# 
+# Time=35835000 | Memory Access
+# Reading from - Input addr: 270, Weight addr: 17302
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35835000 | Moving to next element in current row/col
+# Next p=271
+# 
+# Time=35837000 | Memory Access
+# Reading from - Input addr: 271, Weight addr: 17366
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35837000 | Moving to next element in current row/col
+# Next p=272
+# 
+# Time=35839000 | Memory Access
+# Reading from - Input addr: 272, Weight addr: 17430
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35839000 | Moving to next element in current row/col
+# Next p=273
+# 
+# Time=35841000 | Memory Access
+# Reading from - Input addr: 273, Weight addr: 17494
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35841000 | Moving to next element in current row/col
+# Next p=274
+# 
+# Time=35843000 | Memory Access
+# Reading from - Input addr: 274, Weight addr: 17558
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35843000 | Moving to next element in current row/col
+# Next p=275
+# 
+# Time=35845000 | Memory Access
+# Reading from - Input addr: 275, Weight addr: 17622
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35845000 | Moving to next element in current row/col
+# Next p=276
+# 
+# Time=35847000 | Memory Access
+# Reading from - Input addr: 276, Weight addr: 17686
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -6
+# Accumulating: previous_sum=x + (x * -6)
+# 
+# Time=35847000 | Moving to next element in current row/col
+# Next p=277
+# 
+# Time=35849000 | Memory Access
+# Reading from - Input addr: 277, Weight addr: 17750
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35849000 | Moving to next element in current row/col
+# Next p=278
+# 
+# Time=35851000 | Memory Access
+# Reading from - Input addr: 278, Weight addr: 17814
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35851000 | Moving to next element in current row/col
+# Next p=279
+# 
+# Time=35853000 | Memory Access
+# Reading from - Input addr: 279, Weight addr: 17878
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35853000 | Moving to next element in current row/col
+# Next p=280
+# 
+# Time=35855000 | Memory Access
+# Reading from - Input addr: 280, Weight addr: 17942
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35855000 | Moving to next element in current row/col
+# Next p=281
+# 
+# Time=35857000 | Memory Access
+# Reading from - Input addr: 281, Weight addr: 18006
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35857000 | Moving to next element in current row/col
+# Next p=282
+# 
+# Time=35859000 | Memory Access
+# Reading from - Input addr: 282, Weight addr: 18070
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35859000 | Moving to next element in current row/col
+# Next p=283
+# 
+# Time=35861000 | Memory Access
+# Reading from - Input addr: 283, Weight addr: 18134
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -4
+# Accumulating: previous_sum=x + (x * -4)
+# 
+# Time=35861000 | Moving to next element in current row/col
+# Next p=284
+# 
+# Time=35863000 | Memory Access
+# Reading from - Input addr: 284, Weight addr: 18198
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35863000 | Moving to next element in current row/col
+# Next p=285
+# 
+# Time=35865000 | Memory Access
+# Reading from - Input addr: 285, Weight addr: 18262
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35865000 | Moving to next element in current row/col
+# Next p=286
+# 
+# Time=35867000 | Memory Access
+# Reading from - Input addr: 286, Weight addr: 18326
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35867000 | Moving to next element in current row/col
+# Next p=287
+# 
+# Time=35869000 | Memory Access
+# Reading from - Input addr: 287, Weight addr: 18390
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35869000 | Moving to next element in current row/col
+# Next p=288
+# 
+# Time=35871000 | Memory Access
+# Reading from - Input addr: 288, Weight addr: 18454
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35871000 | Moving to next element in current row/col
+# Next p=289
+# 
+# Time=35873000 | Memory Access
+# Reading from - Input addr: 289, Weight addr: 18518
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -20
+# Accumulating: previous_sum=x + (x * -20)
+# 
+# Time=35873000 | Moving to next element in current row/col
+# Next p=290
+# 
+# Time=35875000 | Memory Access
+# Reading from - Input addr: 290, Weight addr: 18582
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 14
+# Accumulating: previous_sum=x + (x * 14)
+# 
+# Time=35875000 | Moving to next element in current row/col
+# Next p=291
+# 
+# Time=35877000 | Memory Access
+# Reading from - Input addr: 291, Weight addr: 18646
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35877000 | Moving to next element in current row/col
+# Next p=292
+# 
+# Time=35879000 | Memory Access
+# Reading from - Input addr: 292, Weight addr: 18710
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -6
+# Accumulating: previous_sum=x + (x * -6)
+# 
+# Time=35879000 | Moving to next element in current row/col
+# Next p=293
+# 
+# Time=35881000 | Memory Access
+# Reading from - Input addr: 293, Weight addr: 18774
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35881000 | Moving to next element in current row/col
+# Next p=294
+# 
+# Time=35883000 | Memory Access
+# Reading from - Input addr: 294, Weight addr: 18838
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 9
+# Accumulating: previous_sum=x + (x * 9)
+# 
+# Time=35883000 | Moving to next element in current row/col
+# Next p=295
+# 
+# Time=35885000 | Memory Access
+# Reading from - Input addr: 295, Weight addr: 18902
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35885000 | Moving to next element in current row/col
+# Next p=296
+# 
+# Time=35887000 | Memory Access
+# Reading from - Input addr: 296, Weight addr: 18966
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35887000 | Moving to next element in current row/col
+# Next p=297
+# 
+# Time=35889000 | Memory Access
+# Reading from - Input addr: 297, Weight addr: 19030
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -9
+# Accumulating: previous_sum=x + (x * -9)
+# 
+# Time=35889000 | Moving to next element in current row/col
+# Next p=298
+# 
+# Time=35891000 | Memory Access
+# Reading from - Input addr: 298, Weight addr: 19094
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35891000 | Moving to next element in current row/col
+# Next p=299
+# 
+# Time=35893000 | Memory Access
+# Reading from - Input addr: 299, Weight addr: 19158
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35893000 | Moving to next element in current row/col
+# Next p=300
+# 
+# Time=35895000 | Memory Access
+# Reading from - Input addr: 300, Weight addr: 19222
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35895000 | Moving to next element in current row/col
+# Next p=301
+# 
+# Time=35897000 | Memory Access
+# Reading from - Input addr: 301, Weight addr: 19286
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35897000 | Moving to next element in current row/col
+# Next p=302
+# 
+# Time=35899000 | Memory Access
+# Reading from - Input addr: 302, Weight addr: 19350
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35899000 | Moving to next element in current row/col
+# Next p=303
+# 
+# Time=35901000 | Memory Access
+# Reading from - Input addr: 303, Weight addr: 19414
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 13
+# Accumulating: previous_sum=x + (x * 13)
+# 
+# Time=35901000 | Moving to next element in current row/col
+# Next p=304
+# 
+# Time=35903000 | Memory Access
+# Reading from - Input addr: 304, Weight addr: 19478
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35903000 | Moving to next element in current row/col
+# Next p=305
+# 
+# Time=35905000 | Memory Access
+# Reading from - Input addr: 305, Weight addr: 19542
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 4
+# Accumulating: previous_sum=x + (x * 4)
+# 
+# Time=35905000 | Moving to next element in current row/col
+# Next p=306
+# 
+# Time=35907000 | Memory Access
+# Reading from - Input addr: 306, Weight addr: 19606
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35907000 | Moving to next element in current row/col
+# Next p=307
+# 
+# Time=35909000 | Memory Access
+# Reading from - Input addr: 307, Weight addr: 19670
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35909000 | Moving to next element in current row/col
+# Next p=308
+# 
+# Time=35911000 | Memory Access
+# Reading from - Input addr: 308, Weight addr: 19734
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35911000 | Moving to next element in current row/col
+# Next p=309
+# 
+# Time=35913000 | Memory Access
+# Reading from - Input addr: 309, Weight addr: 19798
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35913000 | Moving to next element in current row/col
+# Next p=310
+# 
+# Time=35915000 | Memory Access
+# Reading from - Input addr: 310, Weight addr: 19862
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35915000 | Moving to next element in current row/col
+# Next p=311
+# 
+# Time=35917000 | Memory Access
+# Reading from - Input addr: 311, Weight addr: 19926
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35917000 | Moving to next element in current row/col
+# Next p=312
+# 
+# Time=35919000 | Memory Access
+# Reading from - Input addr: 312, Weight addr: 19990
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 2
+# Accumulating: previous_sum=x + (x * 2)
+# 
+# Time=35919000 | Moving to next element in current row/col
+# Next p=313
+# 
+# Time=35921000 | Memory Access
+# Reading from - Input addr: 313, Weight addr: 20054
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35921000 | Moving to next element in current row/col
+# Next p=314
+# 
+# Time=35923000 | Memory Access
+# Reading from - Input addr: 314, Weight addr: 20118
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35923000 | Moving to next element in current row/col
+# Next p=315
+# 
+# Time=35925000 | Memory Access
+# Reading from - Input addr: 315, Weight addr: 20182
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35925000 | Moving to next element in current row/col
+# Next p=316
+# 
+# Time=35927000 | Memory Access
+# Reading from - Input addr: 316, Weight addr: 20246
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 14
+# Accumulating: previous_sum=x + (x * 14)
+# 
+# Time=35927000 | Moving to next element in current row/col
+# Next p=317
+# 
+# Time=35929000 | Memory Access
+# Reading from - Input addr: 317, Weight addr: 20310
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -6
+# Accumulating: previous_sum=x + (x * -6)
+# 
+# Time=35929000 | Moving to next element in current row/col
+# Next p=318
+# 
+# Time=35931000 | Memory Access
+# Reading from - Input addr: 318, Weight addr: 20374
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -6
+# Accumulating: previous_sum=x + (x * -6)
+# 
+# Time=35931000 | Moving to next element in current row/col
+# Next p=319
+# 
+# Time=35933000 | Memory Access
+# Reading from - Input addr: 319, Weight addr: 20438
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -11
+# Accumulating: previous_sum=x + (x * -11)
+# 
+# Time=35933000 | Moving to next element in current row/col
+# Next p=320
+# 
+# Time=35935000 | Memory Access
+# Reading from - Input addr: 320, Weight addr: 20502
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35935000 | Moving to next element in current row/col
+# Next p=321
+# 
+# Time=35937000 | Memory Access
+# Reading from - Input addr: 321, Weight addr: 20566
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35937000 | Moving to next element in current row/col
+# Next p=322
+# 
+# Time=35939000 | Memory Access
+# Reading from - Input addr: 322, Weight addr: 20630
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -2
+# Accumulating: previous_sum=x + (x * -2)
+# 
+# Time=35939000 | Moving to next element in current row/col
+# Next p=323
+# 
+# Time=35941000 | Memory Access
+# Reading from - Input addr: 323, Weight addr: 20694
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 9
+# Accumulating: previous_sum=x + (x * 9)
+# 
+# Time=35941000 | Moving to next element in current row/col
+# Next p=324
+# 
+# Time=35943000 | Memory Access
+# Reading from - Input addr: 324, Weight addr: 20758
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35943000 | Moving to next element in current row/col
+# Next p=325
+# 
+# Time=35945000 | Memory Access
+# Reading from - Input addr: 325, Weight addr: 20822
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35945000 | Moving to next element in current row/col
+# Next p=326
+# 
+# Time=35947000 | Memory Access
+# Reading from - Input addr: 326, Weight addr: 20886
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35947000 | Moving to next element in current row/col
+# Next p=327
+# 
+# Time=35949000 | Memory Access
+# Reading from - Input addr: 327, Weight addr: 20950
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35949000 | Moving to next element in current row/col
+# Next p=328
+# 
+# Time=35951000 | Memory Access
+# Reading from - Input addr: 328, Weight addr: 21014
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35951000 | Moving to next element in current row/col
+# Next p=329
+# 
+# Time=35953000 | Memory Access
+# Reading from - Input addr: 329, Weight addr: 21078
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35953000 | Moving to next element in current row/col
+# Next p=330
+# 
+# Time=35955000 | Memory Access
+# Reading from - Input addr: 330, Weight addr: 21142
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -5
+# Accumulating: previous_sum=x + (x * -5)
+# 
+# Time=35955000 | Moving to next element in current row/col
+# Next p=331
+# 
+# Time=35957000 | Memory Access
+# Reading from - Input addr: 331, Weight addr: 21206
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35957000 | Moving to next element in current row/col
+# Next p=332
+# 
+# Time=35959000 | Memory Access
+# Reading from - Input addr: 332, Weight addr: 21270
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35959000 | Moving to next element in current row/col
+# Next p=333
+# 
+# Time=35961000 | Memory Access
+# Reading from - Input addr: 333, Weight addr: 21334
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35961000 | Moving to next element in current row/col
+# Next p=334
+# 
+# Time=35963000 | Memory Access
+# Reading from - Input addr: 334, Weight addr: 21398
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35963000 | Moving to next element in current row/col
+# Next p=335
+# 
+# Time=35965000 | Memory Access
+# Reading from - Input addr: 335, Weight addr: 21462
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35965000 | Moving to next element in current row/col
+# Next p=336
+# 
+# Time=35967000 | Memory Access
+# Reading from - Input addr: 336, Weight addr: 21526
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35967000 | Moving to next element in current row/col
+# Next p=337
+# 
+# Time=35969000 | Memory Access
+# Reading from - Input addr: 337, Weight addr: 21590
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35969000 | Moving to next element in current row/col
+# Next p=338
+# 
+# Time=35971000 | Memory Access
+# Reading from - Input addr: 338, Weight addr: 21654
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 10
+# Accumulating: previous_sum=x + (x * 10)
+# 
+# Time=35971000 | Moving to next element in current row/col
+# Next p=339
+# 
+# Time=35973000 | Memory Access
+# Reading from - Input addr: 339, Weight addr: 21718
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -10
+# Accumulating: previous_sum=x + (x * -10)
+# 
+# Time=35973000 | Moving to next element in current row/col
+# Next p=340
+# 
+# Time=35975000 | Memory Access
+# Reading from - Input addr: 340, Weight addr: 21782
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35975000 | Moving to next element in current row/col
+# Next p=341
+# 
+# Time=35977000 | Memory Access
+# Reading from - Input addr: 341, Weight addr: 21846
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -8
+# Accumulating: previous_sum=x + (x * -8)
+# 
+# Time=35977000 | Moving to next element in current row/col
+# Next p=342
+# 
+# Time=35979000 | Memory Access
+# Reading from - Input addr: 342, Weight addr: 21910
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35979000 | Moving to next element in current row/col
+# Next p=343
+# 
+# Time=35981000 | Memory Access
+# Reading from - Input addr: 343, Weight addr: 21974
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35981000 | Moving to next element in current row/col
+# Next p=344
+# 
+# Time=35983000 | Memory Access
+# Reading from - Input addr: 344, Weight addr: 22038
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 0
+# Accumulating: previous_sum=x + (x * 0)
+# 
+# Time=35983000 | Moving to next element in current row/col
+# Next p=345
+# 
+# Time=35985000 | Memory Access
+# Reading from - Input addr: 345, Weight addr: 22102
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -2
+# Accumulating: previous_sum=x + (x * -2)
+# 
+# Time=35985000 | Moving to next element in current row/col
+# Next p=346
+# 
+# Time=35987000 | Memory Access
+# Reading from - Input addr: 346, Weight addr: 22166
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35987000 | Moving to next element in current row/col
+# Next p=347
+# 
+# Time=35989000 | Memory Access
+# Reading from - Input addr: 347, Weight addr: 22230
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 3
+# Accumulating: previous_sum=x + (x * 3)
+# 
+# Time=35989000 | Moving to next element in current row/col
+# Next p=348
+# 
+# Time=35991000 | Memory Access
+# Reading from - Input addr: 348, Weight addr: 22294
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -11
+# Accumulating: previous_sum=x + (x * -11)
+# 
+# Time=35991000 | Moving to next element in current row/col
+# Next p=349
+# 
+# Time=35993000 | Memory Access
+# Reading from - Input addr: 349, Weight addr: 22358
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: -3
+# Accumulating: previous_sum=x + (x * -3)
+# 
+# Time=35993000 | Moving to next element in current row/col
+# Next p=350
+# 
+# Time=35995000 | Memory Access
+# Reading from - Input addr: 350, Weight addr: 22422
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35995000 | Moving to next element in current row/col
+# Next p=351
+# 
+# Time=35997000 | Memory Access
+# Reading from - Input addr: 351, Weight addr: 22486
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=35997000 | Moving to next element in current row/col
+# Next p=352
+# 
+# Time=35999000 | Memory Access
+# Reading from - Input addr: 352, Weight addr: 22550
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 15
+# Accumulating: previous_sum=x + (x * 15)
+# 
+# Time=35999000 | Moving to next element in current row/col
+# Next p=353
+# 
+# Time=36001000 | Memory Access
+# Reading from - Input addr: 353, Weight addr: 22614
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(88): Cannot execute undefined system task/function '$isunknown'
+# ** Error (suppressible): (vsim-12023) ../matrix_multiply.v(89): Cannot execute undefined system task/function '$isunknown'
+# Values read - Input: x, Weight: 5
+# Accumulating: previous_sum=x + (x * 5)
+# 
+# Time=36001000 | Moving to next element in current row/col
+# Next p=354
+# 
+# Time=36003000 | Memory Access
+# Reading from - Input addr: 354, Weight addr: 22678
+
+
