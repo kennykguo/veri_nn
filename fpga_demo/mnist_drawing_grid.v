@@ -263,7 +263,7 @@ module mnist_drawing_grid(
         end
         else if (on) begin
             colour_out <= is_cursor ? 3'b100 :
-                         is_pixel_set ? 3'b111 : 3'b001;
+                         is_pixel_set ? 3'b010 : 3'b011;
         end
     end
     
@@ -288,6 +288,10 @@ module mnist_drawing_grid(
         .VGA_SYNC_N(VGA_SYNC_N), 
         .VGA_CLK(VGA_CLK)
     );
+    defparam VGA.RESOLUTION = "160x120";
+    defparam VGA.MONOCHROME = "FALSE";
+    defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
+    defparam VGA.BACKGROUND_IMAGE = "black.mif";
 
     // LED output (optional debug)
     // assign LEDR = {write_enable, current_x[4:0], current_y[3:0]};
