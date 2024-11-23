@@ -40,7 +40,8 @@ module tb_neural_network_top;
         #20000 SW[9] = 1'b1;  // Assert reset for ~1000 clock cycles to ensure completion
         
         #0 SW[9] = 1'b0;   // SET reset
-        #20000 SW[9] = 1'b1;  // Assert reset
+        #2000000;  
+        SW[9] = 1'b1;  // Assert reset
         
         // Drawing sequence
         #50;
@@ -68,7 +69,6 @@ module tb_neural_network_top;
         // Start neural network processing
         SW[2] = 1'b1;
         #10;
-        SW[2] = 1'b0;
         
         // Wait for done signal
         @(posedge uut.nn.done);  // Assuming 'done' is in the neural network module
