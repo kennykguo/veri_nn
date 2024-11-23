@@ -1,5 +1,6 @@
 module image_memory (
     input wire clk,
+    input wire reset,
     input wire [15:0] write_addr,    // Address for writing
     input wire [15:0] read_addr,     // Address for reading
     input wire signed [31:0] data_in,
@@ -13,10 +14,16 @@ module image_memory (
         data_out = memory[read_addr];
     end
 
-    // Write operation (setter)
+    // Write operation (setter) with synchronous reset
+    integer i;
     always @(posedge clk) begin
-        if (write_enable) begin
-            memory[write_addr] = data_in;
+        if (reset) begin
+            for (i = 0; i < 784; i = i + 1) begin
+                memory[i] <= 32'h00000000;
+            end
+        end
+        else if (write_enable) begin
+            memory[write_addr] <= data_in;
             $display("Memory Write: Address = %d, Data = %d, Write Enable = %b", write_addr, data_in, write_enable);
         end
     end
