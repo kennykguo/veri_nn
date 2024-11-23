@@ -1,4 +1,5 @@
 module image_memory (
+    input clk,
     input wire reset,                // Active-high reset signal for memory initialization
     input wire init,                 // Initialization signal to load pixel data into memory
     input wire [15:0] address,       // Address for memory read
@@ -9,7 +10,8 @@ module image_memory (
     integer i;
 
     // Single always block to handle memory operations
-    always @(*) begin
+    always @(posedge clk) begin
+        
         if (reset) begin
             // Zero out all memory entries on reset
             for (i = 0; i < 784; i = i + 1) begin
@@ -17,15 +19,17 @@ module image_memory (
             end
             data_out <= 32'h00000000;
         end
+
         else if (init) begin
             // Initialize memory with pixel data
             for (i = 0; i < 784; i = i + 1) begin
                 memory[i] <= pixel_data[i] ? 32'h00000001 : 32'h00000000;
             end
         end
+
         else begin
             // Normal read operation
-            data_out <= memory[address];
+            data_out = memory[address];
         end
     end
 endmodule
