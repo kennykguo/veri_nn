@@ -52,11 +52,10 @@ module neural_network_top (
         .VGA_BLANK_N(VGA_BLANK_N),
         .VGA_SYNC_N(VGA_SYNC_N),
         .VGA_CLK(VGA_CLK),
-        .HEX0(HEX0),  // Connect HEX0 for displaying the neural network result
-        .HEX1(HEX1),
-        .HEX2(HEX2),
-        .HEX3(HEX3),
-        .LEDR(LEDR),
+        .HEX0(HEX2),  // Connect HEX0 for displaying the neural network result
+        .HEX1(HEX3),
+        .HEX2(HEX4),
+        .HEX3(HEX5),
         .pixel_memory(pixel_data)  // Provide pixel data to the neural network
     );
 
