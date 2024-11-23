@@ -29,7 +29,10 @@ module neural_network_top (
         .clk_out(clk_slow),
         .DIVISOR(32'd500)
     );
-
+	 
+	 assign LEDR[9] = start;
+	 assign LEDR[3:0] = current_state;
+	 
     // Assign control signals
     assign clk = clk_slow;
     assign start = ~KEY[0];
