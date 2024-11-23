@@ -30,8 +30,8 @@ module neural_network_top (
         .DIVISOR(32'd500)
     );
 	 
-	 assign LEDR[9] = start;
-	 assign LEDR[3:0] = current_state;
+	assign LEDR[9] = start;
+	assign LEDR[3:0] = current_state;
 	 
     // Assign control signals
     assign clk = clk_slow;
@@ -71,13 +71,32 @@ module neural_network_top (
         .argmax_output(argmax_output)
     );
 
-    // Seven segment display decoder for result (HEX0)
-    seven_segment_decoder result_display (
-        .in(argmax_output),
-        .resetn(resetn),
-        .out(HEX0)
-    );
+    // Seven segment decoder logic with intermediate reg
+    reg [6:0] seg7_display;
+    assign HEX0 = seg7_display;
+
+    always @(*) begin
+        if (!resetn) begin
+            seg7_display = 7'b1111111; // Turn off all segments when reset
+        end else begin
+            case (argmax_output)
+                4'd0: seg7_display = 7'b1000000; // Display '0'
+                4'd1: seg7_display = 7'b1111001; // Display '1'
+                4'd2: seg7_display = 7'b0100100; // Display '2'
+                4'd3: seg7_display = 7'b0110000; // Display '3'
+                4'd4: seg7_display = 7'b0011001; // Display '4'
+                4'd5: seg7_display = 7'b0010010; // Display '5'
+                4'd6: seg7_display = 7'b0000010; // Display '6'
+                4'd7: seg7_display = 7'b1111000; // Display '7'
+                4'd8: seg7_display = 7'b0000000; // Display '8'
+                4'd9: seg7_display = 7'b0010000; // Display '9'
+                4'd10: seg7_display = 7'b01111111; // Default
+                default: seg7_display = 7'b1111111; // Turn off segments for invalid input
+            endcase
+        end
+    end
 
     // Optional coordinate display (HEX1)
     assign HEX1 = 7'b1111111;  // Turn off HEX1 if unused
 endmodule
+

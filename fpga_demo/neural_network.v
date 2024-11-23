@@ -265,6 +265,7 @@ module neural_network (
     // State transitions
     always @(posedge clk or posedge resetn) begin
         if (resetn) begin
+            argmax_output <= 4'd10;
             current_state <= IDLE;
         end else begin
             current_state <= next_state;
