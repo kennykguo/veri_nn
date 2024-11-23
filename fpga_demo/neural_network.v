@@ -263,8 +263,8 @@ module neural_network (
     localparam DONE = 4'd9;
 
     // State transitions
-    always @(posedge clk or negedge resetn) begin
-        if (!resetn) begin
+    always @(posedge clk or posedge resetn) begin
+        if (resetn) begin
             current_state <= IDLE;
         end else begin
             current_state <= next_state;
