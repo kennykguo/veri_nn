@@ -15,6 +15,7 @@ module neural_network_top (
     wire clk_slow;         // Divided clock
     wire start;            // Start signal
     wire resetn;           // Active low reset
+    wire init;
     wire done;             // Done signal from the neural network
     wire [3:0] argmax_output;  // Neural network classification output
     wire [783:0] pixel_data;   // Internal signal for pixel data
@@ -37,6 +38,7 @@ module neural_network_top (
     assign clk = clk_slow;
     assign start = ~KEY[0];
     assign resetn = ~SW[9];  // Active low reset
+    assign init = ~KEY[1];
 
     // MNIST Drawing Grid instance
     mnist_drawing_grid drawing_grid (

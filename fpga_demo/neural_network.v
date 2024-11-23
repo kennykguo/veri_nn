@@ -1,6 +1,7 @@
 module neural_network (
     input wire clk,
     input wire resetn,
+    input wire init,
     input wire start,
     input wire [783:0] pixel_data,  // New input
     output wire done,
@@ -50,6 +51,8 @@ module neural_network (
 
     // Memory instantiations
     image_memory input_mem(
+        .reset(resetn),
+        .init(init)
         .address(input_addr),
         .pixel_data(pixel_data),
         .data_out(input_data)
