@@ -29,15 +29,15 @@ module matrix_multiply(
 
     // Debug: Track address changes
     always @(input_addr) begin
-        $display("\nTime=%0t | Input Address Changed to: %0d", $time, input_addr);
-        $display("Current indices: i=%0d, j=%0d, p=%0d", i, j, p);
-        $display("Address calculation: i*k + p = %0d*%0d + %0d = %0d", i, k, p, i*k + p);
+        // $display("\nTime=%0t | Input Address Changed to: %0d", $time, input_addr);
+        // $display("Current indices: i=%0d, j=%0d, p=%0d", i, j, p);
+        // $display("Address calculation: i*k + p = %0d*%0d + %0d = %0d", i, k, p, i*k + p);
     end
 
     always @(weight_addr) begin
-        $display("\nTime=%0t | Weight Address Changed to: %0d", $time, weight_addr);
-        $display("Current indices: i=%0d, j=%0d, p=%0d", i, j, p);
-        $display("Address calculation: p*n + j = %0d*%0d + %0d = %0d", p, n, j, p*n + j);
+        // $display("\nTime=%0t | Weight Address Changed to: %0d", $time, weight_addr);
+        // $display("Current indices: i=%0d, j=%0d, p=%0d", i, j, p);
+        // $display("Address calculation: p*n + j = %0d*%0d + %0d = %0d", p, n, j, p*n + j);
     end
 
     // State transition
@@ -83,23 +83,23 @@ module matrix_multiply(
                 write_enable <= 0;
                 
                 if (wait_cycle) begin
-                    $display("\nTime=%0t | Wait Cycle", $time);
-                    $display("Next computation will use: i=%0d, j=%0d, p=%0d", i, j, p);
+                    // $display("\nTime=%0t | Wait Cycle", $time);
+                    // $display("Next computation will use: i=%0d, j=%0d, p=%0d", i, j, p);
                     wait_cycle <= 0;
                 end else if (!final_store_done) begin
                     // Debug memory access with detailed address validation
-                    $display("\nTime=%0t | Memory Access Details:", $time);
-                    $display("Input: addr=%0d, data=%0h", input_addr, input_data);
-                    $display("Weight: addr=%0d, data=%0h", weight_addr, weight_data);
-                    $display("Current multiply-accumulate state: temp_sum=%0h", temp_sum);
+                    // $display("\nTime=%0t | Memory Access Details:", $time);
+                    // $display("Input: addr=%0d, data=%0h", input_addr, input_data);
+                    // $display("Weight: addr=%0d, data=%0h", weight_addr, weight_data);
+                    // $display("Current multiply-accumulate state: temp_sum=%0h", temp_sum);
 
                     if (first_mult) begin
                         temp_sum <= input_data * weight_data;
                         first_mult <= 0;
-                        $display("First multiplication started: %0h * %0h", input_data, weight_data);
+                        // $display("First multiplication started: %0h * %0h", input_data, weight_data);
                     end else begin
                         temp_sum <= temp_sum + (input_data * weight_data);
-                        $display("Accumulation: %0h + (%0h * %0h)", temp_sum, input_data, weight_data);
+                        // $display("Accumulation: %0h + (%0h * %0h)", temp_sum, input_data, weight_data);
                     end
 
                     if (p == k-1) begin
@@ -107,9 +107,9 @@ module matrix_multiply(
                         output_data <= temp_sum + (input_data * weight_data);
                         write_enable <= 1;
                         
-                        $display("\nTime=%0t | Completing element calculation", $time);
-                        $display("Output position [%0d,%0d] at addr=%0d", i, j, i * n + j);
-                        $display("Final value=%0h", temp_sum + (input_data * weight_data));
+                        // $display("\nTime=%0t | Completing element calculation", $time);
+                        // $display("Output position [%0d,%0d] at addr=%0d", i, j, i * n + j);
+                        // $display("Final value=%0h", temp_sum + (input_data * weight_data));
 
                         if (i == m-1 && j == n-1) begin
                             final_store_done <= 1;
@@ -129,10 +129,10 @@ module matrix_multiply(
                             // Debug next address calculation
                             input_addr <= (j == n-1) ? (i + 1) * k : i * k;
                             weight_addr <= (j == n-1) ? 0 : (j + 1);
-                            $display("\nTime=%0t | Setting up next element", $time);
-                            $display("Next input_addr calculation: %s", 
-                                (j == n-1) ? $sformatf("(i+1)*k = %0d", (i+1)*k) : 
-                                            $sformatf("i*k = %0d", i*k));
+                            // $display("\nTime=%0t | Setting up next element", $time);
+                            // $display("Next input_addr calculation: %s", 
+                              //  (j == n-1) ? $sformatf("(i+1)*k = %0d", (i+1)*k) : 
+                               //             $sformatf("i*k = %0d", i*k));
                         end
                     end else begin
                         p <= p + 1;

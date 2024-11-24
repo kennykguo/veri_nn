@@ -2,18 +2,17 @@ module neural_network (
     input wire clk,
     input wire resetn,
     input wire start,
-    // Memory interface signals
-    output wire [15:0] write_addr,     // Changed from image_read_addr
-    output wire write_enable,          // Added
-    output wire [31:0] data_write,     // Added
-    output wire [15:0] image_read_addr,      // Added
-    input wire [31:0] image_data_out,       // Changed from image_data_out
-    // Output signals
+
+    // Declared as inputs
+    input wire [15:0] image_read_addr,
+    input wire signed [31:0] image_data_out,
+
     output wire done,
     output reg [3:0] current_state,
     output reg [3:0] next_state,
     output wire [3:0] argmax_output
 );
+// Double check that modules align with no_vga code
 
     // Memory addresses for weights and inputs
     wire [15:0] input_addr, weight1_addr, weight2_addr, weight3_addr, weight4_addr;

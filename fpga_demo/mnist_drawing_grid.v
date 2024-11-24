@@ -1,76 +1,102 @@
 module mnist_drawing_grid(
+    // Default assumed to be a wire, which is true
     input CLOCK_50,    
     input reset,
     input PS2_CLK,        
     input PS2_DAT,      
     input draw,  
-    input on,
+    input on,             
 
-    // Memory write interface             
-    output reg [15:0] write_addr,    
-    output reg signed [31:0] data_write,    
-    output reg write_enable,
+    // THESE VARIABLES SHOULD NOT BE TOUCHED IN THIS MODULE
+    output wire [15:0] read_addr,     // Changed to output since grid generates addresses
+    output wire signed [31:0] data_out,  // Output for pixel data
 
-    // Memory read interface
-    output reg [15:0] read_addr,     
-    input signed [31:0] data_read,
-
-    // Display outputs
     output [7:0] VGA_R, VGA_G, VGA_B,
     output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK,
     output [6:0] HEX0, HEX1, HEX2, HEX3,
-    output reg [4:0] led_control
+    input [4:0] led_control
 );
-
-    // Parameters
+    // This module needs HEAVY revamping
+    // Grid constants (28x28)
     parameter GRID_SIZE = 28;
     parameter PIXEL_SIZE = 4;
-    parameter DELAY_MAX = 20'd2000000;
-
-    parameter [2:0] INIT = 3'b000;
-    parameter [2:0] DRAW_GRID = 3'b001;
-    parameter [2:0] MOVE = 3'b010;
-
-    parameter [7:0] LEFT_ARROW = 8'h6B;
-    parameter [7:0] RIGHT_ARROW = 8'h74;
-    parameter [7:0] UP_ARROW = 8'h75;
-    parameter [7:0] DOWN_ARROW = 8'h72;
-
-    // Internal signals
-    reg [5:0] mem_x;
-    reg [4:0] mem_y;
-
-    reg [4:0] current_x, current_y;
+    
+    // State definitions for both FSMs
+    parameter INIT = 3'b000;
+    parameter DRAW_GRID = 3'b001;
+    parameter MOVE = 3'b010;
+    
+    // PS2 keyboard arrow key scan codes
+    parameter LEFT_ARROW = 8'h6B;
+    parameter RIGHT_ARROW = 8'h74;
+    parameter UP_ARROW = 8'h75;
+    parameter DOWN_ARROW = 8'h72;
+    
+    // Wire declarations for coordinate conversion
+    // 
+    wire [5:0] mem_x;
+    wire [4:0] mem_y;
+    
+    // Cursor position registers
+    reg [4:0] current_x;
+    reg [4:0] current_y;
+    
+    // PS2 keyboard interface signals
+    wire [7:0] ps2_scan_code;
+    wire ps2_done_tick;
+    
+    // Movement control
     reg [19:0] move_delay;
-
+    parameter DELAY_MAX = 20'd2000000;
+    
+    // Drawing control
+    reg plot;
     reg [7:0] draw_x;
     reg [6:0] draw_y;
-
-    reg [1:0] pixel_x_offset, pixel_y_offset;
-    reg [2:0] draw_state, move_state;
-
-    reg plot;
-    reg reset_sync1, reset_sync2;
     
-    wire ps2_done_tick;
-    wire [7:0] ps2_scan_code;
-    wire is_cursor, is_pixel_set;
+    // Inner pixel drawing control
+    reg [1:0] pixel_x_offset;
+    reg [1:0] pixel_y_offset;
+    
+    // State registers
+    reg [2:0] draw_state;
+    reg [2:0] move_state;
 
-    // Reset synchronization
+    // Memory interface signals (go directly into input_memory)
+    reg [15:0] write_addr; // Should be updated in an always block (signal is driven in this module)
+    reg signed [31:0] data_in; // Updated directly, to be written (driven in an always block in this module)
+    reg write_enable;
+
+    // Instantiate image_memory module
+    image_memory img_mem (
+        .clk(CLOCK_50),
+        .reset(reset),
+        .write_addr(write_addr),
+        .read_addr(read_addr),
+        .data_in(data_in),
+        .write_enable(write_enable),
+        .data_out(data_out)
+    );
+    
+
+    // Reset synchronizer
+    // Should double check this is correct
+    reg reset_sync1, reset_sync2;
     always @(posedge CLOCK_50) begin
         reset_sync1 <= reset;
         reset_sync2 <= reset_sync1;
     end
-    wire reset_f = reset_sync2;
 
+    wire reset_f = reset_sync2;
+    
     // 7-segment display outputs
     hex_display hex0(current_x[3:0], HEX0);
     hex_display hex1({3'b000, current_x[4]}, HEX1);
     hex_display hex2(current_y[3:0], HEX2);
     hex_display hex3({3'b000, current_y[4]}, HEX3);
 
-    // PS2 Keyboard Interface
-    ps2_keyboard kb_ctrl(
+    // PS2 keyboard controller instance
+    ps2_keyboard kb_ctrl (
         .clk(CLOCK_50),
         .reset(reset_f),
         .ps2d(PS2_DAT),
@@ -78,22 +104,31 @@ module mnist_drawing_grid(
         .scan_code(ps2_scan_code),
         .done_tick(ps2_done_tick)
     );
-
-    // Memory interface
-    always @(*) begin
-        read_addr = mem_y * GRID_SIZE + mem_x; // For reading pixel data
-    end
-
-    always @(*) begin
-        write_addr = current_y * GRID_SIZE + current_x; // For updating pixel data
-    end
-
-    assign mem_x = draw_x[7:2];
+    
+    // Memory address calculations
+    // assign read_addr = mem_y * GRID_SIZE + mem_x;
+    assign write_addr = current_y * GRID_SIZE + current_x;
+    assign mem_x = draw_x[7:2];  // Convert display coordinates to grid coordinates
     assign mem_y = draw_y[6:2];
-    assign is_cursor = (mem_x == current_x && mem_y == current_y);
-    assign is_pixel_set = (data_read != 32'sd0);
 
-    // Movement FSM
+    // Initialize registers
+    initial begin
+        plot = 1'b0;
+        reset_sync1 = 1'b1;
+        reset_sync2 = 1'b1;
+        write_enable = 1'b0;
+        data_in = 32'd0;
+        current_x = 5'd0;
+        current_y = 5'd0;
+        move_delay = 20'd0;
+        move_state = INIT;
+        draw_state = INIT;
+        draw_x = 8'd0;
+        draw_y = 7'd0;
+        pixel_x_offset = 2'b00;
+        pixel_y_offset = 2'b00;
+    end
+    
     always @(posedge CLOCK_50) begin
         if (reset_f) begin
             current_x <= 5'd0;
@@ -101,50 +136,70 @@ module mnist_drawing_grid(
             move_delay <= 20'd0;
             move_state <= INIT;
             write_enable <= 1'b0;
-            data_write <= 32'd0;
-        end else if (on) begin
-            case (move_state)
-                INIT: begin
-                    current_x <= 5'd0;
-                    current_y <= 5'd0;
-                    move_state <= MOVE;
-                end
-                MOVE: begin
-                    if (move_delay == 0) begin
-                        if (ps2_done_tick) begin
-                            case (ps2_scan_code)
-                                RIGHT_ARROW: if (current_x < (GRID_SIZE - 1)) begin
-                                    current_x <= current_x + 1'b1;
-                                    move_delay <= DELAY_MAX;
-                                end
-                                LEFT_ARROW: if (current_x > 0) begin
-                                    current_x <= current_x - 1'b1;
-                                    move_delay <= DELAY_MAX;
-                                end
-                                UP_ARROW: if (current_y > 0) begin
-                                    current_y <= current_y - 1'b1;
-                                    move_delay <= DELAY_MAX;
-                                end
-                                DOWN_ARROW: if (current_y < (GRID_SIZE - 1)) begin
-                                    current_y <= current_y + 1'b1;
-                                    move_delay <= DELAY_MAX;
-                                end
-                            endcase
-                        end
-                        if (draw) begin
-                            write_enable <= 1'b1;
-                            data_write <= 32'sd1; // Setting pixel value
-                        end
-                    end else begin
-                        move_delay <= move_delay - 1'b1;
+            data_in <= 32'd0;
+        end
+        else begin
+            // Default state - ensure write_enable is 0 when on=0 or draw=0
+            write_enable <= 1'b0;
+            
+            if (on) begin // Only process logic when on=1
+                case(move_state)
+                    INIT: begin
+                        current_x <= 5'd0;
+                        current_y <= 5'd0;
+                        move_state <= MOVE;
                     end
-                end
-                default: move_state <= INIT;
-            endcase
+                    
+                    MOVE: begin
+                        if (move_delay == 0) begin
+                            if (ps2_done_tick) begin
+                                case(ps2_scan_code)
+                                    RIGHT_ARROW: begin
+                                        if (current_x < (GRID_SIZE-1)) begin
+                                            current_x <= current_x + 1'd1;
+                                            move_delay <= DELAY_MAX;
+                                        end
+                                    end
+                                    LEFT_ARROW: begin
+                                        if (current_x > 0) begin
+                                            current_x <= current_x - 1'd1;
+                                            move_delay <= DELAY_MAX;
+                                        end
+                                    end
+                                    UP_ARROW: begin
+                                        if (current_y > 0) begin
+                                            current_y <= current_y - 1'd1;
+                                            move_delay <= DELAY_MAX;
+                                        end
+                                    end
+                                    DOWN_ARROW: begin
+                                        if (current_y < (GRID_SIZE-1)) begin
+                                            current_y <= current_y + 1'd1;
+                                            move_delay <= DELAY_MAX;
+                                        end
+                                    end
+                                endcase
+                            end
+                            
+                            // Only enable writing when both on and draw are 1
+                            if (draw) begin
+                                write_enable <= 1'b1;
+                                data_in <= 32'sd1;
+                            end
+                        end
+                        else begin
+                            move_delay <= move_delay - 1'd1;
+                        end
+                    end
+                    
+                    default: move_state <= INIT;
+                endcase
+            end
         end
     end
 
-    // Drawing FSM
+
+    // Drawing FSM with synchronous reset
     always @(posedge CLOCK_50) begin
         if (reset_f) begin
             draw_x <= 8'd0;
@@ -153,56 +208,87 @@ module mnist_drawing_grid(
             pixel_y_offset <= 2'b00;
             plot <= 1'b1;
             draw_state <= INIT;
-        end else if (on) begin
-            case (draw_state)
+        end
+        
+        else if (on) begin
+            case(draw_state)
                 INIT: begin
                     draw_x <= 8'd0;
                     draw_y <= 7'd0;
+                    pixel_x_offset <= 2'b00;
+                    pixel_y_offset <= 2'b00;
+                    plot <= 1'b1;
                     draw_state <= DRAW_GRID;
                 end
+                
                 DRAW_GRID: begin
-                    plot <= 1'b1;
-                    if (pixel_x_offset == 2'b11) begin
-                        pixel_x_offset <= 2'b00;
-                        if (pixel_y_offset == 2'b11) begin
-                            pixel_y_offset <= 2'b00;
-                            draw_x <= draw_x + 1'b1;
-                            if (draw_x == GRID_SIZE * PIXEL_SIZE - 1) begin
-                                draw_x <= 8'd0;
-                                draw_y <= draw_y + 1'b1;
-                            end
-                        end else pixel_y_offset <= pixel_y_offset + 1'b1;
-                    end else pixel_x_offset <= pixel_x_offset + 1'b1;
+                    if (draw_y < (GRID_SIZE * PIXEL_SIZE) && draw_x < (GRID_SIZE * PIXEL_SIZE)) begin
+                        plot <= 1'b1;
 
-                    if (draw_y == GRID_SIZE * PIXEL_SIZE - 1 && pixel_y_offset == 2'b11) begin
-                        draw_state <= INIT;
+                        if (pixel_x_offset == 2'b11) begin
+                            pixel_x_offset <= 2'b00;
+                            if (pixel_y_offset == 2'b11) begin
+                                pixel_y_offset <= 2'b00;
+                                draw_x <= draw_x + 1'd1;
+
+                                if (draw_x >= (GRID_SIZE * PIXEL_SIZE - 1)) begin
+                                    draw_x <= 8'd0;
+                                    draw_y <= draw_y + 1'd1;
+                                end
+                            end 
+                            else begin
+                                pixel_y_offset <= pixel_y_offset + 1'b1;
+                            end
+                        end 
+                        else begin
+                            pixel_x_offset <= pixel_x_offset + 1'b1;
+                        end
+                        
+                        if (draw_y >= (GRID_SIZE * PIXEL_SIZE - 1) && 
+                            pixel_y_offset == 2'b11 && pixel_x_offset == 2'b11) begin
+                            draw_x <= 8'd0;
+                            draw_y <= 7'd0;
+                        end
+                    end 
+                    else begin
+                        plot <= 1'b0;
                     end
                 end
+                
                 default: draw_state <= INIT;
             endcase
         end
     end
 
-    // Color Output
+    // Color output logic
+    wire is_cursor = (mem_x == current_x && mem_y == current_y);
+    wire is_pixel_set = (data_out != 32'sd0);
+    
     reg [2:0] colour_out;
     always @(posedge CLOCK_50) begin
-        if (reset_f) colour_out <= 3'b001;
+        if (reset_f) begin
+            colour_out <= 3'b001;
+        end
         else if (on) begin
             colour_out <= is_cursor ? 3'b100 :
                          is_pixel_set ? 3'b010 : 3'b011;
         end
     end
+    
+    // VGA position calculation
+    wire [7:0] actual_x = {draw_x[7:2], pixel_x_offset};
+    wire [6:0] actual_y = {draw_y[6:2], pixel_y_offset};
 
-    // VGA Adapter
-    vga_adapter VGA(
+    // VGA controller instantiation
+    vga_adapter VGA (
         .resetn(~reset),
         .clock(CLOCK_50),
         .colour(colour_out),
-        .x({draw_x[7:2], pixel_x_offset}),
-        .y({draw_y[6:2], pixel_y_offset}),
-        .plot(plot),
+        .x(actual_x),
+        .y(actual_y),
+        .plot(plot),    // Add the missing plot signal
         .VGA_R(VGA_R), 
-        .VGA_G(VGA_G), 
+        .VGA_G(VGA_G),
         .VGA_B(VGA_B),
         .VGA_HS(VGA_HS), 
         .VGA_VS(VGA_VS), 
@@ -214,9 +300,10 @@ module mnist_drawing_grid(
     defparam VGA.MONOCHROME = "FALSE";
     defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
     defparam VGA.BACKGROUND_IMAGE = "black.mif";
+    // LED output (optional debug)
+    // assign LEDR = {write_enable, current_x[4:0], current_y[3:0]};
 
 endmodule
-
 
 
 // PS2 Keyboard Controller Module

@@ -11,67 +11,42 @@ module neural_network_top (
 );
 
     // Internal signals     
-    wire clk_slow;         
-    wire start;            
-    wire resetn;           
-    wire init;       
+    wire clk_slow; // Slower clock goes into nn FSM    
+    wire start; // Starts sequence     
+    wire resetn;  
+    // Drawing grid signals         
     wire on;
-    wire draw;
+	wire draw;
     wire done;            
 
-    // Memory interface signals
-    wire [15:0] grid_write_addr;    // From drawing grid
-    wire [31:0] grid_data_write;    // From drawing grid
-    wire grid_write_enable;         // From drawing grid
-    // Memory interface signals
-    wire [15:0] nn_write_addr;      // From neural network
-    wire [31:0] nn_data_write;      // From neural network
-    wire nn_write_enable;           // From neural network
-    
-    wire [15:0] read_addr;          // Multiplexed read address
-    wire [31:0] data_out;           // Memory output data
+    // Memory interface signals (interfaces with image module instantiated in drawing grid module)
+    wire [15:0] image_read_addr;
+    wire [31:0] image_data_out;
 
     // State signals for debugging
+    wire [3:0] argmax_output;  
     wire [3:0] current_state;
     wire [3:0] next_state;
-    wire [3:0] argmax_output;
 
     // Clock divider instance
     clock_divider clk_div (
-        .clk_in(CLOCK_50),
-        .clk_out(clk_slow),
-        .DIVISOR(32'd500)
+         .clk_in(CLOCK_50),
+         .clk_out(clk_slow),
+         .DIVISOR(32'd500)
     );
-
+	  
     // Control signal assignments
     assign start = SW[2];    // Press to start (high)
-    assign resetn = ~SW[9];  // ON to stop reset
-    assign on = SW[0];       // Drawing grid enable
+    assign resetn = ~SW[9];    // ON to stop reset
+    assign on = SW[0];         // Drawing grid enable
     assign draw = SW[1];
 
     // Debug LEDs
     assign LEDR[9] = start;
     assign LEDR[3:0] = current_state;
 
-    // Multiplexed memory write signals (ensures only one is going through at a time)
-    wire [15:0] write_addr = on ? grid_write_addr : nn_write_addr;
-    wire [31:0] data_in = on ? grid_data_write : nn_data_write;
 
-    wire write_enable = on ? grid_write_enable : nn_write_enable;
-
-    // Image memory instance
-    image_memory img_mem (
-        .clk(CLOCK_50),
-        .reset(resetn),
-        .write_addr(write_addr),
-        .read_addr(read_addr),
-        .data_in(data_in),
-        .write_enable(write_enable),
-        .data_out(data_out)
-    );
-
-
-    // Drawing grid instance with memory interface
+    // Double check that signals match properly
     mnist_drawing_grid drawing_grid (
         .CLOCK_50(CLOCK_50),
         .reset(resetn),
@@ -79,13 +54,8 @@ module neural_network_top (
         .PS2_DAT(PS2_DAT),
         .draw(draw),
         .on(on),
-        
-        .write_addr(grid_write_addr),
-        .write_enable(grid_write_enable),
-        .data_write(grid_data_write),
-        .read_addr(read_addr),
-        .data_read(data_out),
-
+        .read_addr(image_read_addr),    
+        .data_out(image_data_out),      
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
@@ -98,32 +68,36 @@ module neural_network_top (
         .HEX1(HEX3),
         .HEX2(HEX4),
         .HEX3(HEX5),
-        .led_control(LEDR[8:4])
+		.led_control(LEDR[8:4])
     );
 
-    // Neural network instance with memory interface
+
+    // Double check this module, and its submodules align with previous implementation (no_vga)
+    // Neural network instance
     neural_network nn (
-        .clk(clk_slow),
+        .clk(CLOCK_50),
         .resetn(resetn),
         .start(start),
 
-        .write_addr(nn_write_addr),
-        .write_enable(nn_write_enable),
-        .data_write(nn_data_write),
-        .image_read_addr(read_addr),
-        .image_data_out(data_out),
+        .image_read_addr(image_read_addr),
+        .image_data_out(image_data_out),
 
         .done(done),
+
         .current_state(current_state),
         .next_state(next_state),
         .argmax_output(argmax_output)
     );
 
+	 
+	 
+	 
     // Seven segment decoder logic
     reg [6:0] seg7_display;
     assign HEX0 = seg7_display;
 
-    always @(*) begin
+    // Changed to CLOCK_50 from *
+    always @(posedge CLOCK_50 and posedge resetn) begin
         if (resetn) begin
             seg7_display = 7'b1111111;
         end else begin
@@ -147,22 +121,4 @@ module neural_network_top (
     // Turn off unused display
     assign HEX1 = 7'b1111111;
 
-    // Clock divider module
-
-endmodule
-
-module clock_divider (
-    input clk_in,
-    input [31:0] DIVISOR,
-    output reg clk_out
-);
-    reg [31:0] counter = 32'd0;
-    
-    always @(posedge clk_in) begin
-        counter <= counter + 32'd1;
-        if (counter >= (DIVISOR - 1)) begin
-            counter <= 32'd0;
-            clk_out <= ~clk_out;
-        end
-    end
 endmodule

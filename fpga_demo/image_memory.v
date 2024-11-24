@@ -3,9 +3,9 @@ module image_memory (
     input wire reset,
     input wire [15:0] write_addr,    // Address for writing
     input wire [15:0] read_addr,     // Address for reading
-    input wire signed [31:0] data_in, // In from another module
-    input wire write_enable, // In from another module
-    output reg signed [31:0] data_out // Out to another module
+    input wire signed [31:0] data_in,
+    input wire write_enable,
+    output reg signed [31:0] data_out
 );
     reg signed [31:0] memory [0:783];  // 32-bit values for 784 pixels
 

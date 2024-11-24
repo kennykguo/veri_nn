@@ -15,15 +15,16 @@ module tb_neural_network_top;
     wire [9:0] LEDR;
 
     // Parameters for PS2 keyboard codes
+    // Need to double check if this is actually correct
     parameter LEFT_ARROW = 8'h6B;
     parameter RIGHT_ARROW = 8'h74;
     parameter UP_ARROW = 8'h75;
     parameter DOWN_ARROW = 8'h72;
 
-    // Clock generation
+
+    // Clock generation (CLOCK_50)
     always #10 CLOCK_50 = ~CLOCK_50;  // 50 MHz clock for simulation
 
-    // Test stimulus
     initial begin
         // Initialize inputs
         CLOCK_50 = 0;
@@ -33,19 +34,13 @@ module tb_neural_network_top;
         PS2_DAT = 0;
         
         $display("Simulation started.");
-        
-        // Reset sequence
-
-        #0 SW[9] = 1'b0;   // SET reset to 0
-        #20000 SW[9] = 1'b1;  // Assert reset for ~1000 clock cycles to ensure completion
-        
-        #0 SW[9] = 1'b0;   // SET reset
-        #2000000;  
-        SW[9] = 1'b1;  // Assert reset
+        #0 SW[9] = 1'b0;   // SET reset to 0 (RESET ON)
+        #20000;
+        #0 SW[9] = 1'b1;  // Assert reset (RESET OFF)
         
         // Drawing sequence
         #50;
-        SW[1:0] = 2'b11;    // Enable drawing
+        SW[1:0] = 2'b11;    // Enable drawing and on signal
         
         // Simulate drawing pattern
         repeat(5) begin
@@ -54,7 +49,6 @@ module tb_neural_network_top;
             #20;
             PS2_CLK = 1;
             #20;
-            
             PS2_CLK = 0;
             PS2_DAT = DOWN_ARROW;
             #20;
@@ -62,14 +56,15 @@ module tb_neural_network_top;
             #20;
         end
 
-        // End drawing
+        // End drawing (turn off on and draw)
         SW[1:0] = 2'b00;
         #200;
 
         // Start neural network processing
         SW[2] = 1'b1;
-        #10;
-        
+        #200;
+        SW[2] = 1'b0;
+
         // Wait for done signal
         @(posedge uut.nn.done);  // Assuming 'done' is in the neural network module
         
@@ -92,20 +87,24 @@ module tb_neural_network_top;
         .SW(SW),
         .PS2_CLK(PS2_CLK),
         .PS2_DAT(PS2_DAT),
+
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
+
         .VGA_HS(VGA_HS),
         .VGA_VS(VGA_VS),
         .VGA_BLANK_N(VGA_BLANK_N),
         .VGA_SYNC_N(VGA_SYNC_N),
         .VGA_CLK(VGA_CLK),
+
         .HEX0(HEX0),
         .HEX1(HEX1),
         .HEX2(HEX2),
         .HEX3(HEX3),
         .HEX4(HEX4),
         .HEX5(HEX5),
+        
         .LEDR(LEDR)
     );
 
