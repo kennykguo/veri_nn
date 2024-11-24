@@ -19,24 +19,31 @@ module neural_network_top (
 
     // Drawing grid signals 
     wire on; // Turns on the grid
-	wire draw; // Starts drawing
+	 wire draw; // Starts drawing
     wire done; // Done signal indicating done forward pass
 
     // Memory interface signals (interfaces with image module instantiated in drawing grid module)
     wire [15:0] image_read_addr;
     wire [31:0] image_data_out;
 
+	 
     // State signals for debugging
     wire [3:0] argmax_output;  
     wire [3:0] current_state;
     wire [3:0] next_state;
 
+	 
     // Clock divider instance
     clock_divider clk_div (
          .clk_in(CLOCK_50),
          .clk_out(clk_slow),
-         .DIVISOR(32'd4)
+         .DIVISOR(32'd10)
     );
+
+	 
+
+    wire [3:0] image_led_control;  // From image_memory
+    assign LEDR[8:5] = image_led_control;  // Example of forwarding image memory control to LEDs
 	  
     // Control signal assignments
     assign on = SW[0];         // Drawing grid enable
@@ -72,10 +79,11 @@ module neural_network_top (
         .HEX1(HEX3),
         .HEX2(HEX4),
         .HEX3(HEX5),
-		.led_control(LEDR[8:5])
+		.led_control(image_led_control)
     );
 
-
+	 
+	 
 /// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // Double check this module, and its submodules align with previous implementation (no_vga)
     // Neural network instance
