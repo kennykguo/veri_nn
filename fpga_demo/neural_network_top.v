@@ -23,13 +23,14 @@ module neural_network_top (
     wire [15:0] grid_write_addr;    // From drawing grid
     wire [31:0] grid_data_write;    // From drawing grid
     wire grid_write_enable;         // From drawing grid
+    // Memory interface signals
     wire [15:0] nn_write_addr;      // From neural network
     wire [31:0] nn_data_write;      // From neural network
     wire nn_write_enable;           // From neural network
     
     wire [15:0] read_addr;          // Multiplexed read address
     wire [31:0] data_out;           // Memory output data
-    
+
     // State signals for debugging
     wire [3:0] current_state;
     wire [3:0] next_state;
@@ -52,9 +53,10 @@ module neural_network_top (
     assign LEDR[9] = start;
     assign LEDR[3:0] = current_state;
 
-    // Multiplexed memory write signals
+    // Multiplexed memory write signals (ensures only one is going through at a time)
     wire [15:0] write_addr = on ? grid_write_addr : nn_write_addr;
     wire [31:0] data_in = on ? grid_data_write : nn_data_write;
+
     wire write_enable = on ? grid_write_enable : nn_write_enable;
 
     // Image memory instance
@@ -62,11 +64,12 @@ module neural_network_top (
         .clk(CLOCK_50),
         .reset(resetn),
         .write_addr(write_addr),
-        .write_enable(write_enable),
-        .data_in(data_in),
         .read_addr(read_addr),
+        .data_in(data_in),
+        .write_enable(write_enable),
         .data_out(data_out)
     );
+
 
     // Drawing grid instance with memory interface
     mnist_drawing_grid drawing_grid (
@@ -76,11 +79,13 @@ module neural_network_top (
         .PS2_DAT(PS2_DAT),
         .draw(draw),
         .on(on),
+        
         .write_addr(grid_write_addr),
         .write_enable(grid_write_enable),
         .data_write(grid_data_write),
         .read_addr(read_addr),
         .data_read(data_out),
+
         .VGA_R(VGA_R),
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
@@ -101,11 +106,13 @@ module neural_network_top (
         .clk(clk_slow),
         .resetn(resetn),
         .start(start),
+
         .write_addr(nn_write_addr),
         .write_enable(nn_write_enable),
         .data_write(nn_data_write),
         .image_read_addr(read_addr),
         .image_data_out(data_out),
+
         .done(done),
         .current_state(current_state),
         .next_state(next_state),
