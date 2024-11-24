@@ -90,6 +90,22 @@ module vga_demo(
     end
 
     integer i;
+
+    //###########For multiple cursor movements with 1 key press########
+    // Edge detection for ps2_done_tick
+    reg ps2_done_tick_prev;
+    wire ps2_done_tick_rising;
+
+    always @(posedge CLOCK_50 or posedge reset) begin
+        if (reset) begin
+            ps2_done_tick_prev <= 0;
+        end else begin
+            ps2_done_tick_prev <= ps2_done_tick;
+        end
+    end
+    assign ps2_done_tick_rising = ps2_done_tick && ~ps2_done_tick_prev;
+
+    //###########For multiple cursor movements with 1 key press########
     
     // Movement FSM with synchronous reset
     always @(posedge CLOCK_50) begin
@@ -114,7 +130,7 @@ module vga_demo(
                 
                 MOVE: begin
                     if (move_delay == 0) begin
-                        if (ps2_done_tick) begin
+                        if (ps2_done_tick_rising) begin
                             case(ps2_scan_code)
                                 RIGHT_ARROW: begin
                                     if (current_x < (GRID_SIZE-1)) begin
