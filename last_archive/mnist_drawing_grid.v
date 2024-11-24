@@ -3,14 +3,13 @@ module mnist_drawing_grid(
     input reset,
     input [3:0] KEY,      // KEY[0] = down, KEY[1] = up, KEY[2] = left, KEY[3] = right
     input draw,  
-    input on,             
+    input on,         
     output wire [15:0] read_addr,
     output wire signed [31:0] data_out,
-    
     output [7:0] VGA_R, VGA_G, VGA_B,
     output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK,
     output [6:0] HEX0, HEX1, HEX2, HEX3,
-    input [4:0] led_control
+    input [3:0] led_control
 );
 
     // Grid constants (28x28)
@@ -101,8 +100,8 @@ module mnist_drawing_grid(
         end
     end
     
-    assign key_pressed = ~key_stable & key_reg1;
 
+    assign key_pressed = ~key_stable & key_reg1;
     // Memory instantiation
     image_memory img_mem (
         .clk(CLOCK_50),
@@ -111,7 +110,8 @@ module mnist_drawing_grid(
         .read_addr(read_addr),
         .data_in(data_in),
         .write_enable(write_enable),
-        .data_out(data_out)
+        .data_out(data_out),
+        .led_control(led_control)
     );
 
     // Memory write control
@@ -279,31 +279,4 @@ module mnist_drawing_grid(
     defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
     defparam VGA.BACKGROUND_IMAGE = "black.mif";
 
-endmodule
-
-// Hex display module
-module hex_display(
-    input [3:0] IN,
-    output reg [6:0] OUT
-);
-    always @(*)
-        case (IN)
-            4'h0: OUT = 7'b1000000;
-            4'h1: OUT = 7'b1111001;
-            4'h2: OUT = 7'b0100100;
-            4'h3: OUT = 7'b0110000;
-            4'h4: OUT = 7'b0011001;
-            4'h5: OUT = 7'b0010010;
-            4'h6: OUT = 7'b0000010;
-            4'h7: OUT = 7'b1111000;
-            4'h8: OUT = 7'b0000000;
-            4'h9: OUT = 7'b0010000;
-            4'hA: OUT = 7'b0001000;
-            4'hB: OUT = 7'b0000011;
-            4'hC: OUT = 7'b1000110;
-            4'hD: OUT = 7'b0100001;
-            4'hE: OUT = 7'b0000110;
-            4'hF: OUT = 7'b0001110;
-            default: OUT = 7'b1111111;
-        endcase
 endmodule

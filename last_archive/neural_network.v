@@ -2,11 +2,9 @@ module neural_network (
     input wire clk,
     input wire resetn,
     input wire start,
-
     // Declared as inputs
     input wire [15:0] image_read_addr,
     input wire signed [31:0] image_data_out,
-
     output wire done,
     output reg [3:0] current_state,
     output reg [3:0] next_state,
@@ -59,7 +57,6 @@ module neural_network (
     //     .reset(resetn),
     //     .init(init)
     //     .address(input_addr),
-    //     .pixel_data(pixel_data),
     //     .data_out(input_data),
     //     .done(input_done)
     // );

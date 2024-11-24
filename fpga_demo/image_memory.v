@@ -25,7 +25,7 @@ module image_memory (
 				
 				
         end else if (write_enable) begin
-            memory[write_addr] <= data_in;  // Perform write operation
+            memory[write_addr] = data_in;  // Perform write operation
         end
 
         // Initialize the corner LEDs to all OFF
