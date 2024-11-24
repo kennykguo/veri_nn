@@ -72,7 +72,7 @@ module neural_network_top (
         .HEX1(HEX3),
         .HEX2(HEX4),
         .HEX3(HEX5),
-		.led_control(LEDR[8:4])
+		.led_control(LEDR[8:5])
     );
 
 
