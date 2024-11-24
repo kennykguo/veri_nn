@@ -26,7 +26,7 @@ vlog -work work ../argmax.v
 vlog -work work ../matrix1.v
 vlog -work work ../matrix2.v
 vlog -work work ../matrix3.v
-vlog -work work ../matrix4.v
+vlog -work work ../matrix4.v 
 
 vlog -work work ../mm1_memory.v
 vlog -work work ../mm2_memory.v
