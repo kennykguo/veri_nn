@@ -88,13 +88,35 @@ add wave -position end sim:/tb_neural_network_top/uut/nn/relu3_*
 add wave -noupdate -divider "Layer 4 Signals"
 add wave -position end sim:/tb_neural_network_top/uut/nn/mm4_*
 
+# Add waves for control signals
 add wave -noupdate -divider "Control Signals"
 add wave -position end sim:/tb_neural_network_top/uut/nn/start_*
 add wave -position end sim:/tb_neural_network_top/uut/nn/*_done
 
+# Add waves for state machine
 add wave -noupdate -divider "State Machine"
 add wave -position end -radix unsigned sim:/tb_neural_network_top/uut/nn/current_state
 add wave -position end -radix unsigned sim:/tb_neural_network_top/uut/nn/next_state
+
+# Add waves for VGA signals
+add wave -noupdate -divider "VGA Signals"
+add wave -position end sim:/tb_neural_network_top/uut/VGA_R
+add wave -position end sim:/tb_neural_network_top/uut/VGA_G
+add wave -position end sim:/tb_neural_network_top/uut/VGA_B
+add wave -position end sim:/tb_neural_network_top/uut/VGA_HS
+add wave -position end sim:/tb_neural_network_top/uut/VGA_VS
+add wave -position end sim:/tb_neural_network_top/uut/VGA_BLANK_N
+add wave -position end sim:/tb_neural_network_top/uut/VGA_SYNC_N
+add wave -position end sim:/tb_neural_network_top/uut/VGA_CLK
+
+# Add waves for HEX displays
+add wave -noupdate -divider "HEX Displays"
+add wave -position end sim:/tb_neural_network_top/uut/HEX0
+add wave -position end sim:/tb_neural_network_top/uut/HEX1
+add wave -position end sim:/tb_neural_network_top/uut/HEX2
+add wave -position end sim:/tb_neural_network_top/uut/HEX3
+add wave -position end sim:/tb_neural_network_top/uut/HEX4
+add wave -position end sim:/tb_neural_network_top/uut/HEX5
 
 # Configure wave window
 configure wave -namecolwidth 250

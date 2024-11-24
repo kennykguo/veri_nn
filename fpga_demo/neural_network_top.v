@@ -18,14 +18,7 @@ module neural_network_top (
     wire [3:0] current_state;
     wire [3:0] next_state;
     wire done;
-
-    // Clock divider instance
-    // clock_divider clk_div (
-    //      .clk_in(CLOCK_50),
-    //      .clk_out(clk_slow),
-    //      .DIVISOR(32'd10)
-    // );
-
+    
     // Control signal assignments
     wire on = SW[0];         // Drawing grid enable
     wire draw = SW[1];      // Turn on to start drawing

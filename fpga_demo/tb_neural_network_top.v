@@ -102,18 +102,17 @@ module tb_neural_network_top;
         SW[2] = 1'b0;
 
         // Wait for done signal
-        @(posedge uut.nn.done);
+        @(posedge uut.combined_module.done);
         $display("Neural network processing completed.");
-        $display("Predicted digit: %d", uut.argmax_output);
+        $display("Predicted digit: %d", uut.combined_module.argmax_output);
         #20000 $finish;
     end
 
     // Enhanced monitoring for coordinate display
     initial begin
-        $monitor("Time=%0t SW=%b KEY=%b Current_Pos=(%d,%d)", 
+        $monitor("Time=%0t SW=%b KEY=%b Current_State=%d", 
                  $time, SW, KEY, 
-                 uut.drawing_grid.current_x,
-                 uut.drawing_grid.current_y);
+                 uut.combined_module.current_state);
     end
 
     // Instantiate the top module
