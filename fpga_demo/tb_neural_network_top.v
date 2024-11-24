@@ -35,7 +35,6 @@ module tb_neural_network_top;
             // Initial delay after enabling drawing mode
             #200000;
             // Move right and draw
-            // $display("Drawing right movement");
             for(i = 0; i < 3; i = i + 1) begin
                 $display("Right movement %d", i);
                 press_key(4'b0111);  // Press KEY[3] for right
@@ -43,7 +42,6 @@ module tb_neural_network_top;
             end
             
             // Move down and draw
-            // $display("Drawing down movement");
             for(i = 0; i < 3; i = i + 1) begin
                 $display("Down movement %d", i);
                 press_key(4'b1110);  // Press KEY[0] for down
@@ -51,7 +49,6 @@ module tb_neural_network_top;
             end
             
             // Move left and draw
-            // $display("Drawing left movement");
             for(i = 0; i < 3; i = i + 1) begin
                 $display("Left movement %d", i);
                 press_key(4'b1011);  // Press KEY[2] for left
@@ -59,7 +56,6 @@ module tb_neural_network_top;
             end
             
             // Move up and draw
-            // $display("Drawing up movement");
             for(i = 0; i < 3; i = i + 1) begin
                 $display("Up movement %d", i);
                 press_key(4'b1101);  // Press KEY[1] for up
@@ -112,7 +108,7 @@ module tb_neural_network_top;
         #20000 $finish;
     end
 
-    // Enhanced monitoring
+    // Enhanced monitoring for coordinate display
     initial begin
         $monitor("Time=%0t SW=%b KEY=%b Current_Pos=(%d,%d)", 
                  $time, SW, KEY, 
