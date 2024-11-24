@@ -1,7 +1,7 @@
 module mnist_drawing_grid(
     input CLOCK_50,    
     input reset,
-    input [3:0] KEY,      // KEY[0] = down, KEY[1] = up, KEY[2] = left, KEY[3] = right
+    input [3:0] KEY,
     input draw,  
     input on,             
     output wire [15:0] read_addr,
@@ -10,7 +10,7 @@ module mnist_drawing_grid(
     output [7:0] VGA_R, VGA_G, VGA_B,
     output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK,
     output [6:0] HEX0, HEX1, HEX2, HEX3,
-    input [4git:0] led_control
+    output [4:0] led_control
 );
 
     // Grid constants (28x28)
@@ -79,14 +79,14 @@ module mnist_drawing_grid(
             key_reg1 <= 4'hF;
             key_reg2 <= 4'hF;
             key_stable <= 4'hF;
-            for (i = 0; i < 4; i++) begin
+            for (i = 0; i < 4; i = i + 1) begin
                 debounce_counter[i] <= 0;
             end
         end else begin
             key_reg1 <= KEY;
             key_reg2 <= key_reg1;
             
-            for (i = 0; i < 4; i++) begin
+            for (i = 0; i < 4; i = i + 1) begin
                 if (key_reg1[i] != key_stable[i]) begin
                     if (debounce_counter[i] >= DEBOUNCE_LIMIT) begin
                         key_stable[i] <= key_reg1[i];
@@ -102,7 +102,10 @@ module mnist_drawing_grid(
     end
     
     assign key_pressed = ~key_stable & key_reg1;
-
+	 
+	 
+	 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // Memory instantiation
     image_memory img_mem (
         .clk(CLOCK_50),
@@ -111,8 +114,12 @@ module mnist_drawing_grid(
         .read_addr(read_addr),
         .data_in(data_in),
         .write_enable(write_enable),
-        .data_out(data_out)
+        .data_out(data_out),
+        .led_control(led_control)
     );
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
 
     // Memory write control
     assign write_enable = draw && on;
@@ -129,7 +136,7 @@ module mnist_drawing_grid(
     assign mem_y = draw_y[6:2];
 
     // Movement and drawing control
-    always @(posedge CLOCK_50) begin
+    always @(*) begin
         if (reset_f) begin
             current_x <= 5'd14;  // Center of grid
             current_y <= 5'd14;
@@ -145,19 +152,19 @@ module mnist_drawing_grid(
             if (move_delay == 0) begin
                 // Movement control
                 if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin
-                    current_x <= current_x + 1;
+                    current_x <= current_x + 1; // RIGHT
                     move_delay <= DELAY_MAX;
                 end
                 else if (key_pressed[2] && current_x > 0) begin
-                    current_x <= current_x - 1;
+                    current_x <= current_x - 1; // LEFT
                     move_delay <= DELAY_MAX;
                 end
                 else if (key_pressed[1] && current_y > 0) begin
-                    current_y <= current_y - 1;
+                    current_y <= current_y - 1; // // UP
                     move_delay <= DELAY_MAX;
                 end
                 else if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin
-                    current_y <= current_y + 1;
+                    current_y <= current_y + 1; // DOWN
                     move_delay <= DELAY_MAX;
                 end
                 
@@ -175,6 +182,8 @@ module mnist_drawing_grid(
         end
     end
 
+	 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // VGA Drawing FSM
     always @(posedge CLOCK_50) begin
         if (reset_f) begin
@@ -256,7 +265,11 @@ module mnist_drawing_grid(
     // VGA position calculation
     wire [7:0] actual_x = {draw_x[7:2], pixel_x_offset};
     wire [6:0] actual_y = {draw_y[6:2], pixel_y_offset};
-
+	 
+	 
+	 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	 
     // VGA controller instantiation
     vga_adapter VGA (
         .resetn(~reset_f),
@@ -279,8 +292,16 @@ module mnist_drawing_grid(
     defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
     defparam VGA.BACKGROUND_IMAGE = "black.mif";
 
+
+
 endmodule
 
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Hex display module
 module hex_display(
     input [3:0] IN,
@@ -307,3 +328,4 @@ module hex_display(
             default: OUT = 7'b1111111;
         endcase
 endmodule
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
