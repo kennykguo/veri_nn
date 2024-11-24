@@ -21,6 +21,7 @@ module mm1_memory (
     // Write operation (setter)
     always @(posedge clk) begin
         if (write_enable) begin
+            // Memory is written immediately
             memory[write_addr] = data_in;
             // $display("MM1_MEM Time=%0t Writing addr=%d, data=%h", $time, write_addr, data_in);
         end

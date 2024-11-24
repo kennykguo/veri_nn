@@ -1,6 +1,6 @@
 Flow report for neural_network_top
-Fri Nov 15 20:54:01 2024
-Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
+Sun Nov 24 02:13:12 2024
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
 ---------------------
@@ -37,29 +37,29 @@ refer to the applicable agreement for further details.
 
 
 
-+-----------------------------------------------------------------------------------+
-; Flow Summary                                                                      ;
-+---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Fri Nov 15 20:53:54 2024           ;
-; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Standard Edition ;
-; Revision Name                   ; neural_network_top                              ;
-; Top-level Entity Name           ; neural_network_top                              ;
-; Family                          ; Cyclone V                                       ;
-; Device                          ; 5CSEMA5F31C6                                    ;
-; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; 7,568 / 32,070 ( 24 % )                         ;
-; Total registers                 ; 1092                                            ;
-; Total pins                      ; 19 / 457 ( 4 % )                                ;
-; Total virtual pins              ; 0                                               ;
-; Total block memory bits         ; 11,392 / 4,065,280 ( < 1 % )                    ;
-; Total DSP Blocks                ; 24 / 87 ( 28 % )                                ;
-; Total HSSI RX PCSs              ; 0                                               ;
-; Total HSSI PMA RX Deserializers ; 0                                               ;
-; Total HSSI TX PCSs              ; 0                                               ;
-; Total HSSI PMA TX Serializers   ; 0                                               ;
-; Total PLLs                      ; 0 / 6 ( 0 % )                                   ;
-; Total DLLs                      ; 0 / 4 ( 0 % )                                   ;
-+---------------------------------+-------------------------------------------------+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Sun Nov 24 02:12:47 2024       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; neural_network_top                          ;
+; Top-level Entity Name           ; neural_network_top                          ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CSEMA5F31C6                                ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 8,011 / 32,070 ( 25 % )                     ;
+; Total registers                 ; 1265                                        ;
+; Total pins                      ; 96 / 457 ( 21 % )                           ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 68,992 / 4,065,280 ( 2 % )                  ;
+; Total DSP Blocks                ; 22 / 87 ( 25 % )                            ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 1 / 6 ( 17 % )                              ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/15/2024 20:50:09 ;
+; Start date & time ; 11/24/2024 02:06:38 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; neural_network_top  ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 84486698163371.173172180804416         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 235413628862255.173243199728364        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -93,11 +93,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 5007 MB             ; 00:00:16                           ;
-; Fitter               ; 00:03:26     ; 1.2                     ; 8039 MB             ; 00:15:15                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 4922 MB             ; 00:00:05                           ;
-; Timing Analyzer      ; 00:00:06     ; 5.4                     ; 5457 MB             ; 00:00:23                           ;
-; Total                ; 00:03:48     ; --                      ; --                  ; 00:15:59                           ;
+; Analysis & Synthesis ; 00:00:22     ; 1.0                     ; 5038 MB             ; 00:00:19                           ;
+; Fitter               ; 00:05:34     ; 1.1                     ; 7168 MB             ; 00:05:41                           ;
+; Assembler            ; 00:00:08     ; 1.0                     ; 4928 MB             ; 00:00:08                           ;
+; Timing Analyzer      ; 00:00:24     ; 2.0                     ; 5386 MB             ; 00:00:33                           ;
+; Total                ; 00:06:28     ; --                      ; --                  ; 00:06:41                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -106,10 +106,10 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; BA3145WS18       ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; BA3145WS18       ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; BA3145WS18       ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; BA3145WS18       ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; DESKTOP-P0KEPS2  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; DESKTOP-P0KEPS2  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-P0KEPS2  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; DESKTOP-P0KEPS2  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 

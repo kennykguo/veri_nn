@@ -12,8 +12,8 @@ module neural_network (
     output reg [3:0] next_state,
     output wire [3:0] argmax_output
 );
-// Double check that modules align with no_vga code
 
+    // Double check that modules align with no_vga code
     // Memory addresses for weights and inputs
     wire [15:0] input_addr, weight1_addr, weight2_addr, weight3_addr, weight4_addr;
     

@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/admin/Desktop/veri_nn/fpga_demo/ModelSim
 vargmax
-Z1 !s110 1732387782
+Z1 !s110 1732430674
 !i10b 1
 !s100 fH6`EhDkOSIlQQL47Z6581
 IB=9`S_UC]M@]R2XCV[E`o1
@@ -23,20 +23,20 @@ Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1732387782.000000
+Z4 !s108 1732430674.000000
 !s107 ../argmax.v|
 !s90 -reportprogress|300|-work|work|../argmax.v|
 !i113 1
 Z5 o-work work
 Z6 tCvgOpt 0
 vclock_divider
-Z7 !s110 1732387783
+Z7 !s110 1732430675
 !i10b 1
-!s100 ?:jegZP@G?GhFcmjfl`WL1
-IfZ=DP2[cf5nH2k2dTZ67l3
+!s100 21S8DF3JP@[hPS>DTPAP^0
+I7e<FX@z[gPe0f<Fn]J=;e2
 R2
 R0
-Z8 w1732342127
+w1732423936
 8../clock_divider.v
 F../clock_divider.v
 L0 1
@@ -44,7 +44,7 @@ R3
 r1
 !s85 0
 31
-Z9 !s108 1732387783.000000
+Z8 !s108 1732430675.000000
 !s107 ../clock_divider.v|
 !s90 -reportprogress|300|-work|work|../clock_divider.v|
 !i113 1
@@ -53,32 +53,32 @@ R6
 vhex_display
 R1
 !i10b 1
-!s100 d`eHgGdNlLEEGh6e8<3HG3
-Ii0Pc2hDg8J@W[:UPMS5X42
+!s100 F_O;N6k4d@7NfT9Dk^5Q73
+IG7M2:_H92oA]_a]@9EALJ0
 R2
 R0
-Z10 w1732386356
-Z11 8../mnist_drawing_grid.v
-Z12 F../mnist_drawing_grid.v
-L0 395
+Z9 w1732430227
+Z10 8../mnist_drawing_grid.v
+Z11 F../mnist_drawing_grid.v
+L0 204
 R3
 r1
 !s85 0
 31
 R4
-Z13 !s107 ../mnist_drawing_grid.v|
-Z14 !s90 -reportprogress|300|-work|work|../mnist_drawing_grid.v|
+Z12 !s107 ../mnist_drawing_grid.v|
+Z13 !s90 -reportprogress|300|-work|work|../mnist_drawing_grid.v|
 !i113 1
 R5
 R6
 vimage_memory
 R7
 !i10b 1
-!s100 ]TUVmJB6m9`a2=FGU6ozG1
-I704[QBBniZS?Y_6k]A`9;2
+!s100 8^_RCPWC825hYdJBTG_OO0
+IM=CJ2D]ZW=`?koIjB5NG43
 R2
 R0
-w1732385941
+w1732430114
 8../image_memory.v
 F../image_memory.v
 L0 1
@@ -86,7 +86,7 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../image_memory.v|
 !s90 -reportprogress|300|-work|work|../image_memory.v|
 !i113 1
@@ -99,7 +99,7 @@ R1
 Im>^jUMR:gen`ilJ4C:>^T3
 R2
 R0
-R8
+Z14 w1732342127
 8../matrix1.v
 F../matrix1.v
 L0 1
@@ -120,7 +120,7 @@ R1
 IIAVnA@cP60Y[BD_3_K0320
 R2
 R0
-R8
+R14
 8../matrix2.v
 F../matrix2.v
 L0 1
@@ -135,13 +135,13 @@ R4
 R5
 R6
 vmatrix3
-R1
+R7
 !i10b 1
 !s100 7>PdDF^SO7I7I@<3bPZ>11
 IzO?BSYR8cOJzI]c2nAN5A2
 R2
 R0
-R8
+R14
 8../matrix3.v
 F../matrix3.v
 L0 1
@@ -149,20 +149,20 @@ R3
 r1
 !s85 0
 31
-R4
+R8
 !s107 ../matrix3.v|
 !s90 -reportprogress|300|-work|work|../matrix3.v|
 !i113 1
 R5
 R6
 vmatrix4
-R1
+R7
 !i10b 1
 !s100 g<mhU1EK]9N]IbE@Ab@ij1
 I>`aHL`k5=BNNX3K;PbGXK1
 R2
 R0
-R8
+R14
 8../matrix4.v
 F../matrix4.v
 L0 1
@@ -170,7 +170,7 @@ R3
 r1
 !s85 0
 31
-R4
+R8
 !s107 ../matrix4.v|
 !s90 -reportprogress|300|-work|work|../matrix4.v|
 !i113 1
@@ -179,11 +179,11 @@ R6
 vmatrix_multiply
 R1
 !i10b 1
-!s100 M5<G1F>GDoiE]d?mQ>9;`0
-I4=3Yd@G9>XKSI[JJzI`4[1
+!s100 MkfBI2H3RSY8?ecZWR6fT2
+IbOjOO?VT:I06DET=P:?mT1
 R2
 R0
-w1732387774
+w1732420002
 8../matrix_multiply.v
 F../matrix_multiply.v
 L0 1
@@ -198,13 +198,13 @@ R4
 R5
 R6
 vmm1_memory
-R1
+R7
 !i10b 1
-!s100 SSjTZml8>nMo4_QXn;7dN0
-I3HgjZ27f`VH0>;Jn0gOjc2
+!s100 0K6jIBj:0zM<jWV[ib0:_1
+II_cl;cAm`SDo2ghgG6P;W2
 R2
 R0
-w1732342790
+w1732424579
 8../mm1_memory.v
 F../mm1_memory.v
 L0 1
@@ -212,14 +212,14 @@ R3
 r1
 !s85 0
 31
-R4
+R8
 !s107 ../mm1_memory.v|
 !s90 -reportprogress|300|-work|work|../mm1_memory.v|
 !i113 1
 R5
 R6
 vmm2_memory
-R1
+R7
 !i10b 1
 !s100 YRYTQHm^RGWSnA08N4m3a1
 IS5;gzD3bCV2@T]WW]hJ:X2
@@ -233,14 +233,14 @@ R3
 r1
 !s85 0
 31
-R4
+R8
 !s107 ../mm2_memory.v|
 !s90 -reportprogress|300|-work|work|../mm2_memory.v|
 !i113 1
 R5
 R6
 vmm3_memory
-R1
+R7
 !i10b 1
 !s100 4MfX2Yz`fQk5lie;UAT3=3
 I47QZ`Rcd_>KjmQ5XMB`nn1
@@ -254,7 +254,7 @@ R3
 r1
 !s85 0
 31
-R4
+R8
 !s107 ../mm3_memory.v|
 !s90 -reportprogress|300|-work|work|../mm3_memory.v|
 !i113 1
@@ -275,7 +275,7 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../mm4_memory.v|
 !s90 -reportprogress|300|-work|work|../mm4_memory.v|
 !i113 1
@@ -284,32 +284,32 @@ R6
 vmnist_drawing_grid
 R1
 !i10b 1
-!s100 bK5Q58:0fL82Qn374;0iU3
-IzeE5GHRbNXP8FYFMK4JU^3
+!s100 <XjbT^]Z>D_NQj;QH9UF91
+I@YUQmJ_RgCCn;SH[hC96I0
 R2
 R0
+R9
 R10
 R11
-R12
 L0 1
 R3
 r1
 !s85 0
 31
 R4
+R12
 R13
-R14
 !i113 1
 R5
 R6
 vneural_network
-Z15 !s110 1732387781
+R1
 !i10b 1
-!s100 42gZUV@P;z]aX9h<:W7YL0
-IO<R9X3==i:SH_e5>FBN5F3
+!s100 [JbM5LCgLM7EznN3a?OgM2
+IS9<eFO]J?W>F_]]JfBH1T1
 R2
 R0
-w1732384281
+w1732422069
 8../neural_network.v
 F../neural_network.v
 L0 1
@@ -317,20 +317,20 @@ R3
 r1
 !s85 0
 31
-Z16 !s108 1732387781.000000
+R4
 !s107 ../neural_network.v|
 !s90 -reportprogress|300|-work|work|../neural_network.v|
 !i113 1
 R5
 R6
 vneural_network_top
-R15
+R1
 !i10b 1
-!s100 KU[b7Ncl_D>9Ro<5@ZK>21
-I3i9^mg1E2?S0jQjAW8]nc3
+!s100 ?`g5HEY9mnW_?hkg3E>Q]1
+IM:JY`gMd_b@fP_N2WUXMa3
 R2
 R0
-w1732384864
+w1732426252
 8../neural_network_top.v
 F../neural_network_top.v
 L0 1
@@ -338,7 +338,7 @@ R3
 r1
 !s85 0
 31
-R16
+R4
 !s107 ../neural_network_top.v|
 !s90 -reportprogress|300|-work|work|../neural_network_top.v|
 !i113 1
@@ -351,7 +351,7 @@ R7
 I51NaI3Di?Xz2OA091XM4C1
 R2
 R0
-R8
+R14
 8../object_mem.v
 F../object_mem.v
 L0 39
@@ -359,30 +359,9 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../object_mem.v|
 !s90 -reportprogress|300|-work|work|../object_mem.v|
-!i113 1
-R5
-R6
-vps2_keyboard
-R1
-!i10b 1
-!s100 ^@RhJcNQT=:jR_k5gW73Y3
-IO:2=KX^@k3OP:<^BLVHi53
-R2
-R0
-R10
-R11
-R12
-L0 297
-R3
-r1
-!s85 0
-31
-R4
-R13
-R14
 !i113 1
 R5
 R6
@@ -422,7 +401,7 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../relu1_memory.v|
 !s90 -reportprogress|300|-work|work|../relu1_memory.v|
 !i113 1
@@ -443,7 +422,7 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../relu2_memory.v|
 !s90 -reportprogress|300|-work|work|../relu2_memory.v|
 !i113 1
@@ -464,20 +443,20 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../relu3_memory.v|
 !s90 -reportprogress|300|-work|work|../relu3_memory.v|
 !i113 1
 R5
 R6
 vtb_neural_network_top
-R15
+R1
 !i10b 1
-!s100 RUR??CG9;:;968H7KD=]]1
-I;OOSaXJ7YAlj;B=K=kb?S0
+!s100 V>[QzXPH3U`fXSK7@jaVc0
+Ia8egGD13Ej?d=mkC2o`@b2
 R2
 R0
-w1732384873
+w1732430338
 8../tb_neural_network_top.v
 F../tb_neural_network_top.v
 L0 3
@@ -485,7 +464,7 @@ R3
 r1
 !s85 0
 31
-R16
+R4
 !s107 ../tb_neural_network_top.v|
 !s90 -reportprogress|300|-work|work|../tb_neural_network_top.v|
 !i113 1
@@ -498,7 +477,7 @@ R7
 Il^]K8MKEbO7I6hJT=m[f70
 R2
 R0
-R8
+R14
 8../vga_adapter/vga_adapter.v
 F../vga_adapter/vga_adapter.v
 L0 51
@@ -506,7 +485,7 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../vga_adapter/vga_adapter.v|
 !s90 -reportprogress|300|-work|work|../vga_adapter/vga_adapter.v|
 !i113 1
@@ -519,7 +498,7 @@ R7
 I1D@b?896N3GL=eDHOE0EN0
 R2
 R0
-R8
+R14
 8../vga_adapter/vga_address_translator.v
 F../vga_adapter/vga_address_translator.v
 L0 4
@@ -527,7 +506,7 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../vga_adapter/vga_address_translator.v|
 !s90 -reportprogress|300|-work|work|../vga_adapter/vga_address_translator.v|
 !i113 1
@@ -540,7 +519,7 @@ R7
 Ik<E?[?6WFAoU;4ZBFmW:j3
 R2
 R0
-R8
+R14
 8../vga_adapter/vga_controller.v
 F../vga_adapter/vga_controller.v
 L0 8
@@ -548,7 +527,7 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../vga_adapter/vga_controller.v|
 !s90 -reportprogress|300|-work|work|../vga_adapter/vga_controller.v|
 !i113 1
@@ -561,7 +540,7 @@ R7
 I_cE<W1Q0L;bND7GLmRg4C2
 R2
 R0
-R8
+R14
 8../vga_adapter/vga_pll.v
 F../vga_adapter/vga_pll.v
 L0 36
@@ -569,7 +548,7 @@ R3
 r1
 !s85 0
 31
-R9
+R8
 !s107 ../vga_adapter/vga_pll.v|
 !s90 -reportprogress|300|-work|work|../vga_adapter/vga_pll.v|
 !i113 1

@@ -3,29 +3,36 @@ module image_memory (
     input wire reset,
     input wire [15:0] write_addr,    // Address for writing
     input wire [15:0] read_addr,     // Address for reading
-    input wire signed [31:0] data_in,
-    input wire write_enable,
-    output reg signed [31:0] data_out
+    input wire signed [31:0] data_in, // In from another module
+    input wire write_enable, // In from another module
+    output reg signed [31:0] data_out // Out to another module
 );
     reg signed [31:0] memory [0:783];  // 32-bit values for 784 pixels
 
-    // Read operation (getter)
-    always @(*) begin
-        data_out = memory[read_addr];
-    end
+
 
     // Write operation (setter) with synchronous reset
     integer i;
+
     always @(posedge clk) begin
+        // Reset takes highest priority
         if (reset) begin
             for (i = 0; i < 784; i = i + 1) begin
                 memory[i] <= 32'h00000000;
             end
         end
+
+        // Has to be a non-blocking assignment - asynchronous
+        // Only active when write_enable is ON
         else if (write_enable) begin
             memory[write_addr] <= data_in;
-            $display("Memory Write: Address = %d, Data = %d, Write Enable = %b", write_addr, data_in, write_enable);
+            // $display("Memory Write: Address = %d, Data = %d, Write Enable = %b", write_addr, data_in, write_enable);
         end
+    end
+
+    // Read operation (getter)
+    always @(*) begin
+        data_out = memory[read_addr];
     end
 
 endmodule

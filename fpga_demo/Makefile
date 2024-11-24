@@ -1,4 +1,3 @@
-
 #verilator needs this to run
 export VERILATOR_ROOT := verilator
 

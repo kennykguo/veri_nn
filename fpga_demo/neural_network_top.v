@@ -2,10 +2,12 @@ module neural_network_top (
     input CLOCK_50,
     input [3:0] KEY,
     input [9:0] SW,
-    input PS2_CLK,
-    input PS2_DAT,
+    // input PS2_CLK,
+    // input PS2_DAT,
+    // VGA outputs
     output [7:0] VGA_R, VGA_G, VGA_B,
     output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK,
+    // LED displays
     output [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5,
     output [9:0] LEDR
 );
@@ -13,11 +15,12 @@ module neural_network_top (
     // Internal signals     
     wire clk_slow; // Slower clock goes into nn FSM    
     wire start; // Starts sequence     
-    wire resetn;  
-    // Drawing grid signals         
-    wire on;
-	wire draw;
-    wire done;            
+    wire resetn; // Active-low reset
+
+    // Drawing grid signals 
+    wire on; // Turns on the grid
+	wire draw; // Starts drawing
+    wire done; // Done signal indicating done forward pass
 
     // Memory interface signals (interfaces with image module instantiated in drawing grid module)
     wire [15:0] image_read_addr;
@@ -32,14 +35,14 @@ module neural_network_top (
     clock_divider clk_div (
          .clk_in(CLOCK_50),
          .clk_out(clk_slow),
-         .DIVISOR(32'd500)
+         .DIVISOR(32'd4)
     );
 	  
     // Control signal assignments
+    assign on = SW[0];         // Drawing grid enable
+    assign draw = SW[1];      // Turn on to start drawing
     assign start = SW[2];    // Press to start (high)
     assign resetn = ~SW[9];    // ON to stop reset
-    assign on = SW[0];         // Drawing grid enable
-    assign draw = SW[1];
 
     // Debug LEDs
     assign LEDR[9] = start;
@@ -50,8 +53,9 @@ module neural_network_top (
     mnist_drawing_grid drawing_grid (
         .CLOCK_50(CLOCK_50),
         .reset(resetn),
-        .PS2_CLK(PS2_CLK),
-        .PS2_DAT(PS2_DAT),
+        // .PS2_CLK(PS2_CLK),
+        // .PS2_DAT(PS2_DAT),
+        .KEY(KEY),
         .draw(draw),
         .on(on),
         .read_addr(image_read_addr),    
@@ -72,10 +76,11 @@ module neural_network_top (
     );
 
 
+/// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // Double check this module, and its submodules align with previous implementation (no_vga)
     // Neural network instance
     neural_network nn (
-        .clk(CLOCK_50),
+        .clk(clk_slow),
         .resetn(resetn),
         .start(start),
 
@@ -88,16 +93,16 @@ module neural_network_top (
         .next_state(next_state),
         .argmax_output(argmax_output)
     );
-
+/// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	 
 	 
 	 
     // Seven segment decoder logic
     reg [6:0] seg7_display;
     assign HEX0 = seg7_display;
-
     // Changed to CLOCK_50 from *
-    always @(posedge CLOCK_50 and posedge resetn) begin
+    // Safer to update on internal clock_edge
+    always @(posedge CLOCK_50 or posedge resetn) begin
         if (resetn) begin
             seg7_display = 7'b1111111;
         end else begin
