@@ -4,13 +4,19 @@ module mnist_drawing_grid(
     input PS2_CLK,        
     input PS2_DAT,      
     input draw,  
-    input on,             
-    output wire [15:0] read_addr,     // Changed to output since grid generates addresses
-    output wire signed [31:0] data_out,  // Output for pixel data
+    input on,
+    // Memory write interface             
+    output reg [15:0] write_addr,    
+    output reg [31:0] data_write,    
+    output reg write_enable,
+    // Memory read interface
+    output reg [15:0] read_addr,     
+    input [31:0] data_read,
+    // Display outputs
     output [7:0] VGA_R, VGA_G, VGA_B,
     output VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_CLK,
     output [6:0] HEX0, HEX1, HEX2, HEX3,
-    input [4:0] led_control
+    output reg [4:0] led_control
 );
 
     // Grid constants (28x28)
@@ -56,22 +62,6 @@ module mnist_drawing_grid(
     // State registers
     reg [2:0] draw_state;
     reg [2:0] move_state;
-
-    // Memory interface signals
-    wire [15:0] write_addr;
-    reg signed [31:0] data_in;
-    reg write_enable;
-
-    // Instantiate image_memory module
-    image_memory img_mem (
-        .clk(CLOCK_50),
-        .reset(reset),
-        .write_addr(write_addr),
-        .read_addr(read_addr),
-        .data_in(data_in),
-        .write_enable(write_enable),
-        .data_out(data_out)
-    );
     
     // Reset synchronizer
     reg reset_sync1, reset_sync2;
@@ -102,7 +92,6 @@ module mnist_drawing_grid(
     assign write_addr = current_y * GRID_SIZE + current_x;
     assign mem_x = draw_x[7:2];  // Convert display coordinates to grid coordinates
     assign mem_y = draw_y[6:2];
-    // assign read_addr = mem_y * GRID_SIZE + mem_x;
 
     // Initialize registers
     initial begin
@@ -110,7 +99,7 @@ module mnist_drawing_grid(
         reset_sync1 = 1'b1;
         reset_sync2 = 1'b1;
         write_enable = 1'b0;
-        data_in = 32'd0;
+        data_write = 32'd0;
         current_x = 5'd0;
         current_y = 5'd0;
         move_delay = 20'd0;
@@ -120,6 +109,13 @@ module mnist_drawing_grid(
         draw_y = 7'd0;
         pixel_x_offset = 2'b00;
         pixel_y_offset = 2'b00;
+        read_addr = 16'd0;
+        led_control = 5'd0;
+    end
+    
+    // Memory read address control
+    always @* begin
+        read_addr = mem_y * GRID_SIZE + mem_x;
     end
     
     always @(posedge CLOCK_50) begin
@@ -129,13 +125,12 @@ module mnist_drawing_grid(
             move_delay <= 20'd0;
             move_state <= INIT;
             write_enable <= 1'b0;
-            data_in <= 32'd0;
+            data_write <= 32'd0;
         end
         else begin
-            // Default state - ensure write_enable is 0 when on=0 or draw=0
             write_enable <= 1'b0;
             
-            if (on) begin // Only process logic when on=1
+            if (on) begin
                 case(move_state)
                     INIT: begin
                         current_x <= 5'd0;
@@ -174,10 +169,9 @@ module mnist_drawing_grid(
                                 endcase
                             end
                             
-                            // Only enable writing when both on and draw are 1
                             if (draw) begin
                                 write_enable <= 1'b1;
-                                data_in <= 32'sd1;
+                                data_write <= 32'sd1;
                             end
                         end
                         else begin
@@ -190,7 +184,6 @@ module mnist_drawing_grid(
             end
         end
     end
-
 
     // Drawing FSM with synchronous reset
     always @(posedge CLOCK_50) begin
@@ -254,7 +247,7 @@ module mnist_drawing_grid(
 
     // Color output logic
     wire is_cursor = (mem_x == current_x && mem_y == current_y);
-    wire is_pixel_set = (data_out != 32'sd0);
+    wire is_pixel_set = (data_read != 32'sd0);
     
     reg [2:0] colour_out;
     always @(posedge CLOCK_50) begin
@@ -278,7 +271,7 @@ module mnist_drawing_grid(
         .colour(colour_out),
         .x(actual_x),
         .y(actual_y),
-        .plot(plot),    // Add the missing plot signal
+        .plot(plot),
         .VGA_R(VGA_R), 
         .VGA_G(VGA_G),
         .VGA_B(VGA_B),
@@ -292,9 +285,6 @@ module mnist_drawing_grid(
     defparam VGA.MONOCHROME = "FALSE";
     defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
     defparam VGA.BACKGROUND_IMAGE = "black.mif";
-
-    // LED output (optional debug)
-    // assign LEDR = {write_enable, current_x[4:0], current_y[3:0]};
 
 endmodule
 
