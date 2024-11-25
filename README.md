@@ -1,5 +1,7 @@
 # Neural Network in Verilog - MNIST Classifier Implementation on DE1-SoC
-
+![Verilog](https://img.shields.io/badge/Code-Verilog-blue?logo=verilog&logoColor=white&style=for-the-badge)  
+![PyTorch](https://img.shields.io/badge/Framework-PyTorch-red?logo=pytorch&logoColor=white&style=for-the-badge)  
+![Intel Quartus](https://img.shields.io/badge/Tool-Intel%20Quartus-blue?logo=intel&logoColor=white&style=for-the-badge)  
 This project demonstrates a fully functional neural network implemented in Verilog to classify handwritten digits from the MNIST dataset. The design is deployed on an Altera DE1-SoC FPGA board, utilizing PyTorch-trained weights that are quantized and integrated into the hardware.
 
 ---
