@@ -3,53 +3,53 @@ This project implements a fully functional neural network designed for classifyi
 
 
 ## Features
-# 4-Layer Neural Network:
+### 4-Layer Neural Network:
 Input: 784 features (28x28 image pixels).
 Layers: Fully connected layers with ReLU activation.
 Output: 10-class probability distribution (digits 0–9).
 
-# State Machine:
+### State Machine:
 Manages layer execution (matrix multiplication, ReLU, and argmax operations).
 Implements an efficient pipeline for sequential processing of neural network layers.
 
-# Visualization:
+### Visualization:
 VGA output for displaying interactive drawing grids.
 Allows users to draw test images and view the neural network's predictions in real time.
 
-# User Interaction:
+### User Interaction:
 Push-button controls for navigating and drawing on a 28x28 grid.
 Seven-segment display outputs for displaying classification results.
 
 
 
 ## System Architecture
-# Neural Network Core:
+### Neural Network Core:
 Sequential execution of:
 Matrix multiplication (fully connected layers).
 ReLU activation functions.
 Argmax for prediction.
 
-# Memory Management:
+### Memory Management:
 Separate memory blocks for:
 Input image data.
 Weights of each layer.
 Intermediate results for matrix multiplications and activations.
 
-# Drawing Grid:
+### Drawing Grid:
 Users can draw digits on a 28x28 grid using arrow keys.
 The drawn image is processed through the neural network for classification.
 
 
 ## Training and Deployment Workflow
-# Training in PyTorch:
+### Training in PyTorch:
 The neural network is first trained on the MNIST dataset in PyTorch.
 Weights are quantized to 32-bit signed integers for compatibility with Verilog.
 Weight Export:
 
-# Quantized weights are exported to .mif (memory initialization file) format.
+### Quantized weights are exported to .mif (memory initialization file) format.
 Imported into the FPGA's memory during synthesis.
 
-# FPGA Implementation:
+### FPGA Implementation:
 Verilog modules implement core operations (matrix multiplication, ReLU, and argmax).
 Synthesis and deployment are performed using Intel Quartus Prime.
 
