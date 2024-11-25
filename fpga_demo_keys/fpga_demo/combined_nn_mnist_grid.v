@@ -351,9 +351,9 @@ module combined_nn_mnist_grid (
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-// ---------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // Existing mnist_drawing_grid declarations and logic
-// ---------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // Grid constants (28x28)
     parameter GRID_SIZE = 28;
@@ -492,26 +492,26 @@ module combined_nn_mnist_grid (
                     current_x <= current_x + 1;
                     move_delay <= DELAY_MAX;
                 end
-                else if (key_pressed[3                                                              ] && current_x > 0) begin
+            else if (key_pressed[3] && current_x > 0) begin
                     current_x <= current_x - 1;
                     move_delay <= DELAY_MAX;
                 end
-                else if (key_pressed[1] && current_y > 0) begin
-                    current_y <= current_y - 1;
-                    move_delay <= DELAY_MAX;
-                end
-                else if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin
-                    current_y <= current_y + 1;
-                    move_delay <= DELAY_MAX;
-                end
+            else if (key_pressed[1] && current_y > 0) begin
+                current_y <= current_y - 1;
+                move_delay <= DELAY_MAX;
+            end
+            else if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin
+                current_y <= current_y + 1;
+                move_delay <= DELAY_MAX;
+            end
                 
-                // Drawing control
-                if (draw) begin
-                    draw_data_in <= 32'sd1;
-                    pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
-                end else begin
-                    draw_data_in <= 32'sd0;
-                end
+            // Drawing control
+            if (draw) begin
+                draw_data_in <= 32'sd1;
+                pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
+            end else begin
+                draw_data_in <= 32'sd0;
+            end
             end
             else begin
                 move_delay <= move_delay - 1;
@@ -647,7 +647,6 @@ module combined_nn_mnist_grid (
         .led_control(led_control)
     );
 // ---------------------------------------------------------------------------   
-
 endmodule
 
 // Hex display module

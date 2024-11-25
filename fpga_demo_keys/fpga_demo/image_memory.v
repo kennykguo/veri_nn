@@ -3,9 +3,9 @@ module image_memory (
     input wire reset,
     input wire [15:0] write_addr,    // Address for writing
     input wire [15:0] read_addr,     // Address for reading
-    input wire signed [31:0] data_in, // Data input
+    input wire signed [31:0] data_in, // Data input in
     input wire write_enable,          // Write enable signal
-    output reg signed [31:0] data_out, // Data output
+    output reg signed [31:0] data_out, // Data output out
     output reg [3:0] led_control     // LED control for the four corners
 );
 
@@ -28,7 +28,6 @@ module image_memory (
 
         // Initialize the corner LEDs to all OFF
         corner_leds = 4'b0000;
-
         // Check each corner of the memory and set the corresponding LED if non-zero
         if (memory[0] == 32'h00000001)         corner_leds[0] = 1; // Top-left corner
         if (memory[28] == 32'h00000001)        corner_leds[1] = 1; // Top-right corner

@@ -9,7 +9,6 @@ module neural_network_top (
 );
 
     // Internal signals     
-    // wire clk_slow; // Slower clock goes into nn FSM    
     wire start; // Starts sequence     
     wire resetn; // Active-low reset
     
