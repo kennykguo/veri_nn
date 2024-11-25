@@ -220,6 +220,7 @@ module combined_nn_mnist_grid (
     );
     argmax argmax_op(
         .clk(clk),
+        .resetn(reset),
         .start(start_argmax),
         .size(16'd10),
         .addr(mm4_read_addr),
@@ -241,7 +242,7 @@ module combined_nn_mnist_grid (
 
     // State transitions
     always @(posedge clk or posedge reset) begin
-        if (!reset) begin
+        if (reset) begin
             current_state <= IDLE;
         end else begin
             current_state <= next_state;
@@ -249,7 +250,7 @@ module combined_nn_mnist_grid (
     end
 
     // State machine control logic
-    always @(*) begin
+    always @(posedge clk) begin
         start_mm1 = 0;
         start_relu1 = 0;
         start_mm2 = 0;
@@ -349,27 +350,6 @@ module combined_nn_mnist_grid (
 // ---------------------------------------------------------------------------   
 
 
-
-// ---------------------------------------------------------------------------   
-    image_memory img_mem (
-        .clk(clk),
-        .reset(reset_f),
-        .write_addr(draw_write_addr),
-        .read_addr(image_addr),
-        .data_in(draw_data_in),
-        .write_enable(write_enable),
-        .data_out(image_data),
-        .led_control(led_control)
-    );
-    // Grid memory signals
-    wire [15:0] draw_write_addr;
-    assign draw_write_addr = current_y * GRID_SIZE + current_x;
-    reg signed [31:0] draw_data_in;
-    wire write_enable;
-    assign write_enable = draw && on;
-// ---------------------------------------------------------------------------   
-
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // ---------------------------------------------------------------------------
 // Existing mnist_drawing_grid declarations and logic
@@ -378,31 +358,46 @@ module combined_nn_mnist_grid (
     // Grid constants (28x28)
     parameter GRID_SIZE = 28;
     parameter PIXEL_SIZE = 4;
+
     // State definitions
     parameter INIT = 3'b000;
     parameter DRAW_GRID = 3'b001;
     parameter MOVE = 3'b010;
+
     // Wire declarations for coordinate conversion
     wire [5:0] mem_x;
     wire [4:0] mem_y;
+
     // Cursor position registers
     reg [4:0] current_x;
     reg [4:0] current_y;
+
     // Movement and debounce control
     reg [19:0] move_delay;
     reg [19:0] debounce_counter [3:0];
     parameter DELAY_MAX = 20'd1000000;
     parameter DEBOUNCE_LIMIT = 20'd50000;
+
     // Drawing control
     reg plot;
     reg [7:0] draw_x;
     reg [6:0] draw_y;
+
     // Inner pixel drawing control
     reg [1:0] pixel_x_offset;
     reg [1:0] pixel_y_offset;
+    
     // State registers
     reg [2:0] draw_state;
     reg [2:0] move_state;
+
+    // Grid memory signals
+    wire [15:0] draw_write_addr;
+    assign draw_write_addr = current_y * GRID_SIZE + current_x;
+
+    reg signed [31:0] draw_data_in;
+    wire write_enable;
+    assign write_enable = draw && on;
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 
@@ -421,7 +416,7 @@ module combined_nn_mnist_grid (
     reg [783:0] pixel_memory;
 
     // Synchronize reset
-    always @(posedge CLOCK_50) begin
+    always @(posedge clk) begin
         reset_sync <= {reset_sync[1:0], reset};
     end
     assign reset_f = reset_sync[2];
@@ -432,19 +427,19 @@ module combined_nn_mnist_grid (
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // Enhanced key debouncing
     integer i;
-    always @(posedge CLOCK_50) begin
+    always @(posedge clk) begin
         if (reset_f) begin
             key_reg1 <= 4'hF;
             key_reg2 <= 4'hF;
             key_stable <= 4'hF;
-            for (i = 0; i < 4; i++) begin
+            for (i = 0; i < 4; i = i + 1) begin
                 debounce_counter[i] <= 0;
             end
         end else begin
             key_reg1 <= KEY;
             key_reg2 <= key_reg1;
             
-            for (i = 0; i < 4; i++) begin
+            for (i = 0; i < 4; i = i + 1) begin
                 if (key_reg1[i] != key_stable[i]) begin
                     if (debounce_counter[i] >= DEBOUNCE_LIMIT) begin
                         key_stable[i] <= key_reg1[i];
@@ -478,7 +473,7 @@ module combined_nn_mnist_grid (
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // Movement and drawing control
-    always @(posedge CLOCK_50) begin
+    always @(posedge clk) begin
         if (reset_f) begin
             current_x <= 5'd14;  // Center of grid
             current_y <= 5'd14;
@@ -493,11 +488,11 @@ module combined_nn_mnist_grid (
         else if (on) begin
             if (move_delay == 0) begin
                 // Movement control
-                if (key_pressed[3] && current_x < (GRID_SIZE-1)) begin
+                if (key_pressed[2] && current_x < (GRID_SIZE-1)) begin
                     current_x <= current_x + 1;
                     move_delay <= DELAY_MAX;
                 end
-                else if (key_pressed[2] && current_x > 0) begin
+                else if (key_pressed[3                                                              ] && current_x > 0) begin
                     current_x <= current_x - 1;
                     move_delay <= DELAY_MAX;
                 end
@@ -529,7 +524,7 @@ module combined_nn_mnist_grid (
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // VGA Drawing FSM
-    always @(posedge CLOCK_50) begin
+    always @(posedge clk) begin
         if (reset_f) begin
             draw_x <= 8'd0;
             draw_y <= 7'd0;
@@ -595,7 +590,7 @@ module combined_nn_mnist_grid (
     wire is_cursor = (mem_x == current_x && mem_y == current_y);
     wire is_pixel_set = pixel_memory[mem_y * GRID_SIZE + mem_x];
     reg [2:0] colour_out;
-    always @(posedge CLOCK_50) begin
+    always @(posedge clk) begin
         if (reset_f) begin
             colour_out <= 3'b001;  // Default background color
         end
@@ -619,7 +614,7 @@ module combined_nn_mnist_grid (
     // VGA controller instantiation
     vga_adapter VGA (
         .resetn(~reset_f),
-        .clock(CLOCK_50),
+        .clock(clk),
         .colour(colour_out),
         .x(actual_x),
         .y(actual_y),
@@ -638,4 +633,46 @@ module combined_nn_mnist_grid (
     defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
     defparam VGA.BACKGROUND_IMAGE = "black.mif";
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+// ---------------------------------------------------------------------------   
+    image_memory img_mem (
+        .clk(clk),
+        .reset(reset_f),
+        .write_addr(draw_write_addr),
+        .read_addr(image_addr),
+        .data_in(draw_data_in),
+        .write_enable(write_enable),
+        .data_out(image_data),
+        .led_control(led_control)
+    );
+// ---------------------------------------------------------------------------   
+
+endmodule
+
+// Hex display module
+module hex_display(
+    input [3:0] IN,
+    output reg [6:0] OUT
+);
+    always @(*)
+        case (IN)
+            4'h0: OUT = 7'b1000000;
+            4'h1: OUT = 7'b1111001;
+            4'h2: OUT = 7'b0100100;
+            4'h3: OUT = 7'b0110000;
+            4'h4: OUT = 7'b0011001;
+            4'h5: OUT = 7'b0010010;
+            4'h6: OUT = 7'b0000010;
+            4'h7: OUT = 7'b1111000;
+            4'h8: OUT = 7'b0000000;
+            4'h9: OUT = 7'b0010000;
+            4'hA: OUT = 7'b0001000;
+            4'hB: OUT = 7'b0000011;
+            4'hC: OUT = 7'b1000110;
+            4'hD: OUT = 7'b0100001;
+            4'hE: OUT = 7'b0000110;
+            4'hF: OUT = 7'b0001110;
+            default: OUT = 7'b1111111;
+        endcase
 endmodule
