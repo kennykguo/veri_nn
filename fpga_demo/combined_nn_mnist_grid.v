@@ -4,7 +4,9 @@ module combined_nn_mnist_grid (
     input wire start,
     output wire done,
     input on,         
-    input draw,  
+    input draw, 
+    input wire PS2_CLK,
+    input wire PS2_DAT, 
     input [3:0] KEY, // KEY[0] = down, KEY[1] = up, KEY[2] = left, KEY[3] = right
     output reg [3:0] current_state,
     output reg [3:0] next_state,
@@ -350,6 +352,10 @@ module combined_nn_mnist_grid (
 // ---------------------------------------------------------------------------   
 
 
+
+
+
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // ---------------------------------------------------------------------------
 // Existing mnist_drawing_grid declarations and logic
@@ -358,164 +364,143 @@ module combined_nn_mnist_grid (
     // Grid constants (28x28)
     parameter GRID_SIZE = 28;
     parameter PIXEL_SIZE = 4;
-
-    // State definitions
+    // State definitions for both FSMs
     parameter INIT = 3'b000;
     parameter DRAW_GRID = 3'b001;
     parameter MOVE = 3'b010;
-
-    // Wire declarations for coordinate conversion
-    wire [5:0] mem_x;
-    wire [4:0] mem_y;
-
+    // PS2 keyboard arrow key scan codes
+    parameter LEFT_ARROW = 8'h6B;
+    parameter RIGHT_ARROW = 8'h74;
+    parameter UP_ARROW = 8'h75;
+    parameter DOWN_ARROW = 8'h72;
     // Cursor position registers
     reg [4:0] current_x;
     reg [4:0] current_y;
-
-    // Movement and debounce control
+    // PS2 keyboard interface signals
+    wire [7:0] ps2_scan_code;
+    wire ps2_key_pressed;
+    wire ps2_done_tick;
+    // Movement control
     reg [19:0] move_delay;
-    reg [19:0] debounce_counter [3:0];
-    parameter DELAY_MAX = 20'd1000000;
-    parameter DEBOUNCE_LIMIT = 20'd50000;
-
+    parameter DELAY_MAX = 20'd2000000;
     // Drawing control
     reg plot;
     reg [7:0] draw_x;
     reg [6:0] draw_y;
-
     // Inner pixel drawing control
     reg [1:0] pixel_x_offset;
     reg [1:0] pixel_y_offset;
-    
     // State registers
     reg [2:0] draw_state;
     reg [2:0] move_state;
-
-    // Grid memory signals
-    wire [15:0] draw_write_addr;
-    assign draw_write_addr = current_y * GRID_SIZE + current_x;
-
-    reg signed [31:0] draw_data_in;
-    wire write_enable;
-    assign write_enable = draw && on;
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // Reset synchronization
     reg [2:0] reset_sync;
     wire reset_f;
 
-    // KEY debouncing registers
-    reg [3:0] key_reg1, key_reg2;
-    reg [3:0] key_stable;
-    wire [3:0] key_pressed;
+    // Grid memory signals
+    wire [15:0] draw_write_addr;
+    assign draw_write_addr = current_y * GRID_SIZE + current_x;
+    reg signed [31:0] draw_data_in;
+    wire write_enable;
+    assign write_enable = draw && on;
 
     // Local pixel memory for VGA display
     reg [783:0] pixel_memory;
 
-    // Synchronize reset
+    // Reset synchronizer
     always @(posedge clk) begin
         reset_sync <= {reset_sync[1:0], reset};
     end
     assign reset_f = reset_sync[2];
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    // Enhanced key debouncing
-    integer i;
-    always @(posedge clk) begin
-        if (reset_f) begin
-            key_reg1 <= 4'hF;
-            key_reg2 <= 4'hF;
-            key_stable <= 4'hF;
-            for (i = 0; i < 4; i = i + 1) begin
-                debounce_counter[i] <= 0;
-            end
-        end else begin
-            key_reg1 <= KEY;
-            key_reg2 <= key_reg1;
-            
-            for (i = 0; i < 4; i = i + 1) begin
-                if (key_reg1[i] != key_stable[i]) begin
-                    if (debounce_counter[i] >= DEBOUNCE_LIMIT) begin
-                        key_stable[i] <= key_reg1[i];
-                        debounce_counter[i] <= 0;
-                    end else begin
-                        debounce_counter[i] <= debounce_counter[i] + 1;
-                    end
-                end else begin
-                    debounce_counter[i] <= 0;
-                end
-            end
-        end
-    end
-    assign key_pressed = ~key_stable & key_reg1;
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    // 7-segment displays
+    
+    // 7-segment display outputs
     hex_display hex0(current_x[3:0], HEX0);
     hex_display hex1({3'b000, current_x[4]}, HEX1);
     hex_display hex2(current_y[3:0], HEX2);
     hex_display hex3({3'b000, current_y[4]}, HEX3);
-    // Memory address calculations
-    assign mem_x = draw_x[7:2];
-    assign mem_y = draw_y[6:2];
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
+    // PS2 keyboard controller instance
+    ps2_keyboard kb_ctrl (
+        .clk(clk),
+        .reset(reset),
+        .ps2d(PS2_DAT),
+        .ps2c(PS2_CLK),
+        .scan_code(ps2_scan_code),
+        .done_tick(ps2_done_tick)
+    );
+    
 
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-// Movement and drawing control
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
+    integer i;
+    // Movement FSM with synchronous reset
     always @(posedge clk) begin
-        if (reset_f) begin
-            current_x <= 5'd14;  // Center of grid
+        if (reset) begin
+            // Synchronous reset logic
+            current_x <= 5'd14;
             current_y <= 5'd14;
             move_delay <= 20'd0;
-            draw_data_in <= 32'd0;
-            
+            move_state <= INIT;
+            plot = 1'b0;
             // Reset pixel memory
-            for(i = 0; i < 784; i = i + 1) begin
+            for (i = 0; i < 784; i = i + 1) begin
                 pixel_memory[i] <= 1'b0;
             end
         end
+
         else if (on) begin
-            if (move_delay == 0) begin
-                // Movement control
-                if (key_pressed[2] && current_x < (GRID_SIZE-1)) begin
-                    current_x <= current_x + 1;
-                    move_delay <= DELAY_MAX;
-                end
-                else if (key_pressed[3                                                              ] && current_x > 0) begin
-                    current_x <= current_x - 1;
-                    move_delay <= DELAY_MAX;
-                end
-                else if (key_pressed[1] && current_y > 0) begin
-                    current_y <= current_y - 1;
-                    move_delay <= DELAY_MAX;
-                end
-                else if (key_pressed[0] && current_y < (GRID_SIZE-1)) begin
-                    current_y <= current_y + 1;
-                    move_delay <= DELAY_MAX;
+            case(move_state)
+                INIT: begin
+                    current_x <= 5'd14;
+                    current_y <= 5'd14;
+                    move_state <= MOVE;
                 end
                 
-                // Drawing control
-                if (draw) begin
-                    draw_data_in <= 32'sd1;
-                    pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
-                end else begin
-                    draw_data_in <= 32'sd0;
+                MOVE: begin
+                    if (move_delay == 0) begin
+                        if (ps2_done_tick) begin
+                            case(ps2_scan_code)
+                                RIGHT_ARROW: begin
+                                    if (current_x < (GRID_SIZE-1)) begin
+                                        current_x <= current_x + 1'd1;
+                                        move_delay <= DELAY_MAX;
+                                    end
+                                end
+                                LEFT_ARROW: begin
+                                    if (current_x > 0) begin
+                                        current_x <= current_x - 1'd1;
+                                        move_delay <= DELAY_MAX;
+                                    end
+                                end
+                                UP_ARROW: begin
+                                    if (current_y > 0) begin
+                                        current_y <= current_y - 1'd1;
+                                        move_delay <= DELAY_MAX;
+                                    end
+                                end
+                                DOWN_ARROW: begin
+                                    if (current_y < (GRID_SIZE-1)) begin
+                                        current_y <= current_y + 1'd1;
+                                        move_delay <= DELAY_MAX;
+                                    end
+                                end
+                            endcase
+                        end
+                        
+                        if (draw) begin
+                            draw_data_in <= 32'sd1;
+                            pixel_memory[current_y * GRID_SIZE + current_x] <= 1'b1;
+                        end
+                        else begin
+                            draw_data_in <= 32'sd0;
+                        end
+                    end
+                    else begin
+                        move_delay <= move_delay - 1'd1;
+                    end
                 end
-            end
-            else begin
-                move_delay <= move_delay - 1;
-            end
+                
+                default: move_state <= INIT;
+            endcase
         end
     end
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -523,7 +508,7 @@ module combined_nn_mnist_grid (
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-// VGA Drawing FSM
+    // Drawing FSM with synchronous reset
     always @(posedge clk) begin
         if (reset_f) begin
             draw_x <= 8'd0;
@@ -545,8 +530,7 @@ module combined_nn_mnist_grid (
                 end
                 
                 DRAW_GRID: begin
-                    if (draw_y < (GRID_SIZE * PIXEL_SIZE) && 
-                        draw_x < (GRID_SIZE * PIXEL_SIZE)) begin
+                    if (draw_y < (GRID_SIZE * PIXEL_SIZE) && draw_x < (GRID_SIZE * PIXEL_SIZE)) begin
                         plot <= 1'b1;
 
                         if (pixel_x_offset == 2'b11) begin
@@ -559,20 +543,22 @@ module combined_nn_mnist_grid (
                                     draw_x <= 8'd0;
                                     draw_y <= draw_y + 1'd1;
                                 end
-                            end else begin
+                            end 
+                            else begin
                                 pixel_y_offset <= pixel_y_offset + 1'b1;
                             end
-                        end else begin
+                        end 
+                        else begin
                             pixel_x_offset <= pixel_x_offset + 1'b1;
                         end
                         
                         if (draw_y >= (GRID_SIZE * PIXEL_SIZE - 1) && 
-                            pixel_y_offset == 2'b11 && 
-                            pixel_x_offset == 2'b11) begin
+                            pixel_y_offset == 2'b11 && pixel_x_offset == 2'b11) begin
                             draw_x <= 8'd0;
                             draw_y <= 7'd0;
                         end
-                    end else begin
+                    end 
+                    else begin
                         plot <= 1'b0;
                     end
                 end
@@ -584,36 +570,31 @@ module combined_nn_mnist_grid (
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-// Color output logic
+    // Color output logic
+    wire [4:0] mem_x = draw_x[7:2];
+    wire [4:0] mem_y = draw_y[6:2];
     wire is_cursor = (mem_x == current_x && mem_y == current_y);
     wire is_pixel_set = pixel_memory[mem_y * GRID_SIZE + mem_x];
+    
     reg [2:0] colour_out;
     always @(posedge clk) begin
-        if (reset_f) begin
+        if (reset) begin
             colour_out <= 3'b001;  // Default background color
         end
         else if (on) begin
-            if (is_cursor)
-                colour_out <= 3'b100;  // Red cursor
-            else if (is_pixel_set)
-                colour_out <= 3'b111;  // White for set pixels
-            else
-                colour_out <= 3'b001;  // Dark blue for grid
+            colour_out <= is_cursor ? 3'b100 :           // Red for cursor
+                         is_pixel_set ? 3'b111 : 3'b001; // White for set pixels, dark blue for grid
         end
     end
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-// VGA position calculation
+    
+    // VGA position calculation
     wire [7:0] actual_x = {draw_x[7:2], pixel_x_offset};
     wire [6:0] actual_y = {draw_y[6:2], pixel_y_offset};
+
     // VGA controller instantiation
     vga_adapter VGA (
-        .resetn(~reset_f),
+        .resetn(~reset),  // Active-low reset
         .clock(clk),
         .colour(colour_out),
         .x(actual_x),
@@ -628,11 +609,12 @@ module combined_nn_mnist_grid (
         .VGA_SYNC_N(VGA_SYNC_N),
         .VGA_CLK(VGA_CLK)
     );
+
     defparam VGA.RESOLUTION = "160x120";
     defparam VGA.MONOCHROME = "FALSE";
     defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
     defparam VGA.BACKGROUND_IMAGE = "black.mif";
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// --------------------------------------------------------------------------- 
 
 
 // ---------------------------------------------------------------------------   
@@ -649,6 +631,114 @@ module combined_nn_mnist_grid (
 // ---------------------------------------------------------------------------   
 
 endmodule
+
+
+
+
+
+
+
+// PS2 Keyboard Controller Module
+module ps2_keyboard(
+    input clk, reset,
+    input ps2d, ps2c,     // PS2 data and clock inputs
+    output reg [7:0] scan_code,  // received scan code
+    output reg done_tick    // signal to indicate new scan code received
+);
+
+    // State declarations
+    localparam [1:0] 
+        idle = 2'b00,
+        dps  = 2'b01,   // data phase start
+        load = 2'b10;
+
+    // Signal declarations
+    reg [1:0] state_reg, state_next;
+    reg [7:0] filter_reg;
+    wire [7:0] filter_next;
+    reg f_ps2c_reg;
+    wire f_ps2c_next;
+    reg [3:0] n_reg;
+    reg [3:0] n_next;
+    reg [10:0] s_reg;
+    reg [10:0] s_next;
+    wire fall_edge;
+
+    // Filter and falling edge tick generation for PS2 clock
+    always @(posedge clk) begin
+        if (reset) begin
+            filter_reg <= 0;
+            f_ps2c_reg <= 0;
+        end
+        else begin
+            filter_reg <= filter_next;
+            f_ps2c_reg <= f_ps2c_next;
+        end
+    end
+
+    assign filter_next = {ps2c, filter_reg[7:1]};
+    assign f_ps2c_next = (filter_reg == 8'b11111111) ? 1'b1 :
+                        (filter_reg == 8'b00000000) ? 1'b0 :
+                        f_ps2c_reg;
+    assign fall_edge = f_ps2c_reg & ~f_ps2c_next;
+
+    // FSMD state & data registers
+    always @(posedge clk) begin
+        if (reset) begin
+            state_reg <= idle;
+            n_reg <= 0;
+            s_reg <= 0;
+        end
+        else begin
+            state_reg <= state_next;
+            n_reg <= n_next;
+            s_reg <= s_next;
+        end
+    end
+
+    // FSMD next-state logic
+    always @* begin
+        state_next = state_reg;
+        n_next = n_reg;
+        s_next = s_reg;
+        done_tick = 1'b0;
+
+        case (state_reg)
+            idle: begin
+                if (fall_edge & ~ps2d) begin // start bit
+                    n_next = 4'b1001;  // count 10 bits
+                    s_next = {ps2d, s_reg[10:1]}; // shift in start bit
+                    state_next = dps;
+                end
+            end
+
+            dps: begin // data phase shift
+                if (fall_edge) begin
+                    n_next = n_reg - 1;
+                    s_next = {ps2d, s_reg[10:1]}; // shift in data, parity, stop bits
+                    if (n_reg == 0)
+                        state_next = load;
+                end
+            end
+
+            load: begin // check parity and stop bits
+                if (s_reg[0] == 1'b0 && s_reg[10] == 1'b1) begin // start bit = 0, stop bit = 1
+                    scan_code <= s_reg[8:1]; // extract scan code
+                    done_tick = 1'b1;
+                end
+                state_next = idle;
+            end
+
+            default: state_next = idle;
+        endcase
+    end
+
+endmodule
+
+
+
+
+
 
 // Hex display module
 module hex_display(
