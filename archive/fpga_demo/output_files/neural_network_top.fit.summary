@@ -1,0 +1,20 @@
+Fitter Status : Successful - Sun Nov 24 02:12:35 2024
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : neural_network_top
+Top-level Entity Name : neural_network_top
+Family : Cyclone V
+Device : 5CSEMA5F31C6
+Timing Models : Final
+Logic utilization (in ALMs) : 8,011 / 32,070 ( 25 % )
+Total registers : 1265
+Total pins : 96 / 457 ( 21 % )
+Total virtual pins : 0
+Total block memory bits : 68,992 / 4,065,280 ( 2 % )
+Total RAM Blocks : 15 / 397 ( 4 % )
+Total DSP Blocks : 22 / 87 ( 25 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 1 / 6 ( 17 % )
+Total DLLs : 0 / 4 ( 0 % )

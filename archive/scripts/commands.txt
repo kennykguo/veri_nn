@@ -1,0 +1,3 @@
+cd C:/Users/admin/Desktop/veri_nn/fpga_demo/ModelSim
+do testbench.tcl
+

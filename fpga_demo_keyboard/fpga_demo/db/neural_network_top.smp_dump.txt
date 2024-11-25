@@ -1,0 +1,58 @@
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|draw_state
+Name draw_state.DRAW_GRID 
+draw_state.INIT 0 
+draw_state.DRAW_GRID 1 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|move_state
+Name move_state.MOVE 
+move_state.INIT 0 
+move_state.MOVE 1 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|ps2_keyboard:kb_ctrl|state_reg
+Name state_reg.idle state_reg.load state_reg.dps 
+state_reg.idle 0 0 0 
+state_reg.dps 1 0 1 
+state_reg.load 1 1 0 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|matrix_multiply:mm4|current_state
+Name current_state.IDLE current_state.FINISH current_state.COMPUTE 
+current_state.IDLE 0 0 0 
+current_state.COMPUTE 1 0 1 
+current_state.FINISH 1 1 0 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|relu:relu3|current_state
+Name current_state.IDLE current_state.FINISH current_state.COMPUTE 
+current_state.IDLE 0 0 0 
+current_state.COMPUTE 1 0 1 
+current_state.FINISH 1 1 0 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|matrix_multiply:mm3|current_state
+Name current_state.IDLE current_state.FINISH current_state.COMPUTE 
+current_state.IDLE 0 0 0 
+current_state.COMPUTE 1 0 1 
+current_state.FINISH 1 1 0 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|relu:relu2|current_state
+Name current_state.IDLE current_state.FINISH current_state.COMPUTE 
+current_state.IDLE 0 0 0 
+current_state.COMPUTE 1 0 1 
+current_state.FINISH 1 1 0 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|matrix_multiply:mm2|current_state
+Name current_state.IDLE current_state.FINISH current_state.COMPUTE 
+current_state.IDLE 0 0 0 
+current_state.COMPUTE 1 0 1 
+current_state.FINISH 1 1 0 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|relu:relu1|current_state
+Name current_state.IDLE current_state.FINISH current_state.COMPUTE 
+current_state.IDLE 0 0 0 
+current_state.COMPUTE 1 0 1 
+current_state.FINISH 1 1 0 
+
+State Machine - |neural_network_top|combined_nn_mnist_grid:combined_module|matrix_multiply:mm1|current_state
+Name current_state.IDLE current_state.FINISH current_state.COMPUTE 
+current_state.IDLE 0 0 0 
+current_state.COMPUTE 1 0 1 
+current_state.FINISH 1 1 0 

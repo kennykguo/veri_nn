@@ -1,5 +1,0 @@
-Info (10281): Verilog HDL Declaration information at mnist_drawing_grid.v(12): object "HEX0" differs only in case from object "hex0" in the same scope File: C:/Users/admin/Desktop/veri_nn/fpga_demo/mnist_drawing_grid.v Line: 12
-Info (10281): Verilog HDL Declaration information at mnist_drawing_grid.v(12): object "HEX1" differs only in case from object "hex1" in the same scope File: C:/Users/admin/Desktop/veri_nn/fpga_demo/mnist_drawing_grid.v Line: 12
-Info (10281): Verilog HDL Declaration information at mnist_drawing_grid.v(12): object "HEX2" differs only in case from object "hex2" in the same scope File: C:/Users/admin/Desktop/veri_nn/fpga_demo/mnist_drawing_grid.v Line: 12
-Info (10281): Verilog HDL Declaration information at mnist_drawing_grid.v(12): object "HEX3" differs only in case from object "hex3" in the same scope File: C:/Users/admin/Desktop/veri_nn/fpga_demo/mnist_drawing_grid.v Line: 12
-Info (10281): Verilog HDL Declaration information at neural_network.v(10): object "done" differs only in case from object "DONE" in the same scope File: C:/Users/admin/Desktop/veri_nn/fpga_demo/neural_network.v Line: 10

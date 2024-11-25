@@ -1,0 +1,556 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/admin/Desktop/veri_nn/fpga_demo/ModelSim
+vargmax
+Z1 !s110 1732430674
+!i10b 1
+!s100 fH6`EhDkOSIlQQL47Z6581
+IB=9`S_UC]M@]R2XCV[E`o1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1732381566
+8../argmax.v
+F../argmax.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1732430674.000000
+!s107 ../argmax.v|
+!s90 -reportprogress|300|-work|work|../argmax.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vclock_divider
+Z7 !s110 1732430675
+!i10b 1
+!s100 21S8DF3JP@[hPS>DTPAP^0
+I7e<FX@z[gPe0f<Fn]J=;e2
+R2
+R0
+w1732423936
+8../clock_divider.v
+F../clock_divider.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z8 !s108 1732430675.000000
+!s107 ../clock_divider.v|
+!s90 -reportprogress|300|-work|work|../clock_divider.v|
+!i113 1
+R5
+R6
+vhex_display
+R1
+!i10b 1
+!s100 F_O;N6k4d@7NfT9Dk^5Q73
+IG7M2:_H92oA]_a]@9EALJ0
+R2
+R0
+Z9 w1732430227
+Z10 8../mnist_drawing_grid.v
+Z11 F../mnist_drawing_grid.v
+L0 204
+R3
+r1
+!s85 0
+31
+R4
+Z12 !s107 ../mnist_drawing_grid.v|
+Z13 !s90 -reportprogress|300|-work|work|../mnist_drawing_grid.v|
+!i113 1
+R5
+R6
+vimage_memory
+R7
+!i10b 1
+!s100 8^_RCPWC825hYdJBTG_OO0
+IM=CJ2D]ZW=`?koIjB5NG43
+R2
+R0
+w1732430114
+8../image_memory.v
+F../image_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../image_memory.v|
+!s90 -reportprogress|300|-work|work|../image_memory.v|
+!i113 1
+R5
+R6
+vmatrix1
+R1
+!i10b 1
+!s100 [_Z>=W:7z?gZUjEaa<XX41
+Im>^jUMR:gen`ilJ4C:>^T3
+R2
+R0
+Z14 w1732342127
+8../matrix1.v
+F../matrix1.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 ../matrix1.v|
+!s90 -reportprogress|300|-work|work|../matrix1.v|
+!i113 1
+R5
+R6
+vmatrix2
+R1
+!i10b 1
+!s100 gJ0mW_JLOQfSldj_=DZ1E0
+IIAVnA@cP60Y[BD_3_K0320
+R2
+R0
+R14
+8../matrix2.v
+F../matrix2.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 ../matrix2.v|
+!s90 -reportprogress|300|-work|work|../matrix2.v|
+!i113 1
+R5
+R6
+vmatrix3
+R7
+!i10b 1
+!s100 7>PdDF^SO7I7I@<3bPZ>11
+IzO?BSYR8cOJzI]c2nAN5A2
+R2
+R0
+R14
+8../matrix3.v
+F../matrix3.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../matrix3.v|
+!s90 -reportprogress|300|-work|work|../matrix3.v|
+!i113 1
+R5
+R6
+vmatrix4
+R7
+!i10b 1
+!s100 g<mhU1EK]9N]IbE@Ab@ij1
+I>`aHL`k5=BNNX3K;PbGXK1
+R2
+R0
+R14
+8../matrix4.v
+F../matrix4.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../matrix4.v|
+!s90 -reportprogress|300|-work|work|../matrix4.v|
+!i113 1
+R5
+R6
+vmatrix_multiply
+R1
+!i10b 1
+!s100 MkfBI2H3RSY8?ecZWR6fT2
+IbOjOO?VT:I06DET=P:?mT1
+R2
+R0
+w1732420002
+8../matrix_multiply.v
+F../matrix_multiply.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 ../matrix_multiply.v|
+!s90 -reportprogress|300|-work|work|../matrix_multiply.v|
+!i113 1
+R5
+R6
+vmm1_memory
+R7
+!i10b 1
+!s100 0K6jIBj:0zM<jWV[ib0:_1
+II_cl;cAm`SDo2ghgG6P;W2
+R2
+R0
+w1732424579
+8../mm1_memory.v
+F../mm1_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../mm1_memory.v|
+!s90 -reportprogress|300|-work|work|../mm1_memory.v|
+!i113 1
+R5
+R6
+vmm2_memory
+R7
+!i10b 1
+!s100 YRYTQHm^RGWSnA08N4m3a1
+IS5;gzD3bCV2@T]WW]hJ:X2
+R2
+R0
+w1732342586
+8../mm2_memory.v
+F../mm2_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../mm2_memory.v|
+!s90 -reportprogress|300|-work|work|../mm2_memory.v|
+!i113 1
+R5
+R6
+vmm3_memory
+R7
+!i10b 1
+!s100 4MfX2Yz`fQk5lie;UAT3=3
+I47QZ`Rcd_>KjmQ5XMB`nn1
+R2
+R0
+w1732342580
+8../mm3_memory.v
+F../mm3_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../mm3_memory.v|
+!s90 -reportprogress|300|-work|work|../mm3_memory.v|
+!i113 1
+R5
+R6
+vmm4_memory
+R7
+!i10b 1
+!s100 FBF`>0faN318Pa^]oA@6A2
+I0S1mcYBlGi;DJLZ=7ncjo3
+R2
+R0
+w1732342568
+8../mm4_memory.v
+F../mm4_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../mm4_memory.v|
+!s90 -reportprogress|300|-work|work|../mm4_memory.v|
+!i113 1
+R5
+R6
+vmnist_drawing_grid
+R1
+!i10b 1
+!s100 <XjbT^]Z>D_NQj;QH9UF91
+I@YUQmJ_RgCCn;SH[hC96I0
+R2
+R0
+R9
+R10
+R11
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R12
+R13
+!i113 1
+R5
+R6
+vneural_network
+R1
+!i10b 1
+!s100 [JbM5LCgLM7EznN3a?OgM2
+IS9<eFO]J?W>F_]]JfBH1T1
+R2
+R0
+w1732422069
+8../neural_network.v
+F../neural_network.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 ../neural_network.v|
+!s90 -reportprogress|300|-work|work|../neural_network.v|
+!i113 1
+R5
+R6
+vneural_network_top
+R1
+!i10b 1
+!s100 ?`g5HEY9mnW_?hkg3E>Q]1
+IM:JY`gMd_b@fP_N2WUXMa3
+R2
+R0
+w1732426252
+8../neural_network_top.v
+F../neural_network_top.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 ../neural_network_top.v|
+!s90 -reportprogress|300|-work|work|../neural_network_top.v|
+!i113 1
+R5
+R6
+vobject_mem
+R7
+!i10b 1
+!s100 l@kkiE;niU_1^gn8UGU[U0
+I51NaI3Di?Xz2OA091XM4C1
+R2
+R0
+R14
+8../object_mem.v
+F../object_mem.v
+L0 39
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../object_mem.v|
+!s90 -reportprogress|300|-work|work|../object_mem.v|
+!i113 1
+R5
+R6
+vrelu
+R1
+!i10b 1
+!s100 CeSH2[DU=:bA1Z^>NBo]=3
+I^@g0Ef^RN9PM[=_UgYGGZ1
+R2
+R0
+w1731862764
+8../relu.v
+F../relu.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 ../relu.v|
+!s90 -reportprogress|300|-work|work|../relu.v|
+!i113 1
+R5
+R6
+vrelu1_memory
+R7
+!i10b 1
+!s100 <bgIjUQIZ_zf74W`D4i:h2
+I5jD3J[<`2e[]n<8JGdA[W3
+R2
+R0
+w1732344739
+8../relu1_memory.v
+F../relu1_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../relu1_memory.v|
+!s90 -reportprogress|300|-work|work|../relu1_memory.v|
+!i113 1
+R5
+R6
+vrelu2_memory
+R7
+!i10b 1
+!s100 j[fdZ<c`OEbz0C_F51[f@2
+IROLTHz`4cVdzZXz9WMbAj1
+R2
+R0
+w1732344743
+8../relu2_memory.v
+F../relu2_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../relu2_memory.v|
+!s90 -reportprogress|300|-work|work|../relu2_memory.v|
+!i113 1
+R5
+R6
+vrelu3_memory
+R7
+!i10b 1
+!s100 ZMXof<1XlCSf?dbJBNNg<3
+IFaQUGmhV1IFZM^lX3U50B3
+R2
+R0
+w1732344747
+8../relu3_memory.v
+F../relu3_memory.v
+L0 1
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../relu3_memory.v|
+!s90 -reportprogress|300|-work|work|../relu3_memory.v|
+!i113 1
+R5
+R6
+vtb_neural_network_top
+R1
+!i10b 1
+!s100 V>[QzXPH3U`fXSK7@jaVc0
+Ia8egGD13Ej?d=mkC2o`@b2
+R2
+R0
+w1732430338
+8../tb_neural_network_top.v
+F../tb_neural_network_top.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+!s107 ../tb_neural_network_top.v|
+!s90 -reportprogress|300|-work|work|../tb_neural_network_top.v|
+!i113 1
+R5
+R6
+vvga_adapter
+R7
+!i10b 1
+!s100 7KR=8CAUOI3dU[Wldj_DZ2
+Il^]K8MKEbO7I6hJT=m[f70
+R2
+R0
+R14
+8../vga_adapter/vga_adapter.v
+F../vga_adapter/vga_adapter.v
+L0 51
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../vga_adapter/vga_adapter.v|
+!s90 -reportprogress|300|-work|work|../vga_adapter/vga_adapter.v|
+!i113 1
+R5
+R6
+vvga_address_translator
+R7
+!i10b 1
+!s100 C0DfW0_9[5co`@boeR]Pi1
+I1D@b?896N3GL=eDHOE0EN0
+R2
+R0
+R14
+8../vga_adapter/vga_address_translator.v
+F../vga_adapter/vga_address_translator.v
+L0 4
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../vga_adapter/vga_address_translator.v|
+!s90 -reportprogress|300|-work|work|../vga_adapter/vga_address_translator.v|
+!i113 1
+R5
+R6
+vvga_controller
+R7
+!i10b 1
+!s100 ejdRBhaHBe8PnOV9UFIVf2
+Ik<E?[?6WFAoU;4ZBFmW:j3
+R2
+R0
+R14
+8../vga_adapter/vga_controller.v
+F../vga_adapter/vga_controller.v
+L0 8
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../vga_adapter/vga_controller.v|
+!s90 -reportprogress|300|-work|work|../vga_adapter/vga_controller.v|
+!i113 1
+R5
+R6
+vvga_pll
+R7
+!i10b 1
+!s100 4XSTjD`VEiamX^n1@5J`b3
+I_cE<W1Q0L;bND7GLmRg4C2
+R2
+R0
+R14
+8../vga_adapter/vga_pll.v
+F../vga_adapter/vga_pll.v
+L0 36
+R3
+r1
+!s85 0
+31
+R8
+!s107 ../vga_adapter/vga_pll.v|
+!s90 -reportprogress|300|-work|work|../vga_adapter/vga_pll.v|
+!i113 1
+R5
+R6
