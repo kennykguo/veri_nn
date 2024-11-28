@@ -1,0 +1,46 @@
+
+
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.v
+
+Nov 24 02AM:03:27>: Error in CNX file format.
+
+Error messages are listed in file
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.v
+
+Nov 24 02AM:04:05>: Error in CNX file format.
+
+Error messages are listed in file
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.v
+
+Nov 24 02AM:05:20>: Error in CNX file format.
+
+Error messages are listed in file
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.v
+
+Nov 24 02AM:05:24>: Error in CNX file format.
+
+Error messages are listed in file
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.v
+
+Nov 24 02AM:05:48>: Error in CNX file format.
+
+Error messages are listed in file
+C:/Users/admin/Desktop/veri_nn/fpga_demo/vga_adapter/vga_pll.cnxerr.
+
+Can't create the custom megafunction variation file(s)
