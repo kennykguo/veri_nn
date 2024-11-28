@@ -1,1 +1,1 @@
-*.jupyter linguist-generated=true
+*.ipynb linguist-detectable=false
